@@ -100,6 +100,12 @@
     "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.swiftdeps",
     "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.dia"
   },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/Theme.swift": {
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme.dia"
+  },
   "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift": {
     "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView.swift.o",
     "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView~partial.swiftmodule",

@@ -10,7 +10,8 @@ struct CleanMacApp: App {
                 .environment(model)
                 .frame(minWidth: 960, minHeight: 620)
         }
-        .windowResizability(.contentSize)
+        // Open roomy enough for sidebar + hero; user-resizable from there.
+        .defaultSize(width: 1080, height: 700)
     }
 
     private static func makeModel() -> AppModel {
@@ -24,10 +25,14 @@ struct CleanMacApp: App {
 struct ContentView: View {
     @Environment(AppModel.self) private var model
     @State private var selection: SidebarItem = .dashboard
+    // Pin the sidebar open — .automatic can launch with the column collapsed
+    // or half-shown.
+    @State private var columnVisibility = NavigationSplitViewVisibility.all
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selection: $selection)
+                .navigationSplitViewColumnWidth(min: 220, ideal: 240, max: 300)
         } detail: {
             ZStack {
                 // The immersive canvas sits behind every module screen.

@@ -210,6 +210,7 @@
         "-emit-objc-header",
         "-emit-objc-header-path",
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/include/CleanCore-Swift.h",
+        "-color-diagnostics",
         "-swift-version",
         "6",
         "-plugin-path",
@@ -515,6 +516,7 @@
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
         "-parseable-output",
         "-parse-as-library",
+        "-color-diagnostics",
         "-swift-version",
         "6",
         "-plugin-path",
@@ -688,6 +690,7 @@
         "-entry-point-function-name",
         "-Xfrontend",
         "CleanHelper_main",
+        "-color-diagnostics",
         "-swift-version",
         "6",
         "-plugin-path",
@@ -811,6 +814,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/Theme.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift"
         },
         {
@@ -850,6 +857,7 @@
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SpaceLensView.swift.o",
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/StartupView.swift.o",
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme.swift.o",
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView.swift.o",
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/UninstallerView.swift.o"
       ],
@@ -871,6 +879,7 @@
         "-entry-point-function-name",
         "-Xfrontend",
         "CleanMac_main",
+        "-color-diagnostics",
         "-swift-version",
         "6",
         "-plugin-path",
@@ -973,6 +982,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView.swift.o"
         },
         {
@@ -1002,6 +1015,7 @@
         "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift",
         "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift",
         "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/Theme.swift",
         "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift",
         "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift"
       ],
@@ -1057,6 +1071,7 @@
         "-emit-objc-header",
         "-emit-objc-header-path",
         "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/include/CleanMacPackageTests-Swift.h",
+        "-color-diagnostics",
         "-plugin-path",
         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
         "-sdk",
@@ -1165,6 +1180,7 @@
       "-emit-objc-header",
       "-emit-objc-header-path",
       "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/include/CleanCore-Swift.h",
+      "-color-diagnostics",
       "-swift-version",
       "6",
       "-plugin-path",
@@ -1245,6 +1261,7 @@
       "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
       "-parseable-output",
       "-parse-as-library",
+      "-color-diagnostics",
       "-swift-version",
       "6",
       "-plugin-path",
@@ -1308,6 +1325,7 @@
       "-entry-point-function-name",
       "-Xfrontend",
       "CleanHelper_main",
+      "-color-diagnostics",
       "-swift-version",
       "6",
       "-plugin-path",
@@ -1367,6 +1385,7 @@
       "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift",
       "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift",
       "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/Theme.swift",
       "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift",
       "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift",
       "-I",
@@ -1388,6 +1407,7 @@
       "-entry-point-function-name",
       "-Xfrontend",
       "CleanMac_main",
+      "-color-diagnostics",
       "-swift-version",
       "6",
       "-plugin-path",
@@ -1454,6 +1474,7 @@
       "-emit-objc-header",
       "-emit-objc-header-path",
       "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/include/CleanMacPackageTests-Swift.h",
+      "-color-diagnostics",
       "-plugin-path",
       "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
       "-sdk",
@@ -1930,6 +1951,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/Theme.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift"
         },
         {
@@ -2117,6 +2142,10 @@
         {
           "kind" : "file",
           "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/Theme.swift.o"
         },
         {
           "kind" : "file",

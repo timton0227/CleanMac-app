@@ -111,7 +111,6 @@ struct SidebarView: View {
         }
         .listStyle(.sidebar)
         .navigationTitle("CleanMac")
-        .frame(minWidth: 220)
     }
 
     @ViewBuilder
