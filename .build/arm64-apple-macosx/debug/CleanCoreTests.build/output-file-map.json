@@ -1,0 +1,117 @@
+{
+  "": {
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/master.swiftdeps"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ActionEngineTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ActionEngineTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ActionEngineTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ActionEngineTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ActionEngineTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ActionEngineTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/DuplicateScannerTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/DuplicateScannerTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/DuplicateScannerTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/DuplicateScannerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/DuplicateScannerTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/DuplicateScannerTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/FullDiskAccessTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/FullDiskAccessTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/FullDiskAccessTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/FullDiskAccessTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/FullDiskAccessTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/FullDiskAccessTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/HelperTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/HelperTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/HelperTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/HelperTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/HelperTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/HelperTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/IOSBackupTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/IOSBackupTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/IOSBackupTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/IOSBackupTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/IOSBackupTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/IOSBackupTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/LargeFilesScannerTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/LargeFilesScannerTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/LargeFilesScannerTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/LargeFilesScannerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/LargeFilesScannerTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/LargeFilesScannerTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/PrivacyScannerTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/PrivacyScannerTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/PrivacyScannerTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/PrivacyScannerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/PrivacyScannerTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/PrivacyScannerTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ProtectedPathsTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ProtectedPathsTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ProtectedPathsTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ProtectedPathsTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ProtectedPathsTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ProtectedPathsTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ScannerTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ScannerTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ScannerTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ScannerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ScannerTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/ScannerTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SizeAccountingTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SizeAccountingTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SizeAccountingTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SizeAccountingTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SizeAccountingTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SizeAccountingTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SmartScanTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SmartScanTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SmartScanTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SmartScanTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SmartScanTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SmartScanTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SnapshotTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SnapshotTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SnapshotTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SnapshotTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SnapshotTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SnapshotTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SpaceLensTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SpaceLensTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SpaceLensTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SpaceLensTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SpaceLensTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/SpaceLensTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/StartupItemTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/StartupItemTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/StartupItemTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/StartupItemTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/StartupItemTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/StartupItemTests.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/TestSupport.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/TestSupport.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/TestSupport.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/TestSupport~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/TestSupport.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/TestSupport.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/UninstallerTests.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/UninstallerTests.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/UninstallerTests.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/UninstallerTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/UninstallerTests.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanCoreTests.build/UninstallerTests.dia"
+  }
+}

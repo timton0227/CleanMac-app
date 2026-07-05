@@ -1,0 +1,197 @@
+import SwiftUI
+import CleanCore
+
+/// Application Uninstaller + leftovers (§4.4). Two modes on the same pipeline:
+///
+/// - **Applications**: pick installed apps → scan bundle + associated files →
+///   standard Review → reversible removal to the app Trash. Deselecting the
+///   `.app` bundle row in Review turns an uninstall into an *app reset*.
+/// - **Leftovers**: files whose owning app is already gone — Finder-invisible,
+///   never removed by drag-to-Trash. All low-confidence, never pre-selected.
+///
+/// A watcher on /Applications raises a banner offering a leftovers sweep when
+/// an app is removed outside this app (drag-to-Trash detection).
+struct UninstallerView: View {
+    @Environment(AppModel.self) private var model
+    @State private var mode: Mode = .applications
+    @State private var confirmingUninstall = false
+
+    enum Mode: String, CaseIterable {
+        case applications = "Applications"
+        case leftovers = "Leftovers"
+    }
+
+    private var moduleId: String {
+        mode == .applications ? "app-uninstall" : "app-leftovers"
+    }
+    private var ownsPipeline: Bool { model.activeModuleId == moduleId }
+    private var phase: AppModel.Phase { ownsPipeline ? model.phase : .idle }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            StorageHeader()
+            PhaseBar(phase: phase)
+            Divider()
+            if model.applicationsChangedExternally {
+                InfoBanner(icon: "info.circle.fill", tint: .blue,
+                           text: "The Applications folder changed — an app may have been removed. Its support files are likely still on disk.") {
+                    Button("Scan for Leftovers") {
+                        mode = .leftovers
+                        Task { await model.scanLeftovers() }
+                    }
+                }
+            }
+            content
+        }
+        .navigationTitle("Uninstaller")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Picker("Mode", selection: $mode) {
+                    ForEach(Mode.allCases, id: \.self) { Text($0.rawValue) }
+                }
+                .pickerStyle(.segmented)
+            }
+        }
+        .task {
+            model.loadInstalledApps()
+            // Arriving from a Smart Scan leftovers review (§4.8): land on the
+            // segment that owns the pipeline instead of hiding the findings.
+            if model.activeModuleId == "app-leftovers" { mode = .leftovers }
+        }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        switch mode {
+        case .applications:
+            if ownsPipeline && model.phase != .idle {
+                pipelineBody
+            } else {
+                appPicker
+            }
+        case .leftovers:
+            if ownsPipeline && model.phase != .idle {
+                pipelineBody
+            } else {
+                leftoversIdle
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var pipelineBody: some View {
+        switch model.phase {
+        case .scanning:
+            ScanRing(progress: model.scanProgress, label: "Tracing app files…")
+        case .review:
+            if mode == .applications {
+                reviewHint
+            }
+            ReviewList()
+        case .acting:
+            ScanRing(label: "Cleaning…", indeterminate: true)
+        case .report:
+            ReportView()
+        case .idle:
+            EmptyView()
+        }
+    }
+
+    private var reviewHint: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "lightbulb").foregroundStyle(.secondary)
+            Text("Tip: deselect the .app bundle itself to *reset* the app (clear its data but keep it installed). Removal is reversible from the Trash tab.")
+                .font(.callout).foregroundStyle(.secondary)
+            Spacer()
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
+    }
+
+    // MARK: - Applications mode
+
+    private var appPicker: some View {
+        VStack(spacing: 0) {
+            List {
+                ForEach(model.installedApps) { app in
+                    AppRow(app: app)
+                }
+            }
+            .listStyle(.inset)
+            Divider()
+            HStack {
+                Text("\(model.selectedApps.count) app(s) selected")
+                    .foregroundStyle(.secondary)
+                    .contentTransition(.numericText())
+                    .animation(.default, value: model.selectedApps.count)
+                Spacer()
+                Button("Refresh") { model.loadInstalledApps() }
+                Button("Uninstall…") { confirmingUninstall = true }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(model.selectedApps.isEmpty)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 12)
+            .background(Brand.paper)
+        }
+        .confirmationDialog(
+            "Scan \(model.selectedApps.count) app(s) for uninstall? Nothing is removed yet — you review every file first.",
+            isPresented: $confirmingUninstall, titleVisibility: .visible
+        ) {
+            Button("Scan for Uninstall") { Task { await model.scanUninstall() } }
+            Button("Cancel", role: .cancel) {}
+        }
+    }
+
+    // MARK: - Leftovers mode
+
+    private var leftoversIdle: some View {
+        ModuleHero(
+            icon: "puzzlepiece.extension",
+            tint: SidebarItem.uninstaller.tint,
+            title: "App Leftovers",
+            message: "Finds support files, preferences, caches, and launch agents left behind by apps that were deleted — parts that dragging an app to the Trash never removes. Detection is conservative: nothing is pre-selected."
+        ) {
+            Button("Scan") { Task { await model.scanLeftovers() } }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+        }
+    }
+}
+
+private struct AppRow: View {
+    @Environment(AppModel.self) private var model
+    let app: InstalledApp
+    @State private var hovering = false
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Toggle("", isOn: Binding(
+                get: { model.selectedApps.contains(app.url) },
+                set: { on in
+                    if on { model.selectedApps.insert(app.url) }
+                    else { model.selectedApps.remove(app.url) }
+                }
+            ))
+            .labelsHidden()
+
+            Image(nsImage: NSWorkspace.shared.icon(forFile: app.url.path))
+                .resizable().frame(width: 20, height: 20)
+
+            VStack(alignment: .leading, spacing: 1) {
+                Text(app.name)
+                Text(app.bundleID ?? app.url.path)
+                    .font(.caption).foregroundStyle(.secondary).lineLimit(1)
+            }
+            Spacer()
+            if model.isRunning(app) {
+                BrandTag(text: "Running", color: .orange)
+            }
+        }
+        .padding(.vertical, 3)
+        .padding(.horizontal, 6)
+        .background(hovering ? Brand.indigo.opacity(0.06) : .clear,
+                    in: RoundedRectangle(cornerRadius: 6))
+        .onHover { hovering = $0 }
+    }
+}

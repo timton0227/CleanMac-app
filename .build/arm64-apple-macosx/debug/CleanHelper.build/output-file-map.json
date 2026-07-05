@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanHelper.build/master.swiftdeps"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanHelper/main.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanHelper.build/main.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanHelper.build/main.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanHelper.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanHelper.build/main.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/debug/CleanHelper.build/main.dia"
+  }
+}

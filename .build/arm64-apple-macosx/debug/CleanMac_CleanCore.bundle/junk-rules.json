@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "note": "FR-DEFS: junk-path definitions live in this signed, remote-updatable ruleset — never hard-coded in the binary. Paths shift each macOS release; update this file, not the app. User-level only in this build (no root).",
+  "rules": [
+    {
+      "id": "user-caches",
+      "category": "userCache",
+      "confidence": "high",
+      "root": "~/Library/Caches",
+      "minAgeDays": 1,
+      "excludeContains": ["com.apple.appstore", "CloudKit"]
+    },
+    {
+      "id": "app-logs",
+      "category": "appLogs",
+      "confidence": "high",
+      "root": "~/Library/Logs",
+      "minAgeDays": 1,
+      "excludeContains": []
+    },
+    {
+      "id": "crash-reports",
+      "category": "crashReports",
+      "confidence": "high",
+      "root": "~/Library/Logs/DiagnosticReports",
+      "minAgeDays": 0,
+      "excludeContains": []
+    },
+    {
+      "id": "saved-app-state",
+      "category": "tempFiles",
+      "confidence": "medium",
+      "root": "~/Library/Saved Application State",
+      "minAgeDays": 7,
+      "excludeContains": []
+    },
+    {
+      "id": "xcode-derived-data",
+      "category": "developerJunk",
+      "confidence": "medium",
+      "root": "~/Library/Developer/Xcode/DerivedData",
+      "minAgeDays": 3,
+      "excludeContains": []
+    },
+    {
+      "id": "xcode-device-support",
+      "category": "developerJunk",
+      "confidence": "low",
+      "root": "~/Library/Developer/Xcode/iOS DeviceSupport",
+      "minAgeDays": 14,
+      "excludeContains": []
+    },
+    {
+      "id": "npm-cache",
+      "category": "developerJunk",
+      "confidence": "medium",
+      "root": "~/.npm/_cacache",
+      "minAgeDays": 3,
+      "excludeContains": []
+    },
+    {
+      "id": "safari-incomplete-downloads",
+      "category": "brokenDownloads",
+      "confidence": "medium",
+      "root": "~/Downloads",
+      "minAgeDays": 2,
+      "matchExtensions": ["download", "crdownload", "part"],
+      "excludeContains": []
+    }
+  ]
+}

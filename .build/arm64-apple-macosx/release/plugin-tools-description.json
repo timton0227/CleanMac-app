@@ -1,0 +1,2347 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.xctest/Contents/MacOS/CleanMacPackageTests",
+      "packagePath" : "/Users/thienton/Desktop/clean_my_mac_2",
+      "productName" : "CleanMacPackageTests"
+    }
+  ],
+  "copyCommands" : {
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac_CleanCore.bundle/junk-rules.json" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Resources/junk-rules.json"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac_CleanCore.bundle/junk-rules.json"
+        }
+      ]
+    }
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.CleanCore-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/sources",
+      "importPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ActionEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/AuditLog.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/FreeSpaceProbe.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ProtectedPaths.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/TrashStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SmartScan.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SystemStats.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperCommandHandler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperIPC.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/ActionRecord.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Category.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Finding.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/SizeAccounting.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Permissions/FullDiskAccess.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/AppInventory.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/DuplicateScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/IOSBackupScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/JunkRules.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/LargeOldFilesScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/PrivacyScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SnapshotScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/StartupItems.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SystemJunkScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/UninstallScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanning/Scanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/SpaceLens/SpaceLens.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<CleanCore-arm64-apple-macosx15.0-release.module-resources>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanCore",
+      "moduleOutputPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCore.swiftmodule",
+      "objects" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionEngine.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AuditLog.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FreeSpaceProbe.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ProtectedPaths.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/TrashStore.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SmartScan.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemStats.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperCommandHandler.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperIPC.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionRecord.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Category.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Finding.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SizeAccounting.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FullDiskAccess.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AppInventory.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DuplicateScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/IOSBackupScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/JunkRules.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/LargeOldFilesScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/PrivacyScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SnapshotScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/StartupItems.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemJunkScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/UninstallScanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Scanner.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SpaceLens.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/resource_bundle_accessor.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "16",
+        "-serialize-diagnostics",
+        "-O",
+        "-j16",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE",
+        "-module-cache-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/include/CleanCore-Swift.h",
+        "-swift-version",
+        "6",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "clean_my_mac_2"
+      ],
+      "outputFileMapPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AuditLog.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FreeSpaceProbe.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ProtectedPaths.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/TrashStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SmartScan.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemStats.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperCommandHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperIPC.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionRecord.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Category.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Finding.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SizeAccounting.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FullDiskAccess.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AppInventory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DuplicateScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/IOSBackupScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/JunkRules.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/LargeOldFilesScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/PrivacyScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SnapshotScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/StartupItems.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemJunkScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/UninstallScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Scanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SpaceLens.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCore.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ActionEngine.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/AuditLog.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/FreeSpaceProbe.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ProtectedPaths.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/TrashStore.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SmartScan.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SystemStats.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperCommandHandler.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperIPC.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/ActionRecord.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Category.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Finding.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/SizeAccounting.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Permissions/FullDiskAccess.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/AppInventory.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/DuplicateScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/IOSBackupScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/JunkRules.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/LargeOldFilesScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/PrivacyScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SnapshotScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/StartupItems.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SystemJunkScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/UninstallScanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanning/Scanner.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/SpaceLens/SpaceLens.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DerivedSources/resource_bundle_accessor.swift"
+      ],
+      "tempsPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.CleanCoreTests-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/sources",
+      "importPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ActionEngineTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/DuplicateScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/FullDiskAccessTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/HelperTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/IOSBackupTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/LargeFilesScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/PrivacyScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ProtectedPathsTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SizeAccountingTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SmartScanTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SnapshotTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SpaceLensTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/StartupItemTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/TestSupport.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/UninstallerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanCoreTests",
+      "moduleOutputPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCoreTests.swiftmodule",
+      "objects" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ActionEngineTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/DuplicateScannerTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/FullDiskAccessTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/HelperTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/IOSBackupTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/LargeFilesScannerTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/PrivacyScannerTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ProtectedPathsTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ScannerTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SizeAccountingTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SmartScanTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SnapshotTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SpaceLensTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/StartupItemTests.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/TestSupport.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/UninstallerTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "16",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/index/store",
+        "-O",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j16",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "clean_my_mac_2"
+      ],
+      "outputFileMapPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ActionEngineTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/DuplicateScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/FullDiskAccessTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/HelperTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/IOSBackupTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/LargeFilesScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/PrivacyScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ProtectedPathsTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SizeAccountingTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SmartScanTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SnapshotTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SpaceLensTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/StartupItemTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/TestSupport.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/UninstallerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCoreTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ActionEngineTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/DuplicateScannerTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/FullDiskAccessTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/HelperTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/IOSBackupTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/LargeFilesScannerTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/PrivacyScannerTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ProtectedPathsTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ScannerTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SizeAccountingTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SmartScanTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SnapshotTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SpaceLensTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/StartupItemTests.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/TestSupport.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/UninstallerTests.swift"
+      ],
+      "tempsPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.CleanHelper-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/sources",
+      "importPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanHelper/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "CleanHelper",
+      "moduleOutputPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanHelper.swiftmodule",
+      "objects" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/main.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "16",
+        "-serialize-diagnostics",
+        "-O",
+        "-j16",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "CleanHelper_main",
+        "-swift-version",
+        "6",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "clean_my_mac_2"
+      ],
+      "outputFileMapPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanHelper.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanHelper/main.swift"
+      ],
+      "tempsPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.CleanMac-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/sources",
+      "importPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/AppModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/CleanMacApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/HelperClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/BrandMark.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DashboardView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DuplicatesView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/IOSBackupsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/LargeFilesView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/PrivacyView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReportView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReviewView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SidebarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SnapshotsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "CleanMac",
+      "moduleOutputPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanMac.swiftmodule",
+      "objects" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/AppModel.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/CleanMacApp.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/HelperClient.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/BrandMark.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/DashboardView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/DuplicatesView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/IOSBackupsView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/LargeFilesView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/PrivacyView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/ReportView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/ReviewView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SidebarView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SnapshotsView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SpaceLensView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/StartupView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView.swift.o",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/UninstallerView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "16",
+        "-serialize-diagnostics",
+        "-O",
+        "-j16",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "CleanMac_main",
+        "-swift-version",
+        "6",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "clean_my_mac_2"
+      ],
+      "outputFileMapPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/AppModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/CleanMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/HelperClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/BrandMark.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/DashboardView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/DuplicatesView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/IOSBackupsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/LargeFilesView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/PrivacyView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/ReportView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/ReviewView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SidebarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SnapshotsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SpaceLensView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/StartupView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/UninstallerView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanMac.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/AppModel.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/CleanMacApp.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/HelperClient.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/BrandMark.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DashboardView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DuplicatesView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/IOSBackupsView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/LargeFilesView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/PrivacyView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReportView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReviewView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SidebarView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SnapshotsView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift",
+        "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift"
+      ],
+      "tempsPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.CleanMacPackageTests-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/sources",
+      "importPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanCoreTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanMacPackageTests",
+      "moduleOutputPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanMacPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "16",
+        "-serialize-diagnostics",
+        "-O",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j16",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/include/CleanMacPackageTests-Swift.h",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "clean_my_mac_2"
+      ],
+      "outputFileMapPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules/CleanMacPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build",
+      "wholeModuleOptimization" : true
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "CleanCore" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanCore",
+      "-package-name",
+      "clean_my_mac_2",
+      "-c",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ActionEngine.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/AuditLog.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/FreeSpaceProbe.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ProtectedPaths.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/TrashStore.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SmartScan.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SystemStats.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperCommandHandler.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperIPC.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/ActionRecord.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Category.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Finding.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/SizeAccounting.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Permissions/FullDiskAccess.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/AppInventory.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/DuplicateScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/IOSBackupScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/JunkRules.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/LargeOldFilesScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/PrivacyScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SnapshotScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/StartupItems.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SystemJunkScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/UninstallScanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanning/Scanner.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/SpaceLens/SpaceLens.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DerivedSources/resource_bundle_accessor.swift",
+      "-I",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "16",
+      "-serialize-diagnostics",
+      "-O",
+      "-j16",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_AVAILABLE",
+      "-module-cache-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/include/CleanCore-Swift.h",
+      "-swift-version",
+      "6",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "clean_my_mac_2",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanCoreTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanCoreTests",
+      "-package-name",
+      "clean_my_mac_2",
+      "-c",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ActionEngineTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/DuplicateScannerTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/FullDiskAccessTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/HelperTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/IOSBackupTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/LargeFilesScannerTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/PrivacyScannerTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ProtectedPathsTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ScannerTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SizeAccountingTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SmartScanTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SnapshotTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SpaceLensTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/StartupItemTests.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/TestSupport.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/UninstallerTests.swift",
+      "-I",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "16",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/index/store",
+      "-O",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j16",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "clean_my_mac_2",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanHelper" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanHelper",
+      "-package-name",
+      "clean_my_mac_2",
+      "-c",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanHelper/main.swift",
+      "-I",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "16",
+      "-serialize-diagnostics",
+      "-O",
+      "-j16",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "CleanHelper_main",
+      "-swift-version",
+      "6",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "clean_my_mac_2",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanMac" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMac",
+      "-package-name",
+      "clean_my_mac_2",
+      "-c",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/AppModel.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/CleanMacApp.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/HelperClient.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/BrandMark.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DashboardView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DuplicatesView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/IOSBackupsView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/LargeFilesView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/PrivacyView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReportView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReviewView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SidebarView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SnapshotsView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift",
+      "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift",
+      "-I",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "16",
+      "-serialize-diagnostics",
+      "-O",
+      "-j16",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "CleanMac_main",
+      "-swift-version",
+      "6",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "clean_my_mac_2",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanMacPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMacPackageTests",
+      "-package-name",
+      "clean_my_mac_2",
+      "-c",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "16",
+      "-serialize-diagnostics",
+      "-O",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j16",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/include/CleanMacPackageTests-Swift.h",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "clean_my_mac_2",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "CleanCore" : [
+
+    ],
+    "CleanCoreTests" : [
+      "CleanCore"
+    ],
+    "CleanHelper" : [
+      "CleanCore"
+    ],
+    "CleanMac" : [
+      "CleanCore"
+    ],
+    "CleanMacPackageTests" : [
+      "CleanCoreTests",
+      "CleanCore"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ActionEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/AuditLog.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/FreeSpaceProbe.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/ProtectedPaths.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Action/TrashStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SmartScan.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Dashboard/SystemStats.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperCommandHandler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Helper/HelperIPC.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/ActionRecord.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Category.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/Finding.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Models/SizeAccounting.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Permissions/FullDiskAccess.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/AppInventory.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/DuplicateScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/IOSBackupScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/JunkRules.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/LargeOldFilesScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/PrivacyScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SnapshotScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/StartupItems.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/SystemJunkScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanners/UninstallScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/Scanning/Scanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanCore/SpaceLens/SpaceLens.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DerivedSources/resource_bundle_accessor.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/sources"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ActionEngineTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/DuplicateScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/FullDiskAccessTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/HelperTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/IOSBackupTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/LargeFilesScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/PrivacyScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ProtectedPathsTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/ScannerTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SizeAccountingTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SmartScanTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SnapshotTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/SpaceLensTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/StartupItemTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/TestSupport.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Tests/CleanCoreTests/UninstallerTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/sources"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanHelper/main.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/sources"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionRecord.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AppInventory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AuditLog.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Category.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DuplicateScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Finding.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FreeSpaceProbe.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FullDiskAccess.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperCommandHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperIPC.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/IOSBackupScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/JunkRules.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/LargeOldFilesScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/PrivacyScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ProtectedPaths.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Scanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SizeAccounting.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SmartScan.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SnapshotScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SpaceLens.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/StartupItems.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemJunkScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemStats.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/TrashStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/UninstallScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.build/main.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanHelper.product/Objects.LinkFileList"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/AppModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/CleanMacApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/HelperClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/BrandMark.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DashboardView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DuplicatesView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/IOSBackupsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/LargeFilesView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/PrivacyView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReportView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReviewView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SidebarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SnapshotsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/sources"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionRecord.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AppInventory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AuditLog.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Category.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DuplicateScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Finding.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FreeSpaceProbe.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FullDiskAccess.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperCommandHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperIPC.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/IOSBackupScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/JunkRules.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/LargeOldFilesScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/PrivacyScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ProtectedPaths.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Scanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SizeAccounting.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SmartScan.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SnapshotScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SpaceLens.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/StartupItems.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemJunkScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemStats.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/TrashStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/UninstallScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/AppModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/BrandMark.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/CleanMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/DashboardView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/DuplicatesView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/HelperClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/IOSBackupsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/LargeFilesView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/PrivacyView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/ReportView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/ReviewView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SidebarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SnapshotsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SpaceLensView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/StartupView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/SystemJunkView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/TrashView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.build/UninstallerView.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMac.product/Objects.LinkFileList"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/sources"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ActionRecord.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AppInventory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/AuditLog.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Category.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/DuplicateScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Finding.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FreeSpaceProbe.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/FullDiskAccess.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperCommandHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/HelperIPC.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/IOSBackupScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/JunkRules.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/LargeOldFilesScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/PrivacyScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/ProtectedPaths.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/Scanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SizeAccounting.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SmartScan.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SnapshotScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SpaceLens.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/StartupItems.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemJunkScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/SystemStats.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/TrashStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/UninstallScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCore.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ActionEngineTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/DuplicateScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/FullDiskAccessTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/HelperTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/IOSBackupTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/LargeFilesScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/PrivacyScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ProtectedPathsTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/ScannerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SizeAccountingTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SmartScanTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SnapshotTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/SpaceLensTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/StartupItemTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/TestSupport.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanCoreTests.build/UninstallerTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.build/runner.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/CleanMacPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/thienton/Desktop/clean_my_mac_2/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}
