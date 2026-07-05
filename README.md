@@ -145,6 +145,16 @@ scripts/package.sh
   copied into the bundle by `scripts/package.sh`. The same ring + wordmark
   lockup is a reusable SwiftUI view (`BrandMark`/`RingMark`) shown in the
   sidebar header in-app.
+- **Design system & interactive UI** — `Views/Theme.swift` carries the style
+  guide's palette (Ink/Paper/Mist/Border/Fog/Indigo, dark-mode adaptive) and
+  the shared chrome: grouped sidebar with per-module icon tiles and a live
+  Trash badge; a dashboard hero (disk-usage brand ring + one-click Smart Scan)
+  with an all-tools navigation grid; a `Scan → Review → Clean → Done` step bar
+  in every pipeline module (renamed "Clear"/"Delete" where the action isn't a
+  reversible clean); scan progress drawn as the closing aperture ring;
+  whole-category and select-all/none toggles in Review (protected items stay
+  unselectable); animated live totals; and hover states on rows, cards, and
+  Space Lens tiles. View-layer only — the engine and scanners are untouched.
 - Remaining roadmap: Developer ID signing + notarization credentials (the
   packaging script supports both via env vars), the conditional known-adware
   scanner (Stage 11), and FR-AUTO scheduled scans — all plug into this same
