@@ -89,10 +89,10 @@ struct SidebarView: View {
 
     var body: some View {
         List(selection: $selection) {
-            // Brand lockup as the sidebar masthead, like the reference's
-            // title row.
+            // Brand lockup as the first, non-selectable row.
             BrandMark(ringDiameter: 18, wordmarkSize: 14)
                 .padding(.vertical, 6)
+                .selectionDisabled()
                 .listRowSeparator(.hidden)
 
             ForEach(Array(SidebarItem.sections.enumerated()), id: \.offset) { _, section in
