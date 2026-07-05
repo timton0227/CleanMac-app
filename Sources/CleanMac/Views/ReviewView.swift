@@ -138,12 +138,7 @@ struct FindingRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(finding.displayLabel ?? finding.path.lastPathComponent)
                     .lineLimit(1)
-                Text(finding.displayLabel != nil
-                     ? finding.path.path
-                     : finding.path.deletingLastPathComponent().path)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                revealButton
             }
             Spacer()
             badges
@@ -163,6 +158,32 @@ struct FindingRow: View {
                     in: RoundedRectangle(cornerRadius: 6))
         .onHover { hovering = $0 }
         .help(helpText)
+    }
+
+    /// The folder path, clickable to reveal the item in Finder — no right-click
+    /// needed. A folder glyph appears on hover to signal it's interactive.
+    @State private var pathHovering = false
+    private var revealButton: some View {
+        let path = finding.displayLabel != nil
+            ? finding.path.path
+            : finding.path.deletingLastPathComponent().path
+        return Button {
+            NSWorkspace.shared.activateFileViewerSelecting([finding.path])
+        } label: {
+            HStack(spacing: 4) {
+                Image(systemName: "folder")
+                    .font(.caption2)
+                    .opacity(pathHovering ? 1 : 0)
+                Text(path)
+                    .font(.caption)
+                    .lineLimit(1)
+                    .underline(pathHovering)
+            }
+            .foregroundStyle(pathHovering ? Brand.indigo : .secondary)
+        }
+        .buttonStyle(.plain)
+        .onHover { pathHovering = $0 }
+        .help("Reveal in Finder")
     }
 
     @ViewBuilder
