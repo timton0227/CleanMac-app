@@ -29,27 +29,33 @@ struct ContentView: View {
         NavigationSplitView {
             SidebarView(selection: $selection)
         } detail: {
-            Group {
-                switch selection {
-                case .dashboard: DashboardView(selection: $selection)
-                case .systemJunk: SystemJunkView()
-                case .largeFiles: LargeFilesView()
-                case .snapshots: SnapshotsView()
-                case .uninstaller: UninstallerView()
-                case .iosBackups: IOSBackupsView()
-                case .duplicates: DuplicatesView()
-                case .startup: StartupView()
-                case .privacy: PrivacyView()
-                case .spaceLens: SpaceLensView()
-                case .trash: TrashView()
+            ZStack {
+                // The immersive canvas sits behind every module screen.
+                SpaceBackground()
+                Group {
+                    switch selection {
+                    case .dashboard: DashboardView(selection: $selection)
+                    case .systemJunk: SystemJunkView()
+                    case .largeFiles: LargeFilesView()
+                    case .snapshots: SnapshotsView()
+                    case .uninstaller: UninstallerView()
+                    case .iosBackups: IOSBackupsView()
+                    case .duplicates: DuplicatesView()
+                    case .startup: StartupView()
+                    case .privacy: PrivacyView()
+                    case .spaceLens: SpaceLensView()
+                    case .trash: TrashView()
+                    }
                 }
+                // Cross-fade between modules instead of a hard cut.
+                .id(selection)
+                .transition(.opacity)
             }
-            // Cross-fade between modules instead of a hard cut.
-            .id(selection)
-            .transition(.opacity)
         }
         .animation(.easeInOut(duration: 0.15), value: selection)
         // Brand accent everywhere: buttons, toggles, progress, selection.
         .tint(Brand.indigo)
+        // The layout is designed dark (immersive gradient canvas).
+        .preferredColorScheme(.dark)
     }
 }

@@ -38,12 +38,10 @@ struct PrivacyView: View {
                 icon: SidebarItem.privacy.systemImage,
                 tint: SidebarItem.privacy.tint,
                 title: "Privacy Cleaner",
-                message: "Clears browsing history, cookies, and download records (Safari, Chrome, Firefox), shell and tool histories, and the system recent-items lists. Nothing is selected by default, and clearing is permanent — these records are purged, not moved to the Trash.\n\nSafari data requires Full Disk Access to appear. Quit a browser before clearing its data."
-            ) {
-                Button("Scan") { Task { await model.scanPrivacy() } }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
+                message: "Clears browsing history, cookies, and download records (Safari, Chrome, Firefox), shell and tool histories, and the system recent-items lists. Nothing is selected by default, and clearing is permanent — these records are purged, not moved to the Trash.\n\nSafari data requires Full Disk Access to appear. Quit a browser before clearing its data.",
+                primaryLabel: "Scan",
+                primaryAction: { Task { await model.scanPrivacy() } }
+            )
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Scanning privacy traces…")
         case .review:
@@ -73,6 +71,7 @@ struct PrivacyView: View {
                 }
             }
             .listStyle(.inset)
+            .scrollContentBackground(.hidden)
             Divider()
             actionBar
         }
@@ -101,7 +100,7 @@ struct PrivacyView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Brand.paper)
+        .background(.ultraThinMaterial)
         .confirmationDialog(
             "Permanently clear \(model.selected.count) privacy item(s)? This cannot be undone.",
             isPresented: $confirmingPurge, titleVisibility: .visible

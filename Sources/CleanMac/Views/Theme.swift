@@ -9,11 +9,14 @@ import CleanCore
 /// the brand reads the same everywhere. Colors adapt to dark mode; the light
 /// values are the guide's exact tokens.
 enum Brand {
-    static let ink     = Color(light: 0x1C1C1E, dark: 0xF5F5F4)
-    static let paper   = Color(light: 0xFFFFFF, dark: 0x232326)
-    static let mist    = Color(light: 0xF5F5F4, dark: 0x1A1A1C)
-    static let border  = Color(light: 0xE4E4E2, dark: 0x3A3A3C)
-    static let fog     = Color(light: 0x8E8E93, dark: 0x98989D)
+    // The app runs dark-first (CleanMyMac-style immersive canvas); the dark
+    // values are plum-tinted to sit on the space gradient. Light values remain
+    // the guide's exact tokens.
+    static let ink     = Color(light: 0x1C1C1E, dark: 0xF5F5F7)
+    static let paper   = Color(light: 0xFFFFFF, dark: 0x2A2440)
+    static let mist    = Color(light: 0xF5F5F4, dark: 0x201A32)
+    static let border  = Color(light: 0xE4E4E2, dark: 0x3E3756)
+    static let fog     = Color(light: 0x8E8E93, dark: 0xA5A1B8)
     static let indigo  = Color(light: 0x5E5CE6, dark: 0x7674FF)
     static let danger  = Color(light: 0xE24B4A, dark: 0xE2504F)
 
@@ -217,43 +220,141 @@ struct ScanRing: View {
     }
 }
 
+// MARK: - Space background
+
+/// The immersive canvas behind every screen: a deep plum gradient with a
+/// faint, static starfield (seeded, so it never twinkles distractingly).
+struct SpaceBackground: View {
+    var body: some View {
+        ZStack {
+            LinearGradient(
+                stops: [
+                    .init(color: Color(red: 0.20, green: 0.15, blue: 0.29), location: 0),
+                    .init(color: Color(red: 0.14, green: 0.11, blue: 0.21), location: 0.55),
+                    .init(color: Color(red: 0.09, green: 0.07, blue: 0.14), location: 1),
+                ],
+                startPoint: .top, endPoint: .bottom)
+            // A soft magenta bloom behind the hero illustration area.
+            RadialGradient(
+                colors: [Color(red: 0.85, green: 0.30, blue: 0.55).opacity(0.14), .clear],
+                center: .init(x: 0.5, y: 0.30), startRadius: 0, endRadius: 420)
+            Canvas { context, size in
+                var rng = SeededRandom(seed: 7)
+                for _ in 0..<110 {
+                    let x = rng.next() * size.width
+                    let y = rng.next() * size.height
+                    let r = 0.5 + rng.next() * 1.3
+                    let opacity = 0.05 + rng.next() * 0.28
+                    context.fill(
+                        Path(ellipseIn: CGRect(x: x, y: y, width: r, height: r)),
+                        with: .color(.white.opacity(opacity)))
+                }
+            }
+        }
+        .ignoresSafeArea()
+    }
+}
+
+/// Deterministic LCG so the starfield is stable frame to frame.
+private struct SeededRandom {
+    var state: UInt64
+    init(seed: UInt64) { state = seed &* 0x9E37_79B9_7F4A_7C15 | 1 }
+    mutating func next() -> Double {
+        state = state &* 6_364_136_223_846_793_005 &+ 1_442_695_040_888_963_407
+        return Double(state >> 11) / Double(UInt64(1) << 53)
+    }
+}
+
+// MARK: - Circular scan button
+
+/// The signature control: a big round button with a glowing ring, pinned at
+/// the bottom-center of every hero screen.
+struct CircularScanButton: View {
+    var title = "Scan"
+    var disabled = false
+    var action: () -> Void
+    @State private var hovering = false
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(Brand.display(16, weight: .semibold))
+                .foregroundStyle(.white)
+                .frame(width: 92, height: 92)
+                .background(Circle().fill(.black.opacity(0.45)))
+                .overlay(
+                    Circle().strokeBorder(
+                        AngularGradient(colors: [.cyan, Brand.indigo, .cyan], center: .center),
+                        lineWidth: 3))
+                .shadow(color: .cyan.opacity(disabled ? 0.15 : hovering ? 0.75 : 0.4),
+                        radius: hovering ? 18 : 10)
+        }
+        .buttonStyle(.plain)
+        .disabled(disabled)
+        .opacity(disabled ? 0.5 : 1)
+        .scaleEffect(hovering && !disabled ? 1.06 : 1)
+        .onHover { hovering = $0 }
+        .animation(.spring(duration: 0.25), value: hovering)
+    }
+}
+
 // MARK: - Module hero (idle state)
 
-/// The branded idle state every module opens with: icon tile, title, honest
-/// description, and the primary action front and center.
-struct ModuleHero<Actions: View>: View {
+/// The hero idle state every module opens with: the aperture ring as the
+/// central illustration, a friendly headline, one honest line of description,
+/// and the big circular action button at the bottom.
+struct ModuleHero<Secondary: View>: View {
     let icon: String
     let tint: Color
     let title: String
     let message: String
-    @ViewBuilder var actions: Actions
+    var primaryLabel: String?
+    var primaryAction: (() -> Void)?
+    @ViewBuilder var secondary: Secondary
+
+    init(icon: String, tint: Color, title: String, message: String,
+         primaryLabel: String? = nil, primaryAction: (() -> Void)? = nil,
+         @ViewBuilder secondary: () -> Secondary = { EmptyView() }) {
+        self.icon = icon
+        self.tint = tint
+        self.title = title
+        self.message = message
+        self.primaryLabel = primaryLabel
+        self.primaryAction = primaryAction
+        self.secondary = secondary()
+    }
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 0) {
             Spacer()
             ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(tint.opacity(0.13))
-                    .frame(width: 84, height: 84)
+                Circle().fill(tint.opacity(0.10)).frame(width: 170, height: 170)
+                RingMark().frame(width: 128, height: 128)
                 Image(systemName: icon)
-                    .font(.system(size: 38, weight: .medium))
-                    .foregroundStyle(tint)
+                    .font(.system(size: 42, weight: .medium))
+                    .foregroundStyle(.white)
             }
+            .padding(.bottom, 26)
             Text(title)
-                .font(Brand.display(24))
-                .foregroundStyle(Brand.ink)
+                .font(Brand.display(30))
+                .foregroundStyle(.white)
             Text(message)
                 .font(.callout)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Brand.fog)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: 540)
+                .frame(maxWidth: 560)
                 .fixedSize(horizontal: false, vertical: true)
-            HStack(spacing: 12) { actions }
-                .padding(.top, 4)
+                .padding(.top, 8)
             Spacer()
+            if let primaryLabel, let primaryAction {
+                CircularScanButton(title: primaryLabel, action: primaryAction)
+            }
+            HStack(spacing: 12) { secondary }
+                .padding(.top, 12)
+            Spacer().frame(height: 28)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(24)
+        .padding(.horizontal, 24)
     }
 }
 
@@ -282,7 +383,7 @@ struct StorageHeader: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Brand.mist.opacity(0.6))
+        .background(.black.opacity(0.18))
     }
 
     private func metric(_ label: String, _ bytes: Int64, tint: Color = Brand.ink) -> some View {

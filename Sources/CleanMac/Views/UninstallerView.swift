@@ -118,6 +118,7 @@ struct UninstallerView: View {
                 }
             }
             .listStyle(.inset)
+            .scrollContentBackground(.hidden)
             Divider()
             HStack {
                 Text("\(model.selectedApps.count) app(s) selected")
@@ -132,7 +133,7 @@ struct UninstallerView: View {
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
-            .background(Brand.paper)
+            .background(.ultraThinMaterial)
         }
         .confirmationDialog(
             "Scan \(model.selectedApps.count) app(s) for uninstall? Nothing is removed yet — you review every file first.",
@@ -150,12 +151,10 @@ struct UninstallerView: View {
             icon: "puzzlepiece.extension",
             tint: SidebarItem.uninstaller.tint,
             title: "App Leftovers",
-            message: "Finds support files, preferences, caches, and launch agents left behind by apps that were deleted — parts that dragging an app to the Trash never removes. Detection is conservative: nothing is pre-selected."
-        ) {
-            Button("Scan") { Task { await model.scanLeftovers() } }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-        }
+            message: "Finds support files, preferences, caches, and launch agents left behind by apps that were deleted — parts that dragging an app to the Trash never removes. Detection is conservative: nothing is pre-selected.",
+            primaryLabel: "Scan",
+            primaryAction: { Task { await model.scanLeftovers() } }
+        )
     }
 }
 

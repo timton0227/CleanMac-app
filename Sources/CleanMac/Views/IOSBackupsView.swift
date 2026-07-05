@@ -35,12 +35,10 @@ struct IOSBackupsView: View {
                 icon: SidebarItem.iosBackups.systemImage,
                 tint: SidebarItem.iosBackups.tint,
                 title: "Old iOS Device Backups",
-                message: "Finds local iPhone/iPad backups stored on this Mac — often large and stale. The most recent backup of each device is kept by default. Removal goes to the app Trash and can be undone. This never touches the device itself.\n\nNote: macOS requires Full Disk Access to read the backups folder."
-            ) {
-                Button("Scan") { Task { await model.scanIOSBackups() } }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
+                message: "Finds local iPhone/iPad backups stored on this Mac — often large and stale. The most recent backup of each device is kept by default. Removal goes to the app Trash and can be undone. This never touches the device itself.\n\nNote: macOS requires Full Disk Access to read the backups folder.",
+                primaryLabel: "Scan",
+                primaryAction: { Task { await model.scanIOSBackups() } }
+            )
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Reading backups…")
         case .review:

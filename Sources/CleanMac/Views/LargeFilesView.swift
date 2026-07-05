@@ -52,12 +52,10 @@ struct LargeFilesView: View {
                 icon: SidebarItem.largeFiles.systemImage,
                 tint: SidebarItem.largeFiles.tint,
                 title: "Large & Old Files",
-                message: "Recursively scans Downloads, Desktop, Documents, Movies, Music, and Pictures for files above the size threshold. These are your files — nothing is pre-selected, and iCloud-only files are flagged as freeing no local space."
-            ) {
-                Button("Scan") { Task { await model.scanLargeFiles() } }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
+                message: "Recursively scans Downloads, Desktop, Documents, Movies, Music, and Pictures for files above the size threshold. These are your files — nothing is pre-selected, and iCloud-only files are flagged as freeing no local space.",
+                primaryLabel: "Scan",
+                primaryAction: { Task { await model.scanLargeFiles() } }
+            )
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Measuring files…")
         case .review:

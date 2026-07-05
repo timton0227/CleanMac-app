@@ -37,12 +37,10 @@ struct SnapshotsView: View {
                 icon: SidebarItem.snapshots.systemImage,
                 tint: SidebarItem.snapshots.tint,
                 title: "Local APFS Snapshots",
-                message: "Time Machine keeps local snapshots that are invisible in the Finder yet can hold many GB — often the real reason a disk looks full. Deleting a snapshot removes restore points, not your files, and cannot be undone. Freed space is measured after deletion."
-            ) {
-                Button("List Snapshots") { Task { await model.scanSnapshots() } }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
+                message: "Time Machine keeps local snapshots that are invisible in the Finder yet can hold many GB — often the real reason a disk looks full. Deleting a snapshot removes restore points, not your files, and cannot be undone. Freed space is measured after deletion.",
+                primaryLabel: "Scan",
+                primaryAction: { Task { await model.scanSnapshots() } }
+            )
         case .scanning:
             ScanRing(label: "Listing snapshots…", indeterminate: true)
         case .acting:
@@ -68,6 +66,7 @@ struct SnapshotsView: View {
                     }
                 }
                 .listStyle(.inset)
+            .scrollContentBackground(.hidden)
                 Divider()
                 actionBar
             }
@@ -87,7 +86,7 @@ struct SnapshotsView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Brand.paper)
+        .background(.ultraThinMaterial)
         .confirmationDialog(
             "Permanently delete \(model.selected.count) snapshot(s)? This removes Time Machine restore points and cannot be undone.",
             isPresented: $confirmingDelete, titleVisibility: .visible

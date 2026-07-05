@@ -65,13 +65,11 @@ struct SpaceLensView: View {
                 icon: SidebarItem.spaceLens.systemImage,
                 tint: SidebarItem.spaceLens.tint,
                 title: "Space Lens",
-                message: "Maps your storage as sized tiles so the heaviest folders and files — including hidden ones — stand out at a glance. Click a folder to drill in; click a file to select it; remove selections straight from the map (reversible via the Trash tab). Tile sizes are real on-disk bytes, so iCloud-only files and hardlinks aren't overstated."
+                message: "Maps your storage as sized tiles so the heaviest folders and files — including hidden ones — stand out at a glance. Click a folder to drill in; click a file to select it; remove selections straight from the map (reversible via the Trash tab). Tile sizes are real on-disk bytes, so iCloud-only files and hardlinks aren't overstated.",
+                primaryLabel: "Map",
+                primaryAction: { Task { await model.scanSpaceLens() } }
             ) {
-                Button("Map Home Folder") { Task { await model.scanSpaceLens() } }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
                 Button("Choose Folder…") { showingFolderPicker = true }
-                    .controlSize(.large)
             }
         }
     }

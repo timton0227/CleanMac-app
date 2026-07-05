@@ -27,12 +27,10 @@ struct StartupView: View {
                     icon: SidebarItem.startup.systemImage,
                     tint: SidebarItem.startup.tint,
                     title: "Startup Items",
-                    message: "Lists Launch Agents and Daemons that run at login or in the background. Your own agents can be disabled and re-enabled; system-wide items become toggleable once the privileged helper is registered and approved (Dashboard → Privileged Helper). Login items managed by apps appear in System Settings → General → Login Items."
-                ) {
-                    Button("Scan") { Task { await model.loadStartupItems() } }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                }
+                    message: "Lists Launch Agents and Daemons that run at login or in the background. Your own agents can be disabled and re-enabled; system-wide items become toggleable once the privileged helper is registered and approved (Smart Scan → Privileged Helper). Login items managed by apps appear in System Settings → General → Login Items.",
+                    primaryLabel: "Scan",
+                    primaryAction: { Task { await model.loadStartupItems() } }
+                )
             } else {
                 List {
                     ForEach(grouped, id: \.0) { domain, items in
@@ -52,6 +50,7 @@ struct StartupView: View {
                     }
                 }
                 .listStyle(.inset)
+            .scrollContentBackground(.hidden)
             }
         }
         .navigationTitle("Startup Items")

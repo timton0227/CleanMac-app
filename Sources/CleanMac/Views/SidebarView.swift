@@ -1,10 +1,11 @@
 import SwiftUI
 
 /// Sidebar entries mirror the §4 module list — all ten modules are live, each
-/// one a scanner front-end on the same pipeline (§2). Dashboard leads: it is
-/// the overview + one-click Smart Scan entry point (§4.8).
+/// one a scanner front-end on the same pipeline (§2). Smart Scan leads,
+/// standalone and pre-selected: it is the overview + one-click entry point
+/// (§4.8).
 enum SidebarItem: String, CaseIterable, Identifiable {
-    case dashboard = "Dashboard"
+    case dashboard = "Smart Scan"
     case systemJunk = "System Junk"
     case largeFiles = "Large & Old Files"
     case duplicates = "Duplicate Finder"
@@ -20,7 +21,7 @@ enum SidebarItem: String, CaseIterable, Identifiable {
 
     var systemImage: String {
         switch self {
-        case .dashboard: return "gauge"
+        case .dashboard: return "wand.and.stars"
         case .systemJunk: return "trash.circle"
         case .largeFiles: return "doc.on.doc"
         case .snapshots: return "clock.arrow.circlepath"
@@ -34,8 +35,8 @@ enum SidebarItem: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Icon-tile tint — one hue per module so the sidebar and the dashboard
-    /// grid are scannable at a glance.
+    /// Accent hue per module — used by hero illustrations and the dashboard
+    /// category rows.
     var tint: Color {
         switch self {
         case .dashboard: return Brand.indigo
@@ -52,10 +53,10 @@ enum SidebarItem: String, CaseIterable, Identifiable {
         }
     }
 
-    /// One-line pitch shown on the dashboard's module grid.
+    /// One-line pitch shown under module titles where a hint is useful.
     var blurb: String {
         switch self {
-        case .dashboard: return "Overview and one-click Smart Scan"
+        case .dashboard: return "Give your Mac a nice and thorough scan"
         case .systemJunk: return "Caches, logs, and leftovers safe to clear"
         case .largeFiles: return "Hunt down the biggest space hogs"
         case .snapshots: return "Time Machine snapshots hiding gigabytes"
@@ -69,13 +70,15 @@ enum SidebarItem: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Grouped navigation — related modules sit together instead of one flat
-    /// eleven-row list.
-    static let sections: [(title: String, items: [SidebarItem])] = [
-        ("Overview", [.dashboard]),
-        ("Cleanup", [.systemJunk, .largeFiles, .duplicates, .snapshots, .iosBackups]),
-        ("Applications", [.uninstaller, .startup]),
-        ("Privacy & Explore", [.privacy, .spaceLens]),
+    /// CleanMyMac-style grouping: Smart Scan standalone on top, then themed
+    /// sections.
+    static let sections: [(title: String?, items: [SidebarItem])] = [
+        (nil, [.dashboard]),
+        ("Cleanup", [.systemJunk, .snapshots, .iosBackups, .duplicates]),
+        ("Protection", [.privacy]),
+        ("Speedup", [.startup]),
+        ("Applications", [.uninstaller]),
+        ("Files", [.largeFiles, .spaceLens]),
         ("Restore", [.trash]),
     ]
 }
@@ -86,24 +89,29 @@ struct SidebarView: View {
 
     var body: some View {
         List(selection: $selection) {
-            ForEach(SidebarItem.sections, id: \.title) { section in
-                Section {
+            // Brand lockup as the sidebar masthead, like the reference's
+            // title row.
+            BrandMark(ringDiameter: 18, wordmarkSize: 14)
+                .padding(.vertical, 6)
+                .listRowSeparator(.hidden)
+
+            ForEach(Array(SidebarItem.sections.enumerated()), id: \.offset) { _, section in
+                if let title = section.title {
+                    Section(title) {
+                        ForEach(section.items) { item in
+                            row(item).tag(item)
+                        }
+                    }
+                } else {
                     ForEach(section.items) { item in
                         row(item).tag(item)
-                    }
-                } header: {
-                    if section.title == "Overview" {
-                        BrandMark(ringDiameter: 18, wordmarkSize: 14)
-                            .padding(.bottom, 4)
-                            .textCase(nil)
-                    } else {
-                        Text(section.title)
                     }
                 }
             }
         }
+        .listStyle(.sidebar)
         .navigationTitle("CleanMac")
-        .frame(minWidth: 230)
+        .frame(minWidth: 220)
     }
 
     @ViewBuilder
@@ -111,11 +119,9 @@ struct SidebarView: View {
         Label {
             Text(item.rawValue)
         } icon: {
+            // Flat monochrome line icons, per the reference layout.
             Image(systemName: item.systemImage)
-                .font(.system(size: 11, weight: .semibold))
-                .foregroundStyle(.white)
-                .frame(width: 22, height: 22)
-                .background(item.tint.gradient, in: RoundedRectangle(cornerRadius: 6))
+                .foregroundStyle(selection == item ? Brand.ink : Brand.fog)
         }
         .badge(item == .trash && !model.trashRecords.isEmpty
                ? model.trashRecords.count : 0)

@@ -37,12 +37,10 @@ struct SystemJunkView: View {
                 icon: SidebarItem.systemJunk.systemImage,
                 tint: SidebarItem.systemJunk.tint,
                 title: "System Junk",
-                message: "Finds user-level caches, logs, crash reports, developer junk, and broken downloads that are safe to remove. Nothing is deleted without your review."
-            ) {
-                Button("Scan") { Task { await model.scanSystemJunk() } }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
+                message: "Finds user-level caches, logs, crash reports, developer junk, and broken downloads that are safe to remove. Nothing is deleted without your review.",
+                primaryLabel: "Scan",
+                primaryAction: { Task { await model.scanSystemJunk() } }
+            )
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Scanning for junk…")
         case .review:

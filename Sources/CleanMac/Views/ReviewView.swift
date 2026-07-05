@@ -40,6 +40,7 @@ struct ReviewList: View {
                 }
             }
             .listStyle(.inset)
+            .scrollContentBackground(.hidden)
             .quickLookPreview($quickLookURL)
 
             Divider()
@@ -107,7 +108,7 @@ struct ReviewList: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Brand.paper)
+        .background(.ultraThinMaterial)
         .confirmationDialog(
             "Permanently delete the selected items? This frees space immediately but cannot be undone.",
             isPresented: $confirmingPermanent, titleVisibility: .visible

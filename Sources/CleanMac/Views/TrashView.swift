@@ -14,7 +14,7 @@ struct TrashView: View {
                     tint: SidebarItem.trash.tint,
                     title: "Trash is empty",
                     message: "Removed items appear here and can be restored to their original location for \(model.restoreWindowDays) days."
-                ) {}
+                )
             } else {
                 VStack(spacing: 0) {
                     header
@@ -49,7 +49,7 @@ struct TrashView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
-        .background(Brand.mist.opacity(0.6))
+        .background(.black.opacity(0.18))
     }
 }
 

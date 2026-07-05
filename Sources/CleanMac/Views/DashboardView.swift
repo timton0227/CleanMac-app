@@ -1,202 +1,140 @@
 import SwiftUI
 import CleanCore
 
-/// Dashboard + Smart Scan (§4.8). The landing view and navigation hub:
+/// Smart Scan landing (§4.8), laid out CleanMyMac-style: a full-height hero —
+/// aperture-ring illustration, "Let's get started!", and the glowing circular
+/// Scan button — with the honest operational cards (storage breakdown +
+/// Storage-panel reconciliation, vitals, privileged helper) below the fold.
 ///
-/// - **Hero** — the brand ring showing real disk usage, the used / purgeable /
-///   free breakdown with the Storage-panel reconciliation (§4.8 — the top
-///   trust complaint, answered in-app), and one-click Smart Scan.
-/// - **Smart Scan results** — transparent per-category status. Deliberately
-///   **no 0–100 system score** (§6): each row leads to the module's normal
-///   Review instead.
-/// - **Module grid** — every tool one click away, so the sidebar isn't the
-///   only way in.
-/// - **Vitals** — memory, CPU load, battery health. Informational only: no
-///   "purge RAM" button (§6 — it makes performance worse, not better).
+/// §6 cuts hold: transparent per-category status instead of a 0–100 "system
+/// score", no "purge RAM" button, and every category number links to the
+/// module's normal Review — Smart Scan never grows a private delete path.
 struct DashboardView: View {
     @Environment(AppModel.self) private var model
     @Binding var selection: SidebarItem
     @State private var ringVisible = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 14) {
-                if model.fullDiskAccess != .granted {
-                    permissionsCard
+        GeometryReader { geo in
+            ScrollView {
+                VStack(spacing: 14) {
+                    hero
+                        .frame(minHeight: max(geo.size.height, 420))
+                    storageCard
+                    vitalsRow
+                    if model.fullDiskAccess != .granted {
+                        permissionsCard
+                    }
+                    helperCard
                 }
-                heroCard
-                if model.smartScanning || !model.smartScanResults.isEmpty {
-                    smartResultsCard
-                }
-                sectionTitle("All Tools")
-                moduleGrid
-                sectionTitle("Vitals")
-                vitalsRow
-                helperCard
+                .padding(.horizontal, 18)
+                .padding(.bottom, 18)
             }
-            .padding(18)
         }
-        .background(Brand.mist.opacity(0.5))
-        .navigationTitle("Dashboard")
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if model.fullDiskAccess != .granted {
+                InfoBanner(icon: "lock.shield", tint: .orange,
+                           text: "Full Disk Access is off — iOS backups, Mail, and Safari data are invisible to scans. Details below.") {
+                    Button("Open Settings") { model.openFullDiskAccessSettings() }
+                    Button("Re-check") { Task { await model.refreshDashboard() } }
+                }
+                .background(.black.opacity(0.35))
+            }
+        }
+        .navigationTitle("Smart Scan")
         .task {
             await model.refreshDashboard()
             withAnimation(.spring(duration: 0.9)) { ringVisible = true }
         }
     }
 
-    private func sectionTitle(_ text: String) -> some View {
-        Text(text)
-            .font(Brand.display(15, weight: .semibold))
-            .foregroundStyle(Brand.fog)
-            .padding(.top, 4)
-    }
+    // MARK: - Hero
 
-    // MARK: - Hero: disk ring + Smart Scan
-
-    private var heroCard: some View {
-        HStack(alignment: .top, spacing: 24) {
-            if let disk = model.disk {
-                diskRing(disk)
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Startup Disk")
-                        .font(Brand.display(18))
-                        .foregroundStyle(Brand.ink)
-                    capacityBar(disk)
-                    HStack(spacing: 16) {
-                        legend(color: Brand.indigo, label: "Used", bytes: disk.usedBytes)
-                        legend(color: .yellow, label: "Purgeable", bytes: disk.purgeableBytes)
-                        legend(color: .green, label: "Free", bytes: disk.freeBytes)
-                    }
-                    if model.trashRetainedBytes > 0 {
-                        Text("CleanMac Trash holds \(AppModel.format(model.trashRetainedBytes)) — freed when purged (30-day window)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                    // §4.8 reconciliation: explain the Storage-panel mismatch
-                    // instead of leaving the user to distrust one of the numbers.
-                    DisclosureGroup {
-                        Text("macOS counts purgeable space — local snapshots, evicted iCloud files, and caches it can drop on demand — as \"available\", reporting \(AppModel.format(disk.availableIncludingPurgeableBytes)). The free space actually on disk right now is \(AppModel.format(disk.freeBytes)). Both numbers are correct; they answer different questions.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding(.top, 4)
-                    } label: {
-                        Text("Why Apple's Storage panel shows a different number")
-                            .font(.caption)
-                            .foregroundStyle(Brand.indigo)
-                    }
-                }
-            } else {
-                Text("Reading volume…").foregroundStyle(.secondary)
-                Spacer()
-            }
-
-            Divider().frame(maxHeight: 140)
-
-            smartScanColumn
-                .frame(width: 240)
-        }
-        .brandCard(padding: 20)
-    }
-
-    private func diskRing(_ disk: DiskBreakdown) -> some View {
-        let usedFraction = Double(disk.usedBytes) / max(Double(disk.totalBytes), 1)
-        return ZStack {
-            RingMark(fraction: ringVisible ? usedFraction : 0.001)
-                .frame(width: 120, height: 120)
-            VStack(spacing: 0) {
-                Text(AppModel.format(disk.freeBytes))
-                    .font(Brand.display(18))
-                    .monospacedDigit()
-                Text("free")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .help("\(Int((usedFraction * 100).rounded()))% of \(AppModel.format(disk.totalBytes)) used")
-    }
-
-    private var smartScanColumn: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Label("Smart Scan", systemImage: "wand.and.stars")
-                .font(Brand.display(15, weight: .semibold))
-
+    @ViewBuilder
+    private var hero: some View {
+        VStack(spacing: 0) {
+            Spacer()
             if model.smartScanning {
-                ProgressView(value: model.smartScanProgress)
-                Text("Scanning \(Int((model.smartScanProgress * 100).rounded()))%…")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .contentTransition(.numericText())
-                    .animation(.default, value: model.smartScanProgress)
+                illustration(progress: model.smartScanProgress)
+                    .padding(.bottom, 24)
+                Text("Scanning your Mac…")
+                    .font(Brand.display(30))
+                    .foregroundStyle(.white)
+                resultsCard
+                    .frame(maxWidth: 620)
+                    .padding(.top, 18)
             } else if !model.smartScanResults.isEmpty {
-                Text(AppModel.format(model.smartPreselectedBytes))
-                    .font(Brand.display(24))
-                    .foregroundStyle(Brand.indigo)
+                Text("\(AppModel.format(model.smartPreselectedBytes)) safely reclaimable")
+                    .font(Brand.display(30))
+                    .foregroundStyle(.white)
                     .monospacedDigit()
-                Text("safely reclaimable · \(AppModel.format(model.smartTotalBytes)) found in total")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                Text("\(AppModel.format(model.smartTotalBytes)) found in total. Every number below links to a full review — nothing is removed without your confirmation, and removals go, reversibly, to the CleanMac Trash.")
+                    .font(.callout)
+                    .foregroundStyle(Brand.fog)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 560)
                     .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 8)
+                resultsCard
+                    .frame(maxWidth: 620)
+                    .padding(.top, 18)
             } else {
-                Text("One pass over System Junk, App Leftovers, Local Snapshots, and iOS Backups. Heavier tools stay separate so you scope them yourself.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                illustration(progress: nil)
+                    .padding(.bottom, 26)
+                Text("Let's get started!")
+                    .font(Brand.display(34))
+                    .foregroundStyle(.white)
+                Text("Give your Mac a nice and thorough scan.")
+                    .font(.title3)
+                    .foregroundStyle(Brand.fog)
+                    .padding(.top, 6)
             }
-
-            Button {
+            Spacer()
+            CircularScanButton(
+                title: model.smartScanning ? "…"
+                     : model.smartScanResults.isEmpty ? "Scan" : "Rescan",
+                disabled: model.smartScanning
+            ) {
                 Task { await model.runSmartScan() }
-            } label: {
-                Label(model.smartScanning ? "Scanning…"
-                      : model.smartScanResults.isEmpty ? "Run Smart Scan" : "Scan Again",
-                      systemImage: "play.fill")
-                    .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .disabled(model.smartScanning)
-            .keyboardShortcut(.defaultAction)
+            Text("System Junk · App Leftovers · Local Snapshots · iOS Backups")
+                .font(.caption2)
+                .foregroundStyle(Brand.fog.opacity(0.8))
+                .padding(.top, 10)
+            Spacer().frame(height: 26)
         }
+        .frame(maxWidth: .infinity)
     }
 
-    private func capacityBar(_ disk: DiskBreakdown) -> some View {
-        GeometryReader { geo in
-            let total = max(Double(disk.totalBytes), 1)
-            HStack(spacing: 2) {
-                segment(Brand.indigo, fraction: Double(disk.usedBytes) / total, width: geo.size.width)
-                segment(.yellow, fraction: Double(disk.purgeableBytes) / total, width: geo.size.width)
-                segment(.green, fraction: Double(disk.freeBytes) / total, width: geo.size.width)
+    /// The central illustration: the brand's aperture ring. While scanning it
+    /// becomes the progress indicator — the arc closes as the scan completes.
+    private func illustration(progress: Double?) -> some View {
+        ZStack {
+            Circle().fill(Brand.indigo.opacity(0.10)).frame(width: 170, height: 170)
+            RingMark(fraction: progress ?? (ringVisible ? 160.0 / 213.63 : 0.001))
+                .frame(width: 128, height: 128)
+            if let progress {
+                Text("\(Int((progress * 100).rounded()))%")
+                    .font(Brand.display(22, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .monospacedDigit()
+                    .contentTransition(.numericText())
+            } else {
+                Image(systemName: "wand.and.stars")
+                    .font(.system(size: 42, weight: .medium))
+                    .foregroundStyle(.white)
             }
-            .animation(.easeOut(duration: 0.6), value: disk.freeBytes)
         }
-        .frame(height: 14)
-        .clipShape(RoundedRectangle(cornerRadius: 4))
+        .animation(.easeOut(duration: 0.3), value: progress)
     }
 
-    private func segment(_ color: Color, fraction: Double, width: CGFloat) -> some View {
-        Rectangle()
-            .fill(color.opacity(0.85))
-            .frame(width: max(0, width * fraction))
-    }
+    // MARK: - Per-category results
 
-    private func legend(color: Color, label: String, bytes: Int64) -> some View {
-        HStack(spacing: 5) {
-            Circle().fill(color.opacity(0.85)).frame(width: 8, height: 8)
-            Text("\(label) \(AppModel.format(bytes))")
-                .font(.caption)
-        }
-    }
-
-    // MARK: - Smart Scan results
-
-    private var smartResultsCard: some View {
+    private var resultsCard: some View {
         VStack(alignment: .leading, spacing: 8) {
             ForEach(model.smartScanResults) { result in
                 smartRow(result)
             }
-            Text("Per-category status, no \"system score\": every number above links to a full review where you confirm each item before anything moves — reversibly — to the CleanMac Trash.")
-                .font(.caption2)
-                .foregroundStyle(.secondary)
         }
         .brandCard()
     }
@@ -263,37 +201,69 @@ struct DashboardView: View {
         }
     }
 
-    // MARK: - Module grid (navigation hub)
+    // MARK: - Storage (below the fold)
 
-    private var moduleGrid: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 168), spacing: 12)], spacing: 12) {
-            ForEach(SidebarItem.allCases.filter { $0 != .dashboard }) { item in
-                Button {
-                    selection = item
-                } label: {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Image(systemName: item.systemImage)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(.white)
-                            .frame(width: 28, height: 28)
-                            .background(item.tint.gradient, in: RoundedRectangle(cornerRadius: 7))
-                        Text(item.rawValue)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(Brand.ink)
-                        Text(item.blurb)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(2, reservesSpace: true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(12)
-                    .background(Brand.paper, in: RoundedRectangle(cornerRadius: 12))
-                    .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Brand.border))
+    private var storageCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("Startup Disk", systemImage: "internaldrive")
+                .font(.headline)
+            if let disk = model.disk {
+                capacityBar(disk)
+                HStack(spacing: 16) {
+                    legend(color: Brand.indigo, label: "Used", bytes: disk.usedBytes)
+                    legend(color: .yellow, label: "Purgeable", bytes: disk.purgeableBytes)
+                    legend(color: .green, label: "Free", bytes: disk.freeBytes)
                 }
-                .buttonStyle(.plain)
-                .hoverLift()
+                if model.trashRetainedBytes > 0 {
+                    Text("CleanMac Trash holds \(AppModel.format(model.trashRetainedBytes)) — freed when purged (30-day window)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                // §4.8 reconciliation: explain the Storage-panel mismatch
+                // instead of leaving the user to distrust one of the numbers.
+                DisclosureGroup {
+                    Text("macOS counts purgeable space — local snapshots, evicted iCloud files, and caches it can drop on demand — as \"available\", reporting \(AppModel.format(disk.availableIncludingPurgeableBytes)). The free space actually on disk right now is \(AppModel.format(disk.freeBytes)). Both numbers are correct; they answer different questions.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.top, 4)
+                } label: {
+                    Text("Why Apple's Storage panel shows a different number")
+                        .font(.caption)
+                        .foregroundStyle(Brand.indigo)
+                }
+            } else {
+                Text("Reading volume…").foregroundStyle(.secondary)
             }
+        }
+        .brandCard()
+    }
+
+    private func capacityBar(_ disk: DiskBreakdown) -> some View {
+        GeometryReader { geo in
+            let total = max(Double(disk.totalBytes), 1)
+            HStack(spacing: 2) {
+                segment(Brand.indigo, fraction: Double(disk.usedBytes) / total, width: geo.size.width)
+                segment(.yellow, fraction: Double(disk.purgeableBytes) / total, width: geo.size.width)
+                segment(.green, fraction: Double(disk.freeBytes) / total, width: geo.size.width)
+            }
+            .animation(.easeOut(duration: 0.6), value: disk.freeBytes)
+        }
+        .frame(height: 14)
+        .clipShape(RoundedRectangle(cornerRadius: 4))
+    }
+
+    private func segment(_ color: Color, fraction: Double, width: CGFloat) -> some View {
+        Rectangle()
+            .fill(color.opacity(0.85))
+            .frame(width: max(0, width * fraction))
+    }
+
+    private func legend(color: Color, label: String, bytes: Int64) -> some View {
+        HStack(spacing: 5) {
+            Circle().fill(color.opacity(0.85)).frame(width: 8, height: 8)
+            Text("\(label) \(AppModel.format(bytes))")
+                .font(.caption)
         }
     }
 
