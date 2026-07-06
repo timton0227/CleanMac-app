@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.build/master.swiftdeps"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.build/runner.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMacPackageTests.build/runner.dia"
+  }
+}

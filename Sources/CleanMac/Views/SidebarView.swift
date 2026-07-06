@@ -110,6 +110,12 @@ struct SidebarView: View {
             }
         }
         .listStyle(.sidebar)
+        // Extend the immersive palette into the rail: drop the default sidebar
+        // material and share the space canvas (gradient + starfield, no bloom)
+        // so the window reads as one continuous surface, not a grey rail beside
+        // a colored pane.
+        .scrollContentBackground(.hidden)
+        .background(SpaceBackground(showBloom: false))
         .navigationTitle("CleanMac")
     }
 

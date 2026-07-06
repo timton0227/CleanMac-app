@@ -16,8 +16,12 @@ struct SpaceLensView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            StorageHeader()
-            Divider()
+            // Idle (no map yet) opens with a full-bleed hero, consistent with
+            // Smart Scan; the storage chrome appears once a map is loaded.
+            if model.spaceScanning || model.spaceTree != nil {
+                StorageHeader()
+                Divider()
+            }
             content
         }
         .navigationTitle("Space Lens")

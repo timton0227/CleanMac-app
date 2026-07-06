@@ -1,0 +1,138 @@
+{
+  "": {
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/master.swiftdeps"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/AppModel.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/AppModel.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/AppModel.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/AppModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/AppModel.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/AppModel.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/CleanMacApp.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/CleanMacApp.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/CleanMacApp.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/CleanMacApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/CleanMacApp.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/CleanMacApp.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/HelperClient.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/HelperClient.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/HelperClient.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/HelperClient~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/HelperClient.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/HelperClient.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/BrandMark.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/BrandMark.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/BrandMark.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/BrandMark~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/BrandMark.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/BrandMark.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DashboardView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DashboardView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DashboardView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DashboardView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DashboardView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DashboardView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/DuplicatesView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DuplicatesView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DuplicatesView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DuplicatesView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DuplicatesView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/DuplicatesView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/IOSBackupsView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/IOSBackupsView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/IOSBackupsView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/IOSBackupsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/IOSBackupsView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/IOSBackupsView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/LargeFilesView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/LargeFilesView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/LargeFilesView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/LargeFilesView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/LargeFilesView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/LargeFilesView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/PrivacyView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/PrivacyView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/PrivacyView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/PrivacyView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/PrivacyView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/PrivacyView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReportView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReportView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReportView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReportView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReportView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReportView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/ReviewView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReviewView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReviewView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReviewView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReviewView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/ReviewView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SidebarView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SidebarView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SidebarView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SidebarView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SidebarView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SidebarView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SnapshotsView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SnapshotsView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SnapshotsView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SnapshotsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SnapshotsView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SnapshotsView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SpaceLensView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SpaceLensView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SpaceLensView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SpaceLensView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SpaceLensView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SpaceLensView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/StartupView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/StartupView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/StartupView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/StartupView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/StartupView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/StartupView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/SystemJunkView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SystemJunkView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SystemJunkView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SystemJunkView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SystemJunkView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/SystemJunkView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/Theme.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/Theme.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/Theme.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/Theme~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/Theme.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/Theme.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/TrashView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/TrashView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/TrashView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/TrashView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/TrashView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/TrashView.dia"
+  },
+  "/Users/thienton/Desktop/clean_my_mac_2/Sources/CleanMac/Views/UninstallerView.swift": {
+    "dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/UninstallerView.d",
+    "object": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/UninstallerView.swift.o",
+    "swiftmodule": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/UninstallerView~partial.swiftmodule",
+    "swift-dependencies": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/UninstallerView.swiftdeps",
+    "diagnostics": "/Users/thienton/Desktop/clean_my_mac_2/.build/index-build/arm64-apple-macosx/debug/CleanMac.build/UninstallerView.dia"
+  }
+}

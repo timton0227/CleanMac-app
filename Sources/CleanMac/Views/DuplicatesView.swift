@@ -18,9 +18,13 @@ struct DuplicatesView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            StorageHeader()
-            PhaseBar(phase: phase)
-            Divider()
+            // Idle opens with a full-bleed hero, consistent with Smart Scan;
+            // the storage + phase chrome appears only once a run is underway.
+            if phase != .idle {
+                StorageHeader()
+                PhaseBar(phase: phase)
+                Divider()
+            }
             if let roots = model.duplicateScanRoots {
                 InfoBanner(icon: "folder.badge.gearshape", tint: .blue,
                            text: "Scanning only: \(roots.map(\.path).joined(separator: ", "))") {

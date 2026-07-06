@@ -34,7 +34,7 @@ struct DashboardView: View {
         .safeAreaInset(edge: .top, spacing: 0) {
             if model.fullDiskAccess != .granted {
                 InfoBanner(icon: "lock.shield", tint: .orange,
-                           text: "Full Disk Access is off — iOS backups, Mail, and Safari data are invisible to scans. Details below.") {
+                           text: "Full Disk Access is off. iOS backups, Mail, and Safari data are invisible to scans. Details below.") {
                     Button("Open Settings") { model.openFullDiskAccessSettings() }
                     Button("Re-check") { Task { await model.refreshDashboard() } }
                 }
@@ -68,7 +68,7 @@ struct DashboardView: View {
                     .font(Brand.display(30))
                     .foregroundStyle(.white)
                     .monospacedDigit()
-                Text("\(AppModel.format(model.smartTotalBytes)) found in total. Every number below links to a full review — nothing is removed without your confirmation, and removals go, reversibly, to the CleanMac Trash.")
+                Text("\(AppModel.format(model.smartTotalBytes)) found in total. Nothing is removed without your confirmation, and removals go to the CleanMac Trash, reversibly.")
                     .font(.callout)
                     .foregroundStyle(Brand.fog)
                     .multilineTextAlignment(.center)
@@ -97,10 +97,6 @@ struct DashboardView: View {
             ) {
                 Task { await model.runSmartScan() }
             }
-            Text("System Junk · App Leftovers · Local Snapshots · iOS Backups")
-                .font(.caption2)
-                .foregroundStyle(Brand.fog.opacity(0.8))
-                .padding(.top, 10)
             Spacer().frame(height: 26)
         }
         .frame(maxWidth: .infinity)
@@ -215,14 +211,14 @@ struct DashboardView: View {
                     legend(color: .green, label: "Free", bytes: disk.freeBytes)
                 }
                 if model.trashRetainedBytes > 0 {
-                    Text("CleanMac Trash holds \(AppModel.format(model.trashRetainedBytes)) — freed when purged (30-day window)")
+                    Text("CleanMac Trash holds \(AppModel.format(model.trashRetainedBytes)), freed when you purge it (30-day window)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 // §4.8 reconciliation: explain the Storage-panel mismatch
                 // instead of leaving the user to distrust one of the numbers.
                 DisclosureGroup {
-                    Text("macOS counts purgeable space — local snapshots, evicted iCloud files, and caches it can drop on demand — as \"available\", reporting \(AppModel.format(disk.availableIncludingPurgeableBytes)). The free space actually on disk right now is \(AppModel.format(disk.freeBytes)). Both numbers are correct; they answer different questions.")
+                    Text("macOS counts purgeable space (local snapshots, evicted iCloud files, and caches it can drop on demand) as \"available\", reporting \(AppModel.format(disk.availableIncludingPurgeableBytes)). The free space actually on disk right now is \(AppModel.format(disk.freeBytes)). Both numbers are correct; they answer different questions.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -348,7 +344,7 @@ struct DashboardView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .foregroundStyle(.orange)
                 Text(model.fullDiskAccess == .denied
-                     ? "macOS is blocking parts of your Library. Without Full Disk Access, iOS backups, Mail, Safari data, and some app caches are invisible to scans — they'll show as errors or missing, never as fake \"nothing found\"."
+                     ? "macOS is blocking parts of your Library. Without Full Disk Access, iOS backups, Mail, Safari data, and some app caches are invisible to scans. They'll show as errors or missing, never as fake \"nothing found\"."
                      : "Full Disk Access could not be verified. Some protected locations may be invisible to scans.")
                     .font(.callout)
                     .fixedSize(horizontal: false, vertical: true)
@@ -391,8 +387,8 @@ struct DashboardView: View {
                     .fixedSize(horizontal: false, vertical: true)
             case .notRegistered, .notFound:
                 Text(model.helper.state == .notFound
-                     ? "The app bundle carries no helper — rebuild with scripts/package.sh."
-                     : "Not registered. Registering installs a background daemon that only accepts four signed, audited commands from this app (FR-SEC-1) — it unlocks system startup-item toggles.")
+                     ? "The app bundle carries no helper. Rebuild with scripts/package.sh."
+                     : "Not registered. Registering installs a background daemon that only accepts four signed, audited commands from this app (FR-SEC-1), and it unlocks system startup-item toggles.")
                     .font(.callout)
                     .fixedSize(horizontal: false, vertical: true)
                 Button("Register Helper…") { model.helper.register() }
@@ -400,7 +396,7 @@ struct DashboardView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "clock.badge.exclamationmark")
                         .foregroundStyle(.orange)
-                    Text("Registered — approve CleanMac under System Settings → General → Login Items & Extensions, then re-check.")
+                    Text("Registered. Approve CleanMac under System Settings → General → Login Items & Extensions, then re-check.")
                         .font(.callout)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -412,7 +408,7 @@ struct DashboardView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "checkmark.seal.fill").foregroundStyle(.green)
                     Text(model.helper.connectedVersion != nil
-                         ? "Active — helper v\(model.helper.connectedVersion!) responding, code-signature pins verified both ways."
+                         ? "Active. Helper v\(model.helper.connectedVersion!) responding, code-signature pins verified both ways."
                          : "Approved. System startup-item toggles are unlocked.")
                         .font(.callout)
                 }

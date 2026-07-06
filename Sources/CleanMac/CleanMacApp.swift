@@ -38,6 +38,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let window = NSApp.windows.first(where: { $0.contentView != nil && $0.canBecomeMain })
         else { return }
         window.minSize = NSSize(width: 1000, height: 720)
+        // Immersive canvas: run the space gradient under a transparent titlebar
+        // so the toolbar reads as part of the plum background instead of macOS's
+        // grey toolbar material. The window background matches the gradient's
+        // darkest stop so no grey shows during resize.
+        window.titlebarAppearsTransparent = true
+        window.styleMask.insert(.fullSizeContentView)
+        window.backgroundColor = NSColor(srgbRed: 0.09, green: 0.07, blue: 0.14, alpha: 1)
     }
 }
 
@@ -78,6 +85,9 @@ struct ContentView: View {
             .background(SpaceBackground())
         }
         .animation(.easeInOut(duration: 0.15), value: selection)
+        // Drop macOS's grey toolbar material so the transparent titlebar shows
+        // the space gradient behind the window title.
+        .toolbarBackground(.hidden, for: .windowToolbar)
         // Brand accent everywhere: buttons, toggles, progress, selection.
         .tint(Brand.indigo)
         // The layout is designed dark (immersive gradient canvas).

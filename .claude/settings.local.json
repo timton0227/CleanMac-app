@@ -4,7 +4,15 @@
       "Bash(swift --version)",
       "Bash(xcodebuild -version)",
       "Bash(sw_vers)",
-      "Bash(swift test *)"
+      "Bash(swift test *)",
+      "Bash(osascript -e 'tell application \"iTerm2\" to tell current window to set miniaturized to true')",
+      "Bash(/bin/sleep 1)",
+      "Bash(osascript -e 'tell application \"CleanMac\" to activate')",
+      "Bash(/bin/sleep 2)",
+      "Bash(screencapture -x -D 1 __TRACKED_VAR__/fresh3.png)",
+      "Bash(osascript -e 'tell application \"iTerm2\" to tell current window to set miniaturized to false')",
+      "Bash(awk '{print $2, $11, $12}')",
+      "Bash(pkill -9 -i cleanmac)"
     ]
   }
 }

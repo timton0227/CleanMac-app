@@ -63,7 +63,10 @@ private struct HoverLift: ViewModifier {
     func body(content: Content) -> some View {
         content
             .scaleEffect(hovering ? 1.02 : 1)
-            .shadow(color: .black.opacity(hovering ? 0.10 : 0.03),
+            // Tinted to the plum canvas rather than pure black, so the lift reads
+            // as depth on the space gradient instead of a grey smudge.
+            .shadow(color: Color(red: 0.05, green: 0.03, blue: 0.10)
+                        .opacity(hovering ? 0.45 : 0.18),
                     radius: hovering ? 9 : 3, y: hovering ? 4 : 1)
             .onHover { hovering = $0 }
             .animation(.spring(duration: 0.25), value: hovering)
@@ -225,6 +228,11 @@ struct ScanRing: View {
 /// The immersive canvas behind every screen: a deep plum gradient with a
 /// faint, static starfield (seeded, so it never twinkles distractingly).
 struct SpaceBackground: View {
+    /// The hero bloom belongs behind the detail pane's illustration; the sidebar
+    /// shares the same gradient + starfield but skips the bloom so the palette
+    /// reads as one continuous canvas without a second glow floating in the rail.
+    var showBloom = true
+
     var body: some View {
         ZStack {
             LinearGradient(
@@ -235,9 +243,11 @@ struct SpaceBackground: View {
                 ],
                 startPoint: .top, endPoint: .bottom)
             // A soft magenta bloom behind the hero illustration area.
-            RadialGradient(
-                colors: [Color(red: 0.85, green: 0.30, blue: 0.55).opacity(0.14), .clear],
-                center: .init(x: 0.5, y: 0.30), startRadius: 0, endRadius: 420)
+            if showBloom {
+                RadialGradient(
+                    colors: [Color(red: 0.85, green: 0.30, blue: 0.55).opacity(0.14), .clear],
+                    center: .init(x: 0.5, y: 0.30), startRadius: 0, endRadius: 420)
+            }
             Canvas { context, size in
                 var rng = SeededRandom(seed: 7)
                 for _ in 0..<110 {
@@ -284,9 +294,10 @@ struct CircularScanButton: View {
                 .background(Circle().fill(.black.opacity(0.45)))
                 .overlay(
                     Circle().strokeBorder(
-                        AngularGradient(colors: [.cyan, Brand.indigo, .cyan], center: .center),
+                        AngularGradient(colors: [Brand.indigo, .cyan, Brand.indigo],
+                                        center: .center),
                         lineWidth: 3))
-                .shadow(color: .cyan.opacity(disabled ? 0.15 : hovering ? 0.75 : 0.4),
+                .shadow(color: Brand.indigo.opacity(disabled ? 0.15 : hovering ? 0.75 : 0.4),
                         radius: hovering ? 18 : 10)
         }
         .buttonStyle(.plain)
