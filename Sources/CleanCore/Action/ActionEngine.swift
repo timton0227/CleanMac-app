@@ -123,8 +123,7 @@ public actor ActionEngine {
             // fsync BEFORE mutating, so recovery is exact.
             let plannedTrash = goPermanent
                 ? nil
-                : trash.baseURL.appendingPathComponent(actionId.uuidString, isDirectory: true)
-                    .appendingPathComponent(finding.path.lastPathComponent)
+                : trash.plannedTrashURL(for: finding.path, actionId: actionId)
             var pending = ActionRecord(
                 actionId: actionId, batchId: batchId, originalPath: finding.path,
                 trashPath: plannedTrash, bytes: finding.realOnDiskBytes,
@@ -311,7 +310,7 @@ public actor ActionEngine {
     public func purgeExpired(olderThan cutoff: Date) throws {
         for rec in try auditLog.currentRecords()
         where rec.state == .completed && rec.trashPath != nil && rec.timestamp < cutoff {
-            try trash.purge(actionId: rec.actionId)
+            try trash.purge(actionId: rec.actionId, trashPath: rec.trashPath)
             var purged = rec
             purged.state = .purged
             try auditLog.append(purged)

@@ -1,36 +1,55 @@
 import Foundation
 
-/// The app-managed Trash that makes removals reversible (FR-SAFE-2) with a
-/// restore window before purge, and that is volume-type aware (FR-VOL).
+/// Reversible removals (FR-SAFE-2) with a restore window before purge, volume-type
+/// aware (FR-VOL).
 ///
-/// Items are moved with an atomic same-volume rename. If the item is on a
-/// different volume than the store (external/network), an atomic move is
-/// impossible and reversibility can't be guaranteed — the store refuses and the
-/// engine surfaces a "permanent" confirmation instead of silently hard-deleting
-/// (FR-VOL). Same-volume moves also mean the space isn't truly freed until purge
-/// — the reclaim-vs-retain distinction the engine reports (FR-SAFE-6).
+/// In production this uses the **macOS system Trash** (`FileManager.trashItem`):
+/// removed items land in `~/.Trash` (or the item's volume `.Trashes`), show up in
+/// Finder, and can be restored with "Put Back" — not squirreled away in a private
+/// app cache. `store` returns the item's resulting Trash URL for the manifest, so
+/// the app's own restore/undo keeps working on top of the system Trash.
+///
+/// Because a Trash move is same-volume, the space isn't truly freed until the Trash
+/// is emptied (or the app purges it) — the reclaim-vs-retain distinction the engine
+/// reports (FR-SAFE-6). If a volume can't hold a Trash (read-only), reversible
+/// removal is impossible and the engine surfaces a "permanent" confirmation instead
+/// of silently hard-deleting (FR-VOL).
+///
+/// Tests construct the store with `useSystemTrash: false` so they move items into
+/// `baseURL` and never touch the developer's real `~/.Trash`.
 public struct TrashStore: Sendable {
     public enum TrashError: Error, Equatable {
-        case crossVolume          // FR-VOL: atomic move impossible → permanent path
+        case crossVolume          // FR-VOL: volume can't hold a Trash → permanent path
         case restoreDestinationExists
         case sourceMissing
     }
 
-    /// Base directory of the Trash (typically Application Support/CleanMac/Trash).
+    /// Base directory of the fallback Trash (typically Application Support/CleanMac/
+    /// Trash). Only used when `useSystemTrash` is false.
     public let baseURL: URL
 
-    public init(baseURL: URL) throws {
+    /// When true (production default), removals go to the macOS system Trash.
+    /// When false, they move into `baseURL` — used by tests to stay hermetic.
+    public let useSystemTrash: Bool
+
+    public init(baseURL: URL, useSystemTrash: Bool = true) throws {
         self.baseURL = baseURL
+        self.useSystemTrash = useSystemTrash
         try FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true)
     }
 
-    /// Whether an atomic, reversible move is possible for `url` (same volume as
-    /// the store). When false, the engine must take the permanent path (FR-VOL).
+    /// Whether a reversible removal is possible for `url`. With the system Trash
+    /// that's any writable volume (each volume trashes to its own `.Trashes`); in
+    /// the fallback mode the item must be on the store's own volume. When false,
+    /// the engine must take the permanent path (FR-VOL).
     public func supportsReversibleRemoval(of url: URL) -> Bool {
-        guard
-            let itemVolume = volumeURL(of: url),
-            let storeVolume = volumeURL(of: baseURL)
-        else { return false }
+        guard let itemVolume = volumeURL(of: url) else { return false }
+        if useSystemTrash {
+            let readOnly = (try? itemVolume.resourceValues(forKeys: [.volumeIsReadOnlyKey]))?
+                .volumeIsReadOnly ?? false
+            return !readOnly
+        }
+        guard let storeVolume = volumeURL(of: baseURL) else { return false }
         return itemVolume.path == storeVolume.path
     }
 
@@ -40,11 +59,32 @@ public struct TrashStore: Sendable {
         guard fm.fileExists(atPath: url.path) else { throw TrashError.sourceMissing }
         guard supportsReversibleRemoval(of: url) else { throw TrashError.crossVolume }
 
+        if useSystemTrash {
+            var resulting: NSURL?
+            try fm.trashItem(at: url, resultingItemURL: &resulting)
+            guard let dest = resulting as URL? else { throw TrashError.sourceMissing }
+            return dest
+        }
+
         let destDir = baseURL.appendingPathComponent(actionId.uuidString, isDirectory: true)
         try fm.createDirectory(at: destDir, withIntermediateDirectories: true)
         let dest = destDir.appendingPathComponent(url.lastPathComponent)
         try fm.moveItem(at: url, to: dest) // atomic rename on same volume
         return dest
+    }
+
+    /// Best-effort destination recorded in the manifest *before* the move so a
+    /// crash mid-store can still be reconciled (FR-SAFE-3). The real URL returned
+    /// by `store` may differ — Finder disambiguates name collisions in the Trash.
+    public func plannedTrashURL(for url: URL, actionId: UUID) -> URL? {
+        if useSystemTrash {
+            let trashDir = try? FileManager.default.url(
+                for: .trashDirectory, in: .userDomainMask,
+                appropriateFor: url, create: false)
+            return trashDir?.appendingPathComponent(url.lastPathComponent)
+        }
+        return baseURL.appendingPathComponent(actionId.uuidString, isDirectory: true)
+            .appendingPathComponent(url.lastPathComponent)
     }
 
     /// Move an item back to its original path (FR-SAFE-2 restore). Refuses to
@@ -63,11 +103,19 @@ public struct TrashStore: Sendable {
     }
 
     /// Permanently remove a trashed item's storage (after the restore window, or
-    /// on explicit purge).
-    public func purge(actionId: UUID) throws {
+    /// on explicit purge). With the system Trash this deletes the item at its
+    /// recorded `trashPath`; in fallback mode it removes the action's subdirectory.
+    public func purge(actionId: UUID, trashPath: URL?) throws {
+        let fm = FileManager.default
+        if useSystemTrash {
+            if let trashPath, fm.fileExists(atPath: trashPath.path) {
+                try fm.removeItem(at: trashPath)
+            }
+            return
+        }
         let dir = baseURL.appendingPathComponent(actionId.uuidString, isDirectory: true)
-        if FileManager.default.fileExists(atPath: dir.path) {
-            try FileManager.default.removeItem(at: dir)
+        if fm.fileExists(atPath: dir.path) {
+            try fm.removeItem(at: dir)
         }
     }
 

@@ -29,7 +29,8 @@ struct Sandbox {
 
     func makeEngine(protected: ProtectedPaths = ProtectedPaths()) throws -> (ActionEngine, AuditLog, TrashStore) {
         let log = try AuditLog(fileURL: auditURL)
-        let trash = try TrashStore(baseURL: trashURL)
+        // Hermetic: move into the sandbox, never the developer's real ~/.Trash.
+        let trash = try TrashStore(baseURL: trashURL, useSystemTrash: false)
         let engine = ActionEngine(protectedPaths: protected, auditLog: log, trash: trash)
         return (engine, log, trash)
     }
