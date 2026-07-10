@@ -317,6 +317,25 @@ public actor ActionEngine {
         }
     }
 
+    /// Empty the Trash now — permanently remove every still-held item regardless
+    /// of the restore window ("clean now" instead of waiting for auto-purge).
+    /// Returns how many items were purged and the bytes reclaimed (FR-SAFE-6).
+    @discardableResult
+    public func emptyTrash() throws -> (count: Int, bytes: Int64) {
+        var count = 0
+        var bytes: Int64 = 0
+        for rec in try auditLog.currentRecords()
+        where rec.state == .completed && rec.trashPath != nil {
+            try trash.purge(actionId: rec.actionId, trashPath: rec.trashPath)
+            var purged = rec
+            purged.state = .purged
+            try auditLog.append(purged)
+            count += 1
+            bytes += rec.bytes
+        }
+        return (count, bytes)
+    }
+
     // MARK: - Helpers
 
     private func record(

@@ -146,6 +146,27 @@ struct ActionEngineTests {
         #expect(final?.state == .completed)
     }
 
+    // FR-SAFE-6: "empty now" purges every held item regardless of age and frees space.
+    @Test("emptyTrash purges all held items immediately")
+    func emptyTrashNow() async throws {
+        let box = try Sandbox(); defer { box.cleanup() }
+        let files = try (0..<3).map { try box.makeFile("t\($0).bin", bytes: 1024) }
+        let (engine, _, _) = try box.makeEngine()
+
+        let report = await engine.perform(files.map { box.finding(for: $0) })
+        #expect(report.completed.count == 3)
+        #expect(await engine.listTrash().count == 3)
+
+        let result = try await engine.emptyTrash()
+        #expect(result.count == 3)
+        #expect(result.bytes == report.reclaimableAfterPurgeBytes)
+        // Nothing left to restore, and the trashed storage is gone.
+        #expect(await engine.listTrash().isEmpty)
+        for rec in report.completed {
+            #expect(!FileManager.default.fileExists(atPath: rec.trashPath!.path))
+        }
+    }
+
     // FR-VOL: same-volume items support reversible removal.
     @Test("Same-volume item supports reversible removal")
     func volumeAwareness() async throws {

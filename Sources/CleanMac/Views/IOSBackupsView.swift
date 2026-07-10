@@ -16,7 +16,7 @@ struct IOSBackupsView: View {
             // the storage + phase chrome appears only once a run is underway.
             if phase != .idle {
                 StorageHeader()
-                PhaseBar(phase: phase)
+                PhaseBar(phase: phase, actLabel: "Delete")
                 Divider()
             }
             body(for: phase)
@@ -35,14 +35,19 @@ struct IOSBackupsView: View {
     private func body(for phase: AppModel.Phase) -> some View {
         switch phase {
         case .idle:
-            ModuleHero(
-                icon: SidebarItem.iosBackups.systemImage,
-                tint: SidebarItem.iosBackups.tint,
-                title: "Old iOS Device Backups",
-                message: "Finds local iPhone/iPad backups stored on this Mac — often large and stale. The most recent backup of each device is kept by default. Removal goes to the app Trash and can be undone. This never touches the device itself.\n\nNote: macOS requires Full Disk Access to read the backups folder.",
-                primaryLabel: "Scan",
-                primaryAction: { Task { await model.scanIOSBackups() } }
-            )
+            if model.hasNothingLeftToShow(for: "ios-backups") {
+                EmptyGoodState(tint: SidebarItem.iosBackups.tint,
+                               message: "No stale device backups left on this Mac.")
+            } else {
+                ModuleHero(
+                    icon: SidebarItem.iosBackups.systemImage,
+                    tint: SidebarItem.iosBackups.tint,
+                    title: "Old iOS Device Backups",
+                    message: "Finds local iPhone/iPad backups stored on this Mac — often large and stale. The most recent backup of each device is kept by default. Removal goes to the app Trash and can be undone. This never touches the device itself.\n\nNote: macOS requires Full Disk Access to read the backups folder.",
+                    primaryLabel: "Scan",
+                    primaryAction: { Task { await model.scanIOSBackups() } }
+                )
+            }
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Reading backups…")
         case .review:
@@ -51,7 +56,7 @@ struct IOSBackupsView: View {
                                        systemImage: "checkmark.circle",
                                        description: Text("This Mac stores no device backups."))
             } else {
-                ReviewList()
+                ReviewList(actLabel: "Delete")
             }
         case .acting:
             ScanRing(label: "Cleaning…", indeterminate: true)

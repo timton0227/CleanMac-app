@@ -5,16 +5,15 @@ import CleanCore
 /// original path within the restore window.
 struct TrashView: View {
     @Environment(AppModel.self) private var model
+    @State private var confirmingEmpty = false
 
     var body: some View {
         Group {
             if model.trashRecords.isEmpty {
-                ModuleHero(
-                    icon: SidebarItem.trash.systemImage,
+                EmptyGoodState(
                     tint: SidebarItem.trash.tint,
                     title: "Trash is empty",
-                    message: "Removed items appear here and can be restored to their original location for \(model.restoreWindowDays) days."
-                )
+                    message: "Removed items appear here and can be restored to their original location for \(model.restoreWindowDays) days.")
             } else {
                 VStack(spacing: 0) {
                     header
@@ -37,7 +36,7 @@ struct TrashView: View {
                     .font(Brand.display(17, weight: .semibold)).monospacedDigit()
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text("Space retained (freed on purge)").font(.caption).foregroundStyle(Brand.fog)
+                Text("Space retained").font(.caption).foregroundStyle(Brand.fog)
                 Text(AppModel.format(model.trashRetainedBytes))
                     .font(Brand.display(17, weight: .semibold)).monospacedDigit()
                     .foregroundStyle(Brand.indigo)
@@ -46,10 +45,28 @@ struct TrashView: View {
             Text("Everything here restores to its original path for \(model.restoreWindowDays) days.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+            Button("Empty Trash Now") {
+                confirmingEmpty = true
+            }
+            .buttonStyle(.plain)
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(Color(hex: 0xF0A3A2))
+            .padding(.horizontal, 13).padding(.vertical, 7)
+            .background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 8))
+            .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color(hex: 0xE2504F, opacity: 0.5)))
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 12)
         .background(.black.opacity(0.18))
+        .confirmationDialog(
+            "Permanently delete all \(model.trashRecords.count) item(s) now? This reclaims \(AppModel.format(model.trashRetainedBytes)) and can't be undone.",
+            isPresented: $confirmingEmpty, titleVisibility: .visible
+        ) {
+            Button("Empty Trash", role: .destructive) {
+                Task { await model.emptyTrashNow() }
+            }
+            Button("Cancel", role: .cancel) {}
+        }
     }
 }
 
@@ -64,7 +81,7 @@ private struct TrashRow: View {
                 .foregroundStyle(Brand.fog)
             VStack(alignment: .leading, spacing: 2) {
                 Text(record.originalPath.lastPathComponent).lineLimit(1)
-                Text(record.originalPath.deletingLastPathComponent().path)
+                Text("\(record.originalPath.deletingLastPathComponent().path)  ·  \(record.category.displayName)")
                     .font(.caption).foregroundStyle(.secondary).lineLimit(1)
             }
             Spacer()

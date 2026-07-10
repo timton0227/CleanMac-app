@@ -14,7 +14,6 @@ import CleanCore
 struct UninstallerView: View {
     @Environment(AppModel.self) private var model
     @State private var mode: Mode = .applications
-    @State private var confirmingUninstall = false
 
     enum Mode: String, CaseIterable {
         case applications = "Applications"
@@ -33,7 +32,7 @@ struct UninstallerView: View {
             // the storage + phase chrome appears only once a run is underway.
             if phase != .idle {
                 StorageHeader()
-                PhaseBar(phase: phase)
+                PhaseBar(phase: phase, actLabel: mode == .applications ? "Uninstall" : "Clean")
                 Divider()
             }
             if model.applicationsChangedExternally {
@@ -45,23 +44,38 @@ struct UninstallerView: View {
                     }
                 }
             }
+            modeSwitch
             content
         }
         .navigationTitle("Uninstaller")
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Picker("Mode", selection: $mode) {
-                    ForEach(Mode.allCases, id: \.self) { Text($0.rawValue) }
-                }
-                .pickerStyle(.segmented)
-            }
-        }
         .task {
             model.loadInstalledApps()
             // Arriving from a Smart Scan leftovers review (§4.8): land on the
             // segment that owns the pipeline instead of hiding the findings.
             if model.activeModuleId == "app-leftovers" { mode = .leftovers }
         }
+    }
+
+    /// The mock's inline Applications/Leftovers switch — a 220px pill row atop
+    /// the content column, not a window-toolbar segmented control.
+    private var modeSwitch: some View {
+        HStack(spacing: 2) {
+            ForEach(Mode.allCases, id: \.self) { m in
+                Button(m.rawValue) { mode = m }
+                    .buttonStyle(.plain)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(mode == m ? .white : Brand.fog)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 6)
+                    .background(mode == m ? Brand.indigo : .clear, in: RoundedRectangle(cornerRadius: 7))
+            }
+        }
+        .padding(3)
+        .frame(width: 220)
+        .background(.black.opacity(0.28), in: RoundedRectangle(cornerRadius: 9))
+        .overlay(RoundedRectangle(cornerRadius: 9).strokeBorder(.white.opacity(0.09)))
+        .padding(.horizontal, 22)
+        .padding(.bottom, 10)
     }
 
     @ViewBuilder
@@ -91,7 +105,7 @@ struct UninstallerView: View {
             if mode == .applications {
                 reviewHint
             }
-            ReviewList()
+            ReviewList(actLabel: mode == .applications ? "Uninstall" : "Clean")
         case .acting:
             ScanRing(label: "Cleaning…", indeterminate: true)
         case .report:
@@ -131,7 +145,10 @@ struct UninstallerView: View {
                     .animation(.default, value: model.selectedApps.count)
                 Spacer()
                 Button("Refresh") { model.loadInstalledApps() }
-                Button("Uninstall…") { confirmingUninstall = true }
+                // Straight to scan — Review right after already requires
+                // explicit per-item confirmation, so a pre-scan dialog was
+                // redundant friction the mock doesn't have either.
+                Button("Uninstall…") { Task { await model.scanUninstall() } }
                     .buttonStyle(.borderedProminent)
                     .disabled(model.selectedApps.isEmpty)
             }
@@ -139,26 +156,25 @@ struct UninstallerView: View {
             .padding(.vertical, 12)
             .background(.ultraThinMaterial)
         }
-        .confirmationDialog(
-            "Scan \(model.selectedApps.count) app(s) for uninstall? Nothing is removed yet — you review every file first.",
-            isPresented: $confirmingUninstall, titleVisibility: .visible
-        ) {
-            Button("Scan for Uninstall") { Task { await model.scanUninstall() } }
-            Button("Cancel", role: .cancel) {}
-        }
     }
 
     // MARK: - Leftovers mode
 
+    @ViewBuilder
     private var leftoversIdle: some View {
-        ModuleHero(
-            icon: "puzzlepiece.extension",
-            tint: SidebarItem.uninstaller.tint,
-            title: "App Leftovers",
-            message: "Finds support files, preferences, caches, and launch agents left behind by apps that were deleted — parts that dragging an app to the Trash never removes. Detection is conservative: nothing is pre-selected.",
-            primaryLabel: "Scan",
-            primaryAction: { Task { await model.scanLeftovers() } }
-        )
+        if model.hasNothingLeftToShow(for: "app-leftovers") {
+            EmptyGoodState(tint: SidebarItem.uninstaller.tint,
+                           message: "No leftovers from deleted apps found.")
+        } else {
+            ModuleHero(
+                icon: "puzzlepiece.extension",
+                tint: SidebarItem.uninstaller.tint,
+                title: "App Leftovers",
+                message: "Finds support files, preferences, caches, and launch agents left behind by apps that were deleted — parts that dragging an app to the Trash never removes. Detection is conservative: nothing is pre-selected.",
+                primaryLabel: "Scan",
+                primaryAction: { Task { await model.scanLeftovers() } }
+            )
+        }
     }
 }
 
@@ -188,7 +204,7 @@ private struct AppRow: View {
             }
             Spacer()
             if model.isRunning(app) {
-                BrandTag(text: "Running", color: .orange)
+                BrandTag(text: "Running", color: Brand.startup)
             }
         }
         .padding(.vertical, 3)

@@ -62,15 +62,20 @@ struct DuplicatesView: View {
     private func body(for phase: AppModel.Phase) -> some View {
         switch phase {
         case .idle:
-            ModuleHero(
-                icon: SidebarItem.duplicates.systemImage,
-                tint: SidebarItem.duplicates.tint,
-                title: "Duplicate Finder",
-                message: "Finds files with identical content (SHA-256, not just name or size) in Downloads, Desktop, Documents, and Pictures — or pick a specific folder to scan only there. The newest copy of each group is always kept; hardlinked copies share storage and are never offered.",
-                primaryLabel: "Scan",
-                primaryAction: { Task { await model.scanDuplicates() } }
-            ) {
-                Button("Choose Folder…") { showingFolderPicker = true }
+            if model.hasNothingLeftToShow(for: "duplicates") {
+                EmptyGoodState(tint: SidebarItem.duplicates.tint,
+                               message: "No duplicate copies left in the scanned scope.")
+            } else {
+                ModuleHero(
+                    icon: SidebarItem.duplicates.systemImage,
+                    tint: SidebarItem.duplicates.tint,
+                    title: "Duplicate Finder",
+                    message: "Finds files with identical content (SHA-256, not just name or size) in Downloads, Desktop, Documents, and Pictures — or pick a specific folder to scan only there. The newest copy of each group is always kept; hardlinked copies share storage and are never offered.",
+                    primaryLabel: "Scan",
+                    primaryAction: { Task { await model.scanDuplicates() } }
+                ) {
+                    Button("Choose Folder…") { showingFolderPicker = true }
+                }
             }
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Comparing file contents…")

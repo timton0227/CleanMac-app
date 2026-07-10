@@ -101,11 +101,18 @@ public struct LargeOldFilesScanner: Scanner {
         guard max(realBytes, logical) >= minBytes else { return nil }
 
         let verdict = protectedPaths.verdict(for: url)
+        // Splits into the mock's two categories: recently-touched files are
+        // "Large Files", anything untouched a year-plus is "Old Files" — same
+        // walk and size gate, just grouped by how stale it is.
+        let staleCutoff = Date(timeIntervalSinceNow: -365 * 24 * 60 * 60)
+        let lastTouched = max(values.contentModificationDate ?? .distantPast,
+                               values.contentAccessDate ?? .distantPast)
+        let category: Category = lastTouched < staleCutoff ? .oldFile : .largeFile
         return Finding(
             path: url,
             realOnDiskBytes: realBytes,
             logicalBytes: logical,
-            category: .largeFile,
+            category: category,
             confidence: .low, // user data — never pre-selected (§7)
             safeToRemove: !verdict.isProtected,
             isProtected: verdict.isProtected,

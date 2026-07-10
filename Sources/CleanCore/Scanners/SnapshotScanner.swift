@@ -24,7 +24,11 @@ public struct SnapshotScanner: Scanner {
     public func scan(progress: @Sendable @escaping (Double) -> Void) async throws -> [Finding] {
         progress(0)
         let names = try listNames()
-        let findings = names.compactMap { Self.finding(fromName: $0) }
+        // The most recent snapshot is a user's one live local restore point —
+        // protect it so deleting "all snapshots" can't silently leave none.
+        let mostRecent = names.max { (Self.snapshotDate(fromName: $0) ?? .distantPast)
+                                    < (Self.snapshotDate(fromName: $1) ?? .distantPast) }
+        let findings = names.compactMap { Self.finding(fromName: $0, isProtected: $0 == mostRecent) }
         progress(1.0)
         return findings
     }
@@ -32,7 +36,7 @@ public struct SnapshotScanner: Scanner {
     /// Parse one `tmutil` snapshot name into a finding. Only Time Machine local
     /// snapshots (`com.apple.TimeMachine.<date>.local`) are offered — OS-update
     /// snapshots are not deletable via `tmutil` and are excluded.
-    static func finding(fromName name: String) -> Finding? {
+    static func finding(fromName name: String, isProtected: Bool = false) -> Finding? {
         guard let date = snapshotDate(fromName: name) else { return nil }
         guard let url = URL(string: "snapshot:///\(name)") else { return nil }
         return Finding(
@@ -41,8 +45,8 @@ public struct SnapshotScanner: Scanner {
             logicalBytes: 0,
             category: .snapshot,
             confidence: .medium,
-            safeToRemove: true,
-            isProtected: false,
+            safeToRemove: !isProtected,
+            isProtected: isProtected,
             isCloudPlaceholder: false,
             modifiedAt: date
         )

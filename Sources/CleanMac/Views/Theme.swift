@@ -25,9 +25,36 @@ enum Brand {
     static func display(_ size: CGFloat, weight: Font.Weight = .bold) -> Font {
         .system(size: size, weight: weight, design: .rounded)
     }
+
+    /// Exact per-module hex accents from the design mock — used by the
+    /// sidebar dots, hero illustrations, and badge pills so every module
+    /// reads with its own identity instead of a handful of system colors.
+    static let systemJunk  = Color(hex: 0xF5A623)
+    static let largeFiles  = Color(hex: 0x60A5FA)
+    static let snapshots   = Color(hex: 0xA78BFA)
+    static let iosBackups  = Color(hex: 0x22D3EE)
+    static let duplicates  = Color(hex: 0x34D399)
+    static let privacy     = Color(hex: 0xF472B6)
+    static let startup     = Color(hex: 0xFBBF24)
+    static let uninstaller = Color(hex: 0xFB7185)
+    static let spaceLens   = Color(hex: 0x2DD4BF)
+    static let trash       = Color(hex: 0x9AA0AC)
+    static let keeper      = Color(hex: 0x34D399)
+    static let cloud       = Color(hex: 0x60A5FA)
+    static let lowConfidence = Color(hex: 0xFBBF24)
 }
 
 extension Color {
+    /// A single fixed hex value — for the design mock's exact per-module
+    /// accents, which don't adapt between light/dark (the app is dark-first).
+    init(hex: UInt32, opacity: Double = 1) {
+        self.init(
+            red: Double((hex >> 16) & 0xFF) / 255,
+            green: Double((hex >> 8) & 0xFF) / 255,
+            blue: Double(hex & 0xFF) / 255,
+            opacity: opacity)
+    }
+
     init(light: UInt32, dark: UInt32) {
         self.init(nsColor: NSColor(name: nil) { appearance in
             let hex = appearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua ? dark : light
@@ -250,7 +277,7 @@ struct SpaceBackground: View {
             }
             Canvas { context, size in
                 var rng = SeededRandom(seed: 7)
-                for _ in 0..<110 {
+                for _ in 0..<70 {
                     let x = rng.next() * size.width
                     let y = rng.next() * size.height
                     let r = 0.5 + rng.next() * 1.3
@@ -275,12 +302,57 @@ private struct SeededRandom {
     }
 }
 
+// MARK: - Conic progress ring (dashboard)
+
+/// A hard-edged pie sweep behind a punched-out center — the dashboard's
+/// `conic-gradient` disc from the mock: not a stroked ring like `RingMark`,
+/// but a filled wedge that grows clockwise from noon as progress advances.
+struct ConicProgressRing: View {
+    var progress: Double
+    var accent: Color
+    var innerFill: Color = Color(hex: 0x1C1730)
+    var diameter: CGFloat = 108
+    var innerDiameter: CGFloat = 86
+
+    var body: some View {
+        ZStack {
+            Circle().fill(.white.opacity(0.10))
+            PieSlice(fraction: max(0, min(1, progress))).fill(accent)
+            Circle().fill(innerFill).frame(width: innerDiameter, height: innerDiameter)
+        }
+        .frame(width: diameter, height: diameter)
+        .animation(.easeOut(duration: 0.3), value: progress)
+    }
+}
+
+private struct PieSlice: Shape {
+    var fraction: Double
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        guard fraction > 0 else { return path }
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        let radius = min(rect.width, rect.height) / 2
+        path.move(to: center)
+        path.addArc(center: center, radius: radius,
+                    startAngle: .degrees(-90),
+                    endAngle: .degrees(-90 + 360 * fraction),
+                    clockwise: false)
+        path.closeSubpath()
+        return path
+    }
+}
+
 // MARK: - Circular scan button
 
 /// The signature control: a big round button with a glowing ring, pinned at
-/// the bottom-center of every hero screen.
+/// the bottom-center of every hero screen. The mock draws this as a flat
+/// 2px accent-color ring (88px on module heroes, 80px on the dashboard) —
+/// not a rotating multi-color gradient.
 struct CircularScanButton: View {
     var title = "Scan"
+    var diameter: CGFloat = 88
+    var accent: Color = Brand.indigo
     var disabled = false
     var action: () -> Void
     @State private var hovering = false
@@ -288,16 +360,12 @@ struct CircularScanButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(Brand.display(16, weight: .semibold))
+                .font(Brand.display(14, weight: .semibold))
                 .foregroundStyle(.white)
-                .frame(width: 92, height: 92)
-                .background(Circle().fill(.black.opacity(0.45)))
-                .overlay(
-                    Circle().strokeBorder(
-                        AngularGradient(colors: [Brand.indigo, .cyan, Brand.indigo],
-                                        center: .center),
-                        lineWidth: 3))
-                .shadow(color: Brand.indigo.opacity(disabled ? 0.15 : hovering ? 0.75 : 0.4),
+                .frame(width: diameter, height: diameter)
+                .background(Circle().fill(.black.opacity(0.35)))
+                .overlay(Circle().strokeBorder(accent, lineWidth: 2))
+                .shadow(color: accent.opacity(disabled ? 0.15 : hovering ? 0.75 : 0.4),
                         radius: hovering ? 18 : 10)
         }
         .buttonStyle(.plain)
@@ -338,22 +406,27 @@ struct ModuleHero<Secondary: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             Spacer()
+            // The mock's `heroBlock`: a 128px tinted glow with a flat 3px
+            // border, holding just a small colored dot — no icon, no ring.
             ZStack {
-                Circle().fill(tint.opacity(0.10)).frame(width: 170, height: 170)
-                RingMark().frame(width: 128, height: 128)
-                Image(systemName: icon)
-                    .font(.system(size: 42, weight: .medium))
-                    .foregroundStyle(.white)
+                Circle()
+                    .fill(RadialGradient(colors: [tint.opacity(0.25), .clear],
+                                          center: .center, startRadius: 0, endRadius: 64))
+                    .overlay(Circle().strokeBorder(tint.opacity(0.55), lineWidth: 3))
+                    .frame(width: 128, height: 128)
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(tint)
+                    .frame(width: 14, height: 14)
             }
             .padding(.bottom, 26)
             Text(title)
-                .font(Brand.display(30))
+                .font(Brand.display(26))
                 .foregroundStyle(.white)
             Text(message)
-                .font(.callout)
+                .font(.system(size: 13.5))
                 .foregroundStyle(Brand.fog)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: 560)
+                .frame(maxWidth: 480)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.top, 8)
             Spacer()
@@ -363,6 +436,41 @@ struct ModuleHero<Secondary: View>: View {
             HStack(spacing: 12) { secondary }
                 .padding(.top, 12)
             Spacer().frame(height: 28)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 24)
+    }
+}
+
+// MARK: - Empty good state
+
+/// "Nothing left to do" — the mock's `emptyGoodState`: a small tinted
+/// checkmark circle instead of the hero's Scan button, shown once a module
+/// has been fully cleaned and there's nothing left to review.
+struct EmptyGoodState: View {
+    var tint: Color = Brand.indigo
+    var title: String = "All clear!"
+    var message: String
+
+    var body: some View {
+        VStack(spacing: 14) {
+            Spacer()
+            ZStack {
+                Circle().fill(tint.opacity(0.13)).frame(width: 80, height: 80)
+                Image(systemName: "checkmark")
+                    .font(.system(size: 26, weight: .semibold))
+                    .foregroundStyle(tint)
+            }
+            Text(title)
+                .font(Brand.display(22))
+                .foregroundStyle(.white)
+            Text(message)
+                .font(.system(size: 13))
+                .foregroundStyle(Brand.fog)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 420)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 24)

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;}
+  *{-webkit-font-smoothing:antialiased;}
+  @keyframes drillIn{from{opacity:.35;transform:scale(.945);}to{opacity:1;transform:scale(1);}}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px;}
+  a{color:#9a97ff;} a:hover{color:#b7b5ff;}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% -10%,#1c1730,#0c0a13 70%);padding:24px;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#F5F5F7;">
+  <div style="width:1232px;height:772px;border-radius:14px;overflow:hidden;display:flex;box-shadow:0 40px 120px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04);border:1px solid #3E3756;">
+
+    <div style="width:236px;flex:none;background:linear-gradient(180deg,#241C35,#15101f);border-right:1px solid #2c2640;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="display:flex;gap:8px;padding:14px 16px 10px;">
+        <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#28c840;"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px;padding:6px 16px 14px;">
+        <div style="width:22px;height:22px;border-radius:50%;border:3px solid #7674FF;border-right-color:transparent;transform:rotate(-45deg);"></div>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;letter-spacing:.3px;">CleanMac</span>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:2px 8px 12px;">
+        <sc-for list="{{ navRows }}" as="row" hint-placeholder-count="14">
+          <sc-if value="{{ row.isHeader }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ row.headerStyle }}">{{ row.title }}</div>
+          </sc-if>
+          <sc-if value="{{ row.isItem }}" hint-placeholder-val="{{ true }}">
+            <div onClick="{{ row.pick }}" style="{{ row.rowStyle }}">
+              <span style="{{ row.dotStyle }}"></span>
+              <span style="font-size:13px;font-weight:500;flex:1;">{{ row.name }}</span>
+              <sc-if value="{{ row.hasBadge }}" hint-placeholder-val="{{ false }}"><span style="{{ row.badgeStyle }}">{{ row.badge }}</span></sc-if>
+            </div>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex:1;position:relative;background:linear-gradient(180deg,#33264A,#241C35 55%,#15101f);display:flex;flex-direction:column;min-width:0;overflow:hidden;">
+      {{ starLayer }}
+      {{ main }}
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:820},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7674FF&quot;,&quot;options&quot;:[&quot;#7674FF&quot;,&quot;#2DD4BF&quot;,&quot;#F472B6&quot;,&quot;#FBBF24&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Style&quot;},&quot;colorMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;vibrant&quot;,&quot;options&quot;:[&quot;vibrant&quot;,&quot;byType&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Style (Space Lens)&quot;}}">
+class Component extends DCLogic {
+  GB = 1073741824;
+  PAL = ['#7C7BFF','#38BDF8','#2DD4BF','#A78BFA','#F472B6','#FBBF24','#34D399','#60A5FA','#FB7185','#22D3EE','#C084FC','#818CF8','#4ADE80','#F0ABFC'];
+  RAW = {n:'Home', t:'d', c:[
+    {n:'Library', t:'d', c:[
+      {n:'Caches', t:'d', c:[
+        {n:'Google', t:'d', c:[
+          {n:'Chrome', t:'d', c:[
+            {n:'Cache_Data', t:'f', b:6.2},{n:'Code Cache', t:'f', b:2.1},
+            {n:'GPUCache', t:'f', b:0.8},{n:'Service Worker', t:'f', b:1.4}]}]},
+        {n:'com.apple.Safari', t:'d', c:[{n:'WebKitCache', t:'f', b:3.4},{n:'Cache.db', t:'f', b:1.1}]},
+        {n:'Homebrew', t:'f', b:4.6},{n:'com.spotify.client', t:'f', b:3.1},
+        {n:'Slack', t:'f', b:1.8},{n:'ms-playwright', t:'f', b:2.2}]},
+      {n:'Application Support', t:'d', c:[
+        {n:'MobileSync', t:'d', c:[{n:'Backup', t:'d', c:[
+          {n:'iPhone 15 Pro', t:'f', b:12.4},{n:'iPad Air', t:'f', b:7.8}]}]},
+        {n:'Code', t:'d', c:[{n:'CachedData', t:'f', b:2.4},{n:'Cache', t:'f', b:1.2},{n:'User', t:'f', b:0.9}]},
+        {n:'Docker', t:'f', b:9.2},{n:'Slack', t:'f', b:3.6},{n:'Firefox', t:'f', b:2.1}]},
+      {n:'Developer', t:'d', c:[{n:'Xcode', t:'d', c:[
+        {n:'CoreSimulator', t:'f', b:14.1},{n:'DerivedData', t:'f', b:11.3},
+        {n:'iOS DeviceSupport', t:'f', b:8.7},{n:'watchOS DeviceSupport', t:'f', b:2.3}]}]},
+      {n:'Containers', t:'f', b:6.4},{n:'Logs', t:'f', b:1.3}]},
+    {n:'Movies', t:'d', c:[
+      {n:'Family Reunion 2025.fcpbundle', t:'p', b:38.5},
+      {n:'Screen Recordings', t:'d', c:[
+        {n:'Demo-final.mov', t:'f', b:4.2},{n:'Bug-repro.mov', t:'f', b:2.6},{n:'Standup-0603.mov', t:'f', b:3.1}]},
+      {n:'wedding-4k.mp4', t:'f', b:9.8},{n:'roadtrip.mp4', t:'f', b:6.1}]},
+    {n:'Downloads', t:'d', c:[
+      {n:'Sonoma-installer.dmg', t:'f', b:13.2},{n:'Xcode_15.4.xip', t:'f', b:7.9},
+      {n:'photos-export.zip', t:'f', b:6.7},{n:'dataset.zip', t:'f', b:5.4},
+      {n:'node-v20.pkg', t:'f', b:0.09},{n:'invoice.pdf', t:'f', b:0.002}]},
+    {n:'Documents', t:'d', c:[
+      {n:'Projects', t:'d', c:[
+        {n:'ml-experiments', t:'d', c:[{n:'checkpoints', t:'f', b:9.1},{n:'venv', t:'f', b:5.6},{n:'data', t:'f', b:3.3}]},
+        {n:'my-web-app', t:'d', c:[{n:'node_modules', t:'f', b:4.8},{n:'.git', t:'f', b:1.2},{n:'dist', t:'f', b:0.6},{n:'src', t:'f', b:0.12}]},
+        {n:'api-server', t:'d', c:[{n:'node_modules', t:'f', b:3.9},{n:'target', t:'f', b:2.7},{n:'.git', t:'f', b:0.8}]}]},
+      {n:'Keynotes', t:'f', b:3.2},{n:'Contracts.pdf', t:'f', b:0.048}]},
+    {n:'Pictures', t:'d', c:[
+      {n:'Photos Library.photoslibrary', t:'p', b:52.3},
+      {n:'Lightroom', t:'f', b:8.9},{n:'Screenshots', t:'f', b:4.1}]},
+    {n:'Applications', t:'d', c:[
+      {n:'Xcode.app', t:'p', b:18.6},{n:'Final Cut Pro.app', t:'p', b:4.2},
+      {n:'Docker.app', t:'p', b:2.1},{n:'Figma.app', t:'p', b:1.4}]},
+    {n:'Music', t:'d', c:[{n:'Music Library', t:'f', b:14.2},{n:'GarageBand', t:'f', b:3.7}]},
+    {n:'Desktop', t:'d', c:[{n:'archive-old.zip', t:'f', b:5.2},{n:'screenshot-batch', t:'f', b:1.9},{n:'notes.md', t:'f', b:0.001}]}]};
+
+  state = {
+    tab: 'dashboard', trash: [], pipe: {}, uninst: { mode: 'apps', selected: {} },
+    smart: { phase: 'idle', progress: 0, doneKeys: {} },
+    path: [], sel: {}, hover: null, animKey: 0, removed: {}, status: ''
+  };
+
+  h() { return React.createElement.apply(React, arguments); }
+
+  // ================= shared style helpers =================
+  screenColStyle() { return { display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 2 }; }
+  headerRowStyle() { return { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px 22px 12px', borderBottom: '1px solid rgba(255,255,255,.06)' }; }
+  titleStyle() { return { fontFamily: "'Space Grotesk',sans-serif", fontSize: 21, fontWeight: 700, lineHeight: 1 }; }
+  subtitleStyle() { return { fontSize: 12, color: '#A5A1B8', marginTop: 3 }; }
+  stripRowStyle() { return { display: 'flex', alignItems: 'center', gap: 34, padding: '11px 22px', background: 'rgba(0,0,0,.20)', borderBottom: '1px solid rgba(255,255,255,.05)' }; }
+  actionBarStyle() { return { display: 'flex', alignItems: 'center', gap: 14, padding: '12px 22px', borderTop: '1px solid rgba(255,255,255,.08)', background: 'rgba(0,0,0,.22)' }; }
+  cardStyle() { return { background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 12, padding: '16px 18px' }; }
+  ghostBtnStyle() { return { background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)', color: '#E7E5F2', fontSize: 12, fontWeight: 500, padding: '7px 13px', borderRadius: 8, cursor: 'pointer' }; }
+  ghostBtnEl(label, onClick) { return this.h('button', { key: label, onClick, style: this.ghostBtnStyle() }, label); }
+  primaryBtnStyle(accent, enabled) { return { fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, fontWeight: 600, padding: '9px 18px', borderRadius: 9, border: 'none', color: '#fff', background: enabled ? accent : 'rgba(255,255,255,.10)', cursor: enabled ? 'pointer' : 'default', opacity: enabled ? 1 : 0.55, boxShadow: enabled ? `0 4px 14px ${accent}66` : 'none', transition: 'all .15s' }; }
+  metricEl(label, value, color) { const h = this.h.bind(this); return h('div', { key: label }, h('div', { style: { fontSize: 11, color: '#A5A1B8' } }, label), h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 17, fontWeight: 600, fontVariantNumeric: 'tabular-nums', color: color || '#F5F5F7' } }, value)); }
+  legendEl(color, label, val) { const h = this.h.bind(this); return h('div', { key: label, style: { display: 'flex', alignItems: 'center', gap: 6 } }, h('span', { style: { width: 8, height: 8, borderRadius: '50%', background: color, flex: 'none' } }), h('span', { style: { fontSize: 12, color: '#CFCCE0' } }, label + ' ' + val)); }
+  vitalCard(title, big, sub) { const h = this.h.bind(this); return h('div', { key: title, style: { ...this.cardStyle(), flex: 1 } }, h('div', { style: { fontSize: 12, color: '#A5A1B8', marginBottom: 6 } }, title), h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 22, fontWeight: 700 } }, big), h('div', { style: { fontSize: 11, color: '#8f8ba6', marginTop: 2 } }, sub)); }
+  pill(text, color) { return this.h('span', { key: text, style: { fontSize: 10, fontWeight: 600, color, background: color + '26', padding: '2px 8px', borderRadius: 20, whiteSpace: 'nowrap', flex: 'none' } }, text); }
+  crumbBtnStyle(active) { return { background: 'none', border: 'none', fontFamily: "'Space Grotesk',sans-serif", fontSize: 13, fontWeight: active ? 600 : 500, color: active ? '#fff' : '#A5A1B8', cursor: 'pointer', padding: '3px 6px', borderRadius: 6 }; }
+  switchStyle(on, disabled, accent) { return { width: 32, height: 18, borderRadius: 10, border: 'none', padding: 2, cursor: disabled ? 'default' : 'pointer', background: on ? accent : 'rgba(255,255,255,.18)', display: 'flex', alignItems: 'center', justifyContent: on ? 'flex-end' : 'flex-start', opacity: disabled ? 0.55 : 1, flex: 'none' }; }
+  switchKnobStyle() { return { width: 14, height: 14, borderRadius: '50%', background: '#fff', display: 'block' }; }
+  swBtnStyle(active, accent) { return { fontFamily: "'Space Grotesk',sans-serif", fontSize: 12, fontWeight: 600, padding: '6px 12px', borderRadius: 7, cursor: 'pointer', border: 'none', flex: 1, color: active ? '#fff' : '#A5A1B8', background: active ? accent : 'transparent' }; }
+  checkboxEl(checked, disabled, accent) {
+    const h = this.h.bind(this);
+    return h('div', { style: { width: 17, height: 17, borderRadius: 5, border: checked ? 'none' : '1.5px solid rgba(255,255,255,.3)', background: checked ? (disabled ? '#5c5670' : accent) : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' } },
+      checked ? h('span', { style: { color: '#fff', fontSize: 11, fontWeight: 700, lineHeight: 1 } }, '\u2713') : null);
+  }
+  screenHeaderEl(title, subtitle, showBack, onBack) {
+    const h = this.h.bind(this);
+    return h('div', { style: this.headerRowStyle() },
+      h('div', null, h('div', { style: this.titleStyle() }, title), subtitle ? h('div', { style: this.subtitleStyle() }, subtitle) : null),
+      showBack ? this.ghostBtnEl('Start Over', onBack) : null);
+  }
+  phaseBarEl(current, actLabel, accent) {
+    const h = this.h.bind(this), steps = ['Scan', 'Review', actLabel, 'Done'], kids = [];
+    steps.forEach((name, i) => {
+      if (i > 0) kids.push(h('div', { key: 'l' + i, style: { width: 28, height: 2, margin: '0 6px', background: i <= current ? accent : 'rgba(255,255,255,.15)' } }));
+      const st = i < current ? 'done' : i === current ? 'active' : 'todo';
+      kids.push(h('div', { key: 's' + i, style: { display: 'flex', alignItems: 'center', gap: 6 } },
+        h('div', { style: { width: 17, height: 17, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 700, background: st === 'todo' ? 'transparent' : accent, border: st === 'todo' ? '1.5px solid rgba(255,255,255,.25)' : 'none', color: st === 'todo' ? '#8f8ba6' : '#fff' } }, st === 'done' ? '\u2713' : String(i + 1)),
+        h('span', { style: { fontSize: 12, fontWeight: i === current ? 600 : 400, color: i === current ? '#fff' : '#8f8ba6' } }, name)));
+    });
+    return h('div', { key: 'phasebar', style: { display: 'flex', alignItems: 'center', padding: '10px 22px' } }, kids);
+  }
+  scanRingEl(progress, label, accent, indeterminate) {
+    const h = this.h.bind(this), R = 44, C = 2 * Math.PI * R, frac = indeterminate ? 0.72 : Math.max(0.02, progress || 0);
+    return h('div', { key: 'ring', style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 } },
+      h('div', { style: { position: 'relative', width: 96, height: 96 } },
+        h('svg', { width: 96, height: 96, style: { transform: 'rotate(-90deg)', animation: indeterminate ? 'spin 1.1s linear infinite' : 'none' } },
+          h('circle', { cx: 48, cy: 48, r: R, stroke: 'rgba(255,255,255,.12)', strokeWidth: 6, fill: 'none' }),
+          h('circle', { cx: 48, cy: 48, r: R, stroke: accent, strokeWidth: 6, fill: 'none', strokeDasharray: C, strokeDashoffset: C * (1 - frac), strokeLinecap: 'round', style: { transition: 'stroke-dashoffset .25s' } })),
+        !indeterminate ? h('div', { style: { position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 18 } }, Math.round(frac * 100) + '%') : null),
+      h('div', { style: { fontSize: 14, color: '#CFCCE0' } }, label));
+  }
+  heroBlock(cfg, onScan, accent) {
+    const h = this.h.bind(this);
+    return h('div', { key: 'hero', style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 18, padding: '0 40px', textAlign: 'center' } },
+      h('div', { style: { width: 128, height: 128, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: `radial-gradient(circle, ${cfg.tint}25, transparent 70%)`, border: `3px solid ${cfg.tint}55` } },
+        h('span', { style: { width: 14, height: 14, borderRadius: 4, background: cfg.tint } })),
+      h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 26, fontWeight: 700 } }, cfg.title),
+      h('div', { style: { fontSize: 13.5, color: '#A5A1B8', maxWidth: 480, lineHeight: 1.5 } }, cfg.blurb),
+      h('button', { onClick: onScan, style: { marginTop: 8, width: 88, height: 88, borderRadius: '50%', border: `2px solid ${accent}`, background: 'rgba(0,0,0,.35)', color: '#fff', fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 14, cursor: 'pointer', boxShadow: `0 0 22px ${accent}55` } }, 'Scan'));
+  }
+  emptyGoodState(cfg, accent) {
+    const h = this.h.bind(this), tint = cfg.tint || accent;
+    return h('div', { key: 'empty', style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, textAlign: 'center', padding: '0 40px' } },
+      h('div', { style: { width: 80, height: 80, borderRadius: '50%', background: tint + '22', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30, color: tint } }, '\u2713'),
+      h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 22, fontWeight: 700 } }, cfg.emptyTitle || 'All clear!'),
+      h('div', { style: { fontSize: 13, color: '#A5A1B8', maxWidth: 420 } }, cfg.blurb));
+  }
+  reportEl(key, freedBytes, count, cfg, accent) {
+    const h = this.h.bind(this), reversible = cfg.reversible !== false;
+    return h('div', { key: 'report', style: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, textAlign: 'center', padding: '0 40px' } },
+      h('div', { style: { width: 64, height: 64, borderRadius: '50%', background: accent + '26', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, color: accent } }, '\u2713'),
+      h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 30, fontWeight: 700 } }, this.fmt(freedBytes) + ' freed'),
+      h('div', { style: { fontSize: 13.5, color: '#A5A1B8', maxWidth: 440 } }, count + (count === 1 ? ' item ' : ' items ') + (reversible ? 'moved to the CleanMac Trash \u2014 restorable for 30 days.' : "permanently removed. This can't be undone.")),
+      h('div', { style: { display: 'flex', gap: 10, marginTop: 6 } },
+        reversible ? this.ghostBtnEl('Open Trash', () => this.setTab('trash')) : null,
+        h('button', { onClick: () => this.resetPipe(key), style: this.primaryBtnStyle(accent, true) }, 'Done')));
+  }
+
+  // ================= data config =================
+  makeCfg() {
+    const GB = this.GB;
+    const I = (name, gb, detail, flags) => ({ name, bytes: Math.round(gb * GB), detail, ...(flags || {}) });
+    const mk = (key, title, blurb, tint, actLabel, reversible, neverPreselect, cats) => ({
+      key, title, blurb, tint, actLabel, reversible, neverPreselect,
+      categories: cats.map(([cname, items]) => ({ name: cname, items: items.map((it, i) => ({ ...it, id: key + '/' + cname + '/' + i })) }))
+    });
+    return {
+      systemJunk: mk('systemJunk', 'System Junk', 'Caches, logs, and leftovers safe to clear.', '#F5A623', 'Clean', true, false, [
+        ['User Cache Files', [I('com.google.Chrome.helper', 1.1, '~/Library/Caches'), I('com.apple.Safari', 0.24, '~/Library/Caches'), I('com.tinyspeck.slack', 0.38, '~/Library/Caches'), I('com.spotify.client', 0.29, '~/Library/Caches')]],
+        ['System Logs & Crash Reports', [I('DiagnosticReports', 0.14, '~/Library/Logs'), I('CrashReporter', 0.06, '~/Library/Logs', { low: true })]],
+        ['Xcode Junk', [I('DerivedData', 3.4, '~/Library/Developer/Xcode'), I('Archives', 1.8, '~/Library/Developer/Xcode'), I('Old iOS DeviceSupport', 2.1, '~/Library/Developer/Xcode', { low: true })]],
+        ['Broken Downloads', [I('Incomplete .download files', 0.045, '~/Downloads', { low: true })]]
+      ]),
+      largeFiles: mk('largeFiles', 'Large & Old Files', 'Hunt down the biggest space hogs.', '#60A5FA', 'Clean', true, false, [
+        ['Large Files (over 1 GB)', [I('wedding-4k.mp4', 9.8, '~/Movies'), I('Sonoma-installer.dmg', 13.2, '~/Downloads'), I('archive-old.zip', 5.2, '~/Desktop')]],
+        ['Old Files (untouched 1yr+)', [I('2019-taxes.pdf', 0.04, '~/Documents', { low: true }), I('old-project.zip', 2.1, '~/Documents/Projects'), I('conference-recording.mov', 3.4, '~/Movies', { cloud: true })]]
+      ]),
+      duplicates: mk('duplicates', 'Duplicate Finder', 'Identical files, matched by content.', '#34D399', 'Clean', true, false, [
+        ['IMG_4213.HEIC \u2014 3 copies', [I('Photos Library (original)', 0.0042, '~/Pictures', { keeper: true }), I('IMG_4213.HEIC', 0.0042, '~/Downloads'), I('IMG_4213 copy.HEIC', 0.0042, '~/Desktop')]],
+        ['resume_final.pdf \u2014 4 copies', [I('resume_final.pdf (original)', 0.0009, '~/Documents', { keeper: true }), I('resume_final(1).pdf', 0.0009, '~/Downloads'), I('resume_final(2).pdf', 0.0009, '~/Downloads'), I('resume_final_v2.pdf', 0.0009, '~/Desktop')]],
+        ['podcast-episode-12.mp3 \u2014 2 copies', [I('podcast-episode-12.mp3 (original)', 0.062, '~/Music', { keeper: true }), I('podcast-episode-12.mp3', 0.062, '~/Downloads')]]
+      ]),
+      snapshots: mk('snapshots', 'Local Snapshots', 'Time Machine snapshots hiding gigabytes.', '#A78BFA', 'Delete', false, false, [
+        ['Time Machine Snapshots', [I('Today 08:15', 3.1, 'com.apple.TimeMachine', { protected: true }), I('Yesterday 08:14', 2.9, 'com.apple.TimeMachine'), I('Jul 5, 08:02', 3.4, 'com.apple.TimeMachine'), I('Jul 1, 07:58', 2.6, 'com.apple.TimeMachine')]]
+      ]),
+      iosBackups: mk('iosBackups', 'iOS Backups', 'Stale iPhone and iPad backups.', '#22D3EE', 'Delete', false, false, [
+        ['Superseded Device Backups', [I('iPhone 13 \u2014 Feb 1, 2023', 9.1, '~/Library/Application Support/MobileSync'), I('iPad Air \u2014 Jun 14, 2024', 7.8, '~/Library/Application Support/MobileSync'), I('iPhone 15 Pro \u2014 Nov 2, 2025', 12.4, '~/Library/Application Support/MobileSync', { low: true })]]
+      ]),
+      privacy: mk('privacy', 'Privacy', 'Clear histories, cookies, and traces.', '#F472B6', 'Clear', false, true, [
+        ['Safari', [I('Browsing History', 0.085, '~/Library/Safari'), I('Cookies & Site Data', 0.21, '~/Library/Cookies', { inUse: true }), I('Autofill & Form Data', 0.002, '~/Library/Safari')]],
+        ['Mail', [I('Downloaded Attachments Cache', 0.32, '~/Library/Mail')]],
+        ['Messages', [I('Cached Attachments', 0.18, '~/Library/Messages')]],
+        ['System', [I('Recent Items List', 0.001, '~/Library/Preferences'), I('Quick Look Thumbnail Cache', 0.095, '~/Library/Caches')]]
+      ]),
+      uninstallerLeftovers: mk('uninstallerLeftovers', 'App Leftovers', 'Files left behind by apps you already removed.', '#FB7185', 'Clean', true, false, [
+        ['Orphaned Support Files', [I('com.oldapp.plist', 0.0008, '~/Library/Preferences', { low: true }), I('OldApp Support Files', 0.12, '~/Library/Application Support', { low: true }), I('Removed App Cache', 0.09, '~/Library/Caches')]]
+      ])
+    };
+  }
+  CFG() { if (!this._cfg) this._cfg = this.makeCfg(); return this._cfg; }
+  makeApps() {
+    const GB = this.GB;
+    const A = (id, name, bundle, left, color, running) => ({ id, name, bundleBytes: Math.round(bundle * GB), leftoverBytes: Math.round(left * GB), color, running: !!running, removed: false });
+    return [A('slack', 'Slack', 0.21, 0.045, '#7C7BFF'), A('docker', 'Docker Desktop', 2.1, 0.18, '#38BDF8'), A('postman', 'Postman', 0.31, 0.02, '#FBBF24'), A('zoom', 'Zoom', 0.18, 0.03, '#34D399', true), A('adobe', 'Adobe Acrobat Reader', 0.65, 0.09, '#FB7185'), A('handbrake', 'HandBrake', 0.14, 0.01, '#A78BFA')];
+  }
+  makeStartupGroups() {
+    const G = (domain, readonly, items) => ({ domain, readonly, items });
+    return [
+      G('User Login Items', false, [
+        { id: 'slackhelper', label: 'Slack Helper', program: '/Applications/Slack.app/Contents/Frameworks', enabled: true, runAtLoad: true },
+        { id: 'dockerd', label: 'Docker Desktop', program: '/Applications/Docker.app', enabled: true, runAtLoad: true, keepAlive: true },
+        { id: 'rectangle', label: 'Rectangle', program: '/Applications/Rectangle.app', enabled: true, runAtLoad: true },
+        { id: 'adobeupdater', label: 'Adobe Updater', program: '/Library/Application Support/Adobe', enabled: true, unsigned: true, runAtLoad: true }
+      ]),
+      G('System Agents', true, [
+        { id: 'coreservices', label: 'com.apple.coreservices.uiagent', program: '/System/Library', enabled: true, keepAlive: true },
+        { id: 'keystone', label: 'com.google.keystone.agent', program: '~/Library/Google', enabled: true, runAtLoad: true }
+      ]),
+      G('System Daemons', true, [
+        { id: 'vmnetd', label: 'com.docker.vmnetd', program: '/Library/PrivilegedHelperTools', enabled: true, keepAlive: true },
+        { id: 'oldapphelper', label: 'com.oldapp.helper', program: '/Library/LaunchDaemons (missing binary)', enabled: false, missing: true }
+      ])
+    ];
+  }
+
+  // ================= nav =================
+  setTab(key) { this.setState({ tab: key, hover: null }); }
+  buildNavRows() {
+    const tab = this.state.tab, accent = this.props.accent || '#7674FF';
+    const header = (title) => ({ isHeader: true, isItem: false, title, headerStyle: { fontSize: 10, fontWeight: 600, letterSpacing: '.7px', textTransform: 'uppercase', color: '#6f6a86', padding: '10px 10px 5px' } });
+    const item = (key, name, color, badge) => {
+      const active = tab === key;
+      return {
+        isHeader: false, isItem: true, name, badge: badge || '', hasBadge: !!badge, pick: () => this.setTab(key),
+        dotStyle: { width: 9, height: 9, borderRadius: 3, background: color, flex: 'none' },
+        rowStyle: { display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px', borderRadius: 8, margin: '1px 0', cursor: 'pointer', color: active ? '#F5F5F7' : '#A5A1B8', background: active ? 'rgba(118,116,255,.18)' : 'transparent', boxShadow: active ? `inset 2px 0 0 ${accent}` : 'none' },
+        badgeStyle: { background: '#5c5670', color: '#fff', fontSize: 10, fontWeight: 600, padding: '1px 6px', borderRadius: 9 }
+      };
+    };
+    return [
+      item('dashboard', 'Smart Scan', accent),
+      header('Cleanup'),
+      item('systemJunk', 'System Junk', '#F5A623'),
+      item('snapshots', 'Local Snapshots', '#A78BFA'),
+      item('iosBackups', 'iOS Backups', '#22D3EE'),
+      item('duplicates', 'Duplicate Finder', '#34D399'),
+      header('Protection'),
+      item('privacy', 'Privacy', '#F472B6'),
+      header('Speedup'),
+      item('startup', 'Startup Items', '#FBBF24'),
+      header('Applications'),
+      item('uninstaller', 'Uninstaller', '#FB7185'),
+      header('Files'),
+      item('largeFiles', 'Large & Old Files', '#60A5FA'),
+      item('spaceLens', 'Space Lens', '#2DD4BF'),
+      header('Restore'),
+      item('trash', 'Trash / Restore', '#9aa0ac', this.state.trash.length ? String(this.state.trash.length) : '')
+    ];
+  }
+
+  // ================= generic scan/review/clean pipeline =================
+  initPipe(key, cfg) {
+    if (!this.state.pipe[key]) {
+      const sel = {};
+      cfg.categories.forEach(cat => cat.items.forEach(it => { if (!cfg.neverPreselect && !it.protected && !it.keeper && !it.inUse && !it.low) sel[it.id] = it.bytes; }));
+      this.state.pipe[key] = { phase: 'idle', sel, progress: 0, removed: {}, everCleaned: false };
+    }
+  }
+  runProgress(onTick, onDone) {
+    let p = 0; const iv = setInterval(() => { p = Math.min(1, p + 0.16 + Math.random() * 0.14); onTick(p); if (p >= 1) { clearInterval(iv); setTimeout(onDone, 200); } }, 100);
+  }
+  startScan(key, cfg) {
+    this.setState(s => ({ pipe: { ...s.pipe, [key]: { ...s.pipe[key], phase: 'scanning', progress: 0 } } }));
+    this.runProgress(
+      p => this.setState(s => s.pipe[key] ? ({ pipe: { ...s.pipe, [key]: { ...s.pipe[key], progress: p } } }) : null),
+      () => this.setState(s => s.pipe[key] ? ({ pipe: { ...s.pipe, [key]: { ...s.pipe[key], phase: 'review', progress: 1 } } }) : null)
+    );
+  }
+  toggleItemPipe(key, it) {
+    this.setState(s => { const cur = s.pipe[key], sel = { ...cur.sel }; if (sel[it.id] != null) delete sel[it.id]; else sel[it.id] = it.bytes; return { pipe: { ...s.pipe, [key]: { ...cur, sel } } }; });
+  }
+  toggleCategoryPipe(key, cfg, catName, on) {
+    const cat = cfg.categories.find(c => c.name === catName); if (!cat) return;
+    this.setState(s => { const cur = s.pipe[key], sel = { ...cur.sel }; cat.items.forEach(it => { if (it.protected || it.keeper || it.inUse) return; if (on) sel[it.id] = it.bytes; else delete sel[it.id]; }); return { pipe: { ...s.pipe, [key]: { ...cur, sel } } }; });
+  }
+  selectAllPipe(key, cfg, on) {
+    this.setState(s => { const cur = s.pipe[key]; let sel = {}; if (on) cfg.categories.forEach(cat => cat.items.forEach(it => { if (!it.protected && !it.keeper && !it.inUse && !cur.removed[it.id]) sel[it.id] = it.bytes; })); return { pipe: { ...s.pipe, [key]: { ...cur, sel } } }; });
+  }
+  cleanPipe(key, cfg) {
+    const st = this.state.pipe[key], ids = Object.keys(st.sel); if (!ids.length) return;
+    const bytes = ids.reduce((s, id) => s + st.sel[id], 0);
+    const items = []; cfg.categories.forEach(cat => cat.items.forEach(it => { if (st.sel[it.id] != null) items.push(it); }));
+    this.setState(s => ({ pipe: { ...s.pipe, [key]: { ...s.pipe[key], phase: 'acting' } } }));
+    setTimeout(() => {
+      this.setState(s => {
+        const pipe = { ...s.pipe }, cur = { ...pipe[key] }, removed = { ...cur.removed };
+        ids.forEach(id => removed[id] = true);
+        pipe[key] = { ...cur, phase: 'report', removed, sel: {}, lastFreed: bytes, lastCount: ids.length, everCleaned: true };
+        let trash = s.trash;
+        if (cfg.reversible !== false) trash = [...s.trash, ...items.map(it => ({ id: key + '_' + it.id + '_' + Date.now() + Math.random(), name: it.name, path: it.detail, bytes: it.bytes, module: cfg.title, kind: 'pipe', moduleKey: key, itemId: it.id }))];
+        return { pipe, trash };
+      });
+      if (key === 'uninstApps' && this.state.uninstAppIds && this.state.apps) {
+        const ids2 = this.state.uninstAppIds; this.state.apps.forEach(a => { if (ids2.includes(a.id)) a.removed = true; });
+      }
+    }, 900);
+  }
+  resetPipe(key) { this.setState(s => ({ pipe: { ...s.pipe, [key]: { ...s.pipe[key], phase: 'idle' } } })); }
+
+  checkboxRowStyle(disabled) { return { display: 'flex', alignItems: 'center', gap: 10, padding: '7px 8px', borderRadius: 8, cursor: disabled ? 'default' : 'pointer' }; }
+  reviewRow(key, it, st, accent, i) {
+    const h = this.h.bind(this), disabled = !!(it.protected || it.keeper || it.inUse), checked = st.sel[it.id] != null;
+    const badges = [];
+    if (it.protected) badges.push(this.pill('Protected', '#E2504F'));
+    if (it.keeper) badges.push(this.pill('Keeper', '#34D399'));
+    if (it.inUse) badges.push(this.pill('In use', '#E2504F'));
+    if (it.low) badges.push(this.pill('Low confidence', '#FBBF24'));
+    if (it.cloud) badges.push(this.pill('Cloud', '#60A5FA'));
+    return h('div', { key: i, onClick: () => !disabled && this.toggleItemPipe(key, it), style: this.checkboxRowStyle(disabled) },
+      this.checkboxEl(checked, disabled, accent),
+      h('div', { style: { flex: 1, minWidth: 0 } },
+        h('div', { style: { fontSize: 13, color: disabled ? '#8f8ba6' : '#EDECF5', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, it.name),
+        h('div', { style: { fontSize: 11, color: '#7d7892', marginTop: 1 } }, it.detail)),
+      h('div', { style: { display: 'flex', gap: 6, flex: 'none' } }, badges),
+      h('div', { style: { fontSize: 12.5, color: '#CFCCE0', fontVariantNumeric: 'tabular-nums', width: 70, textAlign: 'right', flex: 'none' } }, this.fmt(it.bytes)));
+  }
+  categoryBlock(key, cfg, cat, ci, st, accent) {
+    const h = this.h.bind(this), selectable = cat.items.filter(it => !it.protected && !it.keeper && !it.inUse);
+    const allOn = selectable.length > 0 && selectable.every(it => st.sel[it.id] != null);
+    const catBytes = cat.items.reduce((s, it) => s + it.bytes, 0);
+    return h('div', { key: ci, style: { marginBottom: 14 } },
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: 8, padding: '10px 4px 6px' } },
+        h('span', { style: { fontSize: 13, fontWeight: 600, color: '#EDECF5' } }, cat.name),
+        h('span', { style: { fontSize: 10.5, color: '#B9B6CC', background: 'rgba(255,255,255,.08)', padding: '1px 7px', borderRadius: 20 } }, String(cat.items.length)),
+        h('div', { style: { flex: 1 } }),
+        h('span', { style: { fontSize: 12, color: '#A5A1B8', fontVariantNumeric: 'tabular-nums' } }, this.fmt(catBytes)),
+        selectable.length ? h('button', { onClick: () => this.toggleCategoryPipe(key, cfg, cat.name, !allOn), style: { background: 'none', border: 'none', color: accent, fontSize: 12, fontWeight: 600, cursor: 'pointer' } }, allOn ? 'None' : 'All') : null),
+      h('div', { style: { display: 'flex', flexDirection: 'column' } }, cat.items.map((it, i) => this.reviewRow(key, it, st, accent, i))));
+  }
+  reviewBody(key, cfg, categories, st, accent) {
+    const h = this.h.bind(this), allItems = categories.flatMap(c => c.items);
+    const selIds = allItems.filter(it => st.sel[it.id] != null), selBytes = selIds.reduce((s, it) => s + st.sel[it.id], 0);
+    const list = h('div', { key: 'list', style: { flex: 1, overflowY: 'auto', padding: '6px 22px' } }, categories.map((cat, ci) => this.categoryBlock(key, cfg, cat, ci, st, accent)));
+    const footer = h('div', { key: 'footer', style: this.actionBarStyle() },
+      h('div', { style: { fontSize: 13, color: '#CFCCE0' } }, selIds.length + ' of ' + allItems.length + ' selected'),
+      this.ghostBtnEl('Select All', () => this.selectAllPipe(key, cfg, true)),
+      this.ghostBtnEl('Deselect All', () => selIds.length && this.selectAllPipe(key, cfg, false)),
+      h('div', { style: { flex: 1 } }),
+      h('button', { onClick: () => selIds.length && this.cleanPipe(key, cfg), style: this.primaryBtnStyle(accent, selIds.length > 0) }, cfg.actLabel + (selBytes ? ' ' + this.fmt(selBytes) : '')));
+    return [list, footer];
+  }
+  pipelineBody(key, cfg, accent) {
+    const h = this.h.bind(this), st = this.state.pipe[key];
+    const phaseIdx = st.phase === 'scanning' ? 0 : st.phase === 'review' ? 1 : st.phase === 'acting' ? 2 : 3;
+    let body;
+    if (st.phase === 'scanning') body = this.scanRingEl(st.progress, 'Scanning ' + cfg.title.toLowerCase() + '\u2026', accent, false);
+    else if (st.phase === 'acting') body = this.scanRingEl(null, cfg.actLabel + 'ing\u2026', accent, true);
+    else if (st.phase === 'report') body = this.reportEl(key, st.lastFreed || 0, st.lastCount || 0, cfg, accent);
+    else { const categories = cfg.categories.map(cat => ({ name: cat.name, items: cat.items.filter(it => !st.removed[it.id]) })).filter(c => c.items.length); body = this.reviewBody(key, cfg, categories, st, accent); }
+    return [this.phaseBarEl(phaseIdx, cfg.actLabel, accent), h('div', { key: 'divider', style: { borderBottom: '1px solid rgba(255,255,255,.07)' } }), h('div', { key: 'bodywrap', style: { flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' } }, body)];
+  }
+  pipelineContent(key, cfg, accent) {
+    this.initPipe(key, cfg);
+    const st = this.state.pipe[key];
+    if (st.phase === 'idle') {
+      const remaining = cfg.categories.some(cat => cat.items.some(it => !st.removed[it.id]));
+      return [(!remaining && st.everCleaned) ? this.emptyGoodState(cfg, accent) : this.heroBlock(cfg, () => this.startScan(key, cfg), accent)];
+    }
+    return this.pipelineBody(key, cfg, accent);
+  }
+  screenPipeline(key, cfg) {
+    const h = this.h.bind(this), accent = this.props.accent || '#7674FF';
+    this.initPipe(key, cfg);
+    const st = this.state.pipe[key];
+    const header = this.screenHeaderEl(cfg.title, cfg.blurb, st.phase !== 'idle', () => this.resetPipe(key));
+    return h('div', { style: this.screenColStyle() }, header, ...this.pipelineContent(key, cfg, accent));
+  }
+
+  // ================= Uninstaller =================
+  setUninstMode(m) { this.setState(s => ({ uninst: { ...s.uninst, mode: m } })); }
+  toggleAppSel(id) { this.setState(s => { const selected = { ...s.uninst.selected }; if (selected[id]) delete selected[id]; else selected[id] = true; return { uninst: { ...s.uninst, selected } }; }); }
+  beginUninstall(apps) {
+    if (!apps.length) return;
+    const cfg = {
+      key: 'uninstApps', title: 'Uninstaller', blurb: '', actLabel: 'Uninstall', reversible: true, neverPreselect: false,
+      categories: apps.map(a => ({ name: a.name, items: [
+        { id: 'u/' + a.id + '/bundle', name: a.name + '.app', bytes: a.bundleBytes, detail: '/Applications' },
+        { id: 'u/' + a.id + '/left', name: 'Support files & caches', bytes: a.leftoverBytes, detail: '~/Library/Application Support, Caches' }
+      ] }))
+    };
+    this.state.uninstDynCfg = cfg;
+    this.state.uninstAppIds = apps.map(a => a.id);
+    this.initPipe('uninstApps', cfg);
+    this.setState(s => ({ uninst: { ...s.uninst, selected: {} } }));
+    this.startScan('uninstApps', cfg);
+  }
+  appsScreen(accent, switchRow) {
+    const h = this.h.bind(this), key = 'uninstApps', st = this.state.pipe[key];
+    const header = this.screenHeaderEl('Uninstaller', 'Remove apps and every trace they leave.', !!(st && st.phase !== 'idle'), () => this.setState(s => { const pipe = { ...s.pipe }; delete pipe[key]; return { pipe }; }));
+    if (st && st.phase !== 'idle') {
+      return h('div', { style: this.screenColStyle() }, header, switchRow, ...this.pipelineBody(key, this.state.uninstDynCfg, accent));
+    }
+    if (!this.state.apps) this.state.apps = this.makeApps();
+    const list = this.state.apps.filter(a => !a.removed), selected = this.state.uninst.selected || {};
+    const selCount = Object.keys(selected).filter(id => list.some(a => a.id === id)).length;
+    const selBytes = list.filter(a => selected[a.id]).reduce((s, a) => s + a.bundleBytes + a.leftoverBytes, 0);
+    const rows = list.map(a => h('div', { key: a.id, onClick: () => this.toggleAppSel(a.id), style: { display: 'flex', alignItems: 'center', gap: 12, padding: '8px 8px', borderRadius: 8, cursor: 'pointer' } },
+      this.checkboxEl(!!selected[a.id], false, accent),
+      h('div', { style: { width: 26, height: 26, borderRadius: 7, background: a.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flex: 'none' } }, a.name[0]),
+      h('div', { style: { flex: 1, minWidth: 0 } }, h('div', { style: { fontSize: 13, color: '#EDECF5' } }, a.name), h('div', { style: { fontSize: 11, color: '#7d7892', marginTop: 1 } }, '/Applications')),
+      a.running ? this.pill('Running', '#FBBF24') : null,
+      h('div', { style: { fontSize: 12.5, color: '#CFCCE0', width: 70, textAlign: 'right', flex: 'none' } }, this.fmt(a.bundleBytes + a.leftoverBytes))));
+    const footer = h('div', { style: this.actionBarStyle() },
+      h('div', { style: { fontSize: 13, color: '#CFCCE0' } }, selCount + ' app(s) selected'),
+      h('div', { style: { flex: 1 } }),
+      this.ghostBtnEl('Refresh', () => {}),
+      h('button', { onClick: () => selCount && this.beginUninstall(list.filter(a => selected[a.id])), style: this.primaryBtnStyle(accent, selCount > 0) }, 'Uninstall' + (selCount ? ' ' + this.fmt(selBytes) : '\u2026')));
+    return h('div', { style: this.screenColStyle() }, header, switchRow, h('div', { style: { flex: 1, overflowY: 'auto', padding: '6px 22px' } }, rows), footer);
+  }
+  screenUninstaller(leftoverCfg, accent) {
+    const h = this.h.bind(this);
+    if (!this.state.uninst) this.state.uninst = { mode: 'apps', selected: {} };
+    const mode = this.state.uninst.mode;
+    const switchRow = h('div', { style: { display: 'flex', background: 'rgba(0,0,0,.28)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 9, padding: 3, gap: 2, width: 220, margin: '0 22px 10px' } },
+      h('button', { onClick: () => this.setUninstMode('apps'), style: this.swBtnStyle(mode === 'apps', accent) }, 'Applications'),
+      h('button', { onClick: () => this.setUninstMode('leftovers'), style: this.swBtnStyle(mode === 'leftovers', accent) }, 'Leftovers'));
+    if (mode === 'leftovers') {
+      return h('div', { style: this.screenColStyle() }, this.screenHeaderEl('Uninstaller', 'Remove apps and every trace they leave.', false), switchRow, ...this.pipelineContent('uninstallerLeftovers', leftoverCfg, accent));
+    }
+    return this.appsScreen(accent, switchRow);
+  }
+
+  // ================= Startup Items =================
+  toggleStartup(id) { this.setState(s => ({ startup: s.startup.map(g => ({ ...g, items: g.items.map(it => it.id === id ? { ...it, enabled: !it.enabled } : it) })) })); }
+  screenStartup() {
+    const h = this.h.bind(this), accent = this.props.accent || '#7674FF';
+    if (!this.state.startup) this.state.startup = this.makeStartupGroups();
+    const header = this.screenHeaderEl('Startup Items', 'Control what launches at login.', false);
+    const groups = this.state.startup.map((g, gi) => h('div', { key: gi, style: { marginBottom: 16 } },
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: 8, padding: '8px 4px' } },
+        h('span', { style: { fontSize: 11, fontWeight: 600, letterSpacing: '.5px', textTransform: 'uppercase', color: '#8f8ba6' } }, g.domain),
+        g.readonly ? h('span', { style: { fontSize: 11, color: '#6f6a86' } }, '\u00b7 read-only (needs privileged helper)') : null),
+      g.items.map((it, i) => h('div', { key: i, style: { display: 'flex', alignItems: 'center', gap: 12, padding: '8px 8px', borderRadius: 8, opacity: it.enabled ? 1 : 0.55 } },
+        h('button', { onClick: () => !g.readonly && this.toggleStartup(it.id), style: this.switchStyle(it.enabled, g.readonly, accent) }, h('span', { style: this.switchKnobStyle() })),
+        h('div', { style: { flex: 1, minWidth: 0 } }, h('div', { style: { fontSize: 13, color: '#EDECF5' } }, it.label), it.program ? h('div', { style: { fontSize: 11, color: '#7d7892', marginTop: 1 } }, it.program) : null),
+        h('div', { style: { display: 'flex', gap: 6 } },
+          it.unsigned ? this.pill('Unsigned', '#E2504F') : null,
+          it.missing ? this.pill('Binary missing', '#FBBF24') : null,
+          it.runAtLoad ? this.pill('Launches at login', '#60A5FA') : null,
+          it.keepAlive ? this.pill('Always running', '#A78BFA') : null,
+          !it.enabled ? this.pill('Disabled', '#8f8ba6') : null)))));
+    return h('div', { style: this.screenColStyle() }, header, h('div', { style: { flex: 1, overflowY: 'auto', padding: '6px 22px 20px' } }, groups));
+  }
+
+  // ================= Trash =================
+  restoreTrash(r) {
+    this.setState(s => {
+      const trash = s.trash.filter(x => x.id !== r.id);
+      let pipe = s.pipe, removed = s.removed;
+      if (r.kind === 'pipe') { const cur = { ...s.pipe[r.moduleKey] }, rem = { ...cur.removed }; delete rem[r.itemId]; cur.removed = rem; pipe = { ...s.pipe, [r.moduleKey]: cur }; }
+      if (r.kind === 'spaceLens') { removed = { ...s.removed }; delete removed[r.itemId]; }
+      return { trash, pipe, removed };
+    });
+  }
+  emptyTrash() { this.setState({ trash: [] }); }
+  screenTrash() {
+    const h = this.h.bind(this), accent = this.props.accent || '#7674FF', list = this.state.trash;
+    if (!list.length) {
+      const header = this.screenHeaderEl('Trash / Restore', null, false);
+      return h('div', { style: this.screenColStyle() }, header, this.emptyGoodState({ emptyTitle: 'Trash is empty', blurb: 'Removed items from any module land here, restorable for 30 days.', tint: '#9aa0ac' }, accent));
+    }
+    const header = this.screenHeaderEl('Trash / Restore', null, false);
+    const totalBytes = list.reduce((s, r) => s + r.bytes, 0);
+    const strip = h('div', { key: 'strip', style: this.stripRowStyle() },
+      this.metricEl('Items held', String(list.length)), this.metricEl('Space retained', this.fmt(totalBytes), accent),
+      h('div', { style: { flex: 1 } }),
+      h('div', { style: { fontSize: 12, color: '#B9B6CC', maxWidth: 260, textAlign: 'right' } }, 'Everything here restores to its original path for 30 days.'),
+      h('button', { onClick: () => this.emptyTrash(), style: { ...this.ghostBtnStyle(), borderColor: 'rgba(226,80,79,.5)', color: '#f0a3a2' } }, 'Empty Trash Now'));
+    const rows = list.map(r => h('div', { key: r.id, style: { display: 'flex', alignItems: 'center', gap: 12, padding: '9px 8px', borderRadius: 8 } },
+      h('span', { style: { fontSize: 14, color: '#6f6a86' } }, '\u21ba'),
+      h('div', { style: { flex: 1, minWidth: 0 } }, h('div', { style: { fontSize: 13, color: '#EDECF5' } }, r.name), h('div', { style: { fontSize: 11, color: '#7d7892', marginTop: 1 } }, r.path + '  \u00b7  ' + r.module)),
+      h('div', { style: { fontSize: 12.5, color: '#CFCCE0', width: 70, textAlign: 'right', flex: 'none' } }, this.fmt(r.bytes)),
+      this.ghostBtnEl('Restore', () => this.restoreTrash(r))));
+    return h('div', { style: this.screenColStyle() }, header, strip, h('div', { style: { flex: 1, overflowY: 'auto', padding: '6px 22px 16px' } }, rows));
+  }
+
+  // ================= Dashboard =================
+  runSmartScan() {
+    const order = ['systemJunk', 'largeFiles', 'duplicates', 'snapshots', 'iosBackups', 'privacy'];
+    this.setState({ smart: { phase: 'scanning', progress: 0, doneKeys: {} } });
+    let i = 0;
+    const step = () => {
+      if (i >= order.length) { this.setState(s => ({ smart: { ...s.smart, phase: 'done', progress: 1 } })); return; }
+      const k = order[i];
+      this.setState(s => ({ smart: { ...s.smart, doneKeys: { ...s.smart.doneKeys, [k]: true }, progress: (i + 1) / order.length } }));
+      i++; setTimeout(step, 280);
+    };
+    setTimeout(step, 280);
+  }
+  screenDashboard() {
+    const h = this.h.bind(this), accent = this.props.accent || '#7674FF', cfg = this.CFG(), smart = this.state.smart;
+    const modules = [['systemJunk', 'System Junk'], ['largeFiles', 'Large & Old Files'], ['duplicates', 'Duplicate Finder'], ['snapshots', 'Local Snapshots'], ['iosBackups', 'iOS Backups'], ['privacy', 'Privacy']];
+    let reclaimable = 0;
+    const rows = modules.map(([key, label]) => {
+      const c = cfg[key], st = this.state.pipe[key], removed = st ? st.removed : {};
+      const items = c.categories.flatMap(cat => cat.items).filter(it => !removed[it.id]);
+      const bytes = items.filter(it => !it.protected && !it.keeper && !it.inUse).reduce((s, it) => s + it.bytes, 0);
+      if (key !== 'privacy') reclaimable += bytes;
+      const scanned = smart.doneKeys[key] || (st && st.phase !== 'idle');
+      const scanning = smart.phase === 'scanning' && !smart.doneKeys[key];
+      return h('div', { key, style: { display: 'flex', alignItems: 'center', gap: 10, padding: '9px 4px' } },
+        h('span', { style: { width: 9, height: 9, borderRadius: 3, background: c.tint, flex: 'none' } }),
+        h('span', { style: { fontSize: 13, width: 150, flex: 'none' } }, label),
+        scanning ? h('span', { style: { fontSize: 12, color: '#8f8ba6' } }, 'Scanning\u2026')
+          : scanned ? h('span', { style: { fontSize: 12, color: '#A5A1B8' } }, items.length ? `${items.length} items \u00b7 ${this.fmt(items.reduce((s, it) => s + it.bytes, 0))} found` : 'Nothing to clean')
+          : h('span', { style: { fontSize: 12, color: '#6f6a86' } }, 'Waiting\u2026'),
+        h('div', { style: { flex: 1 } }),
+        scanned && items.length > 0 ? h('button', { onClick: () => this.setTab(key), style: { ...this.ghostBtnStyle(), padding: '4px 11px', fontSize: 11.5 } }, 'Review') : null);
+    });
+    const heroNum = smart.phase === 'done' ? this.fmt(reclaimable) : null;
+    return h('div', { style: this.screenColStyle() },
+      h('div', { style: { flex: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, padding: '30px 30px 20px', textAlign: 'center' } },
+        h('div', { style: { width: 108, height: 108, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: `conic-gradient(${accent} ${Math.round((smart.progress || 0) * 360)}deg, rgba(255,255,255,.10) 0deg)` } },
+          h('div', { style: { width: 86, height: 86, borderRadius: '50%', background: '#1c1730', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 16 } }, smart.phase === 'scanning' ? Math.round((smart.progress || 0) * 100) + '%' : '\u2726')),
+        h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 25, fontWeight: 700 } }, heroNum ? heroNum + ' safely reclaimable' : smart.phase === 'scanning' ? 'Scanning your Mac\u2026' : "Let's get started!"),
+        h('div', { style: { fontSize: 13.5, color: '#A5A1B8', maxWidth: 480 } }, heroNum ? 'Found across ' + modules.length + ' categories. Nothing is removed without your review.' : 'Give your Mac a nice and thorough scan.'),
+        h('button', { onClick: () => this.runSmartScan(), disabled: smart.phase === 'scanning', style: { marginTop: 2, width: 80, height: 80, borderRadius: '50%', border: `2px solid ${accent}`, background: 'rgba(0,0,0,.35)', color: '#fff', fontWeight: 700, fontFamily: "'Space Grotesk',sans-serif", cursor: smart.phase === 'scanning' ? 'default' : 'pointer', opacity: smart.phase === 'scanning' ? 0.6 : 1, boxShadow: `0 0 22px ${accent}55` } }, smart.phase === 'idle' ? 'Scan' : 'Rescan')),
+      h('div', { style: { flex: 1, overflowY: 'auto', padding: '0 26px 22px', display: 'flex', flexDirection: 'column', gap: 14 } },
+        h('div', { style: this.cardStyle() }, h('div', { style: { fontSize: 13, fontWeight: 600, marginBottom: 6 } }, 'Per-category status'), rows),
+        h('div', { style: this.cardStyle() }, h('div', { style: { fontSize: 13, fontWeight: 600, marginBottom: 10 } }, 'Startup Disk'),
+          h('div', { style: { display: 'flex', height: 12, borderRadius: 4, overflow: 'hidden', background: 'rgba(255,255,255,.08)' } },
+            h('div', { style: { width: '62%', background: accent } }), h('div', { style: { width: '5%', background: '#FBBF24' } }), h('div', { style: { width: '33%', background: '#34D399' } })),
+          h('div', { style: { display: 'flex', gap: 18, marginTop: 10 } }, this.legendEl(accent, 'Used', '616 GB'), this.legendEl('#FBBF24', 'Purgeable', '49 GB'), this.legendEl('#34D399', 'Free', '329 GB'))),
+        h('div', { style: { display: 'flex', gap: 14 } }, this.vitalCard('Memory', '68%', '10.9 GB of 16 GB'), this.vitalCard('CPU', '2.14', 'load avg (1 min) \u00b7 8 cores'), this.vitalCard('Battery', '87%', 'Health 91% \u00b7 342 cycles'))));
+  }
+
+  // ================= Space Lens (bubbles) =================
+  buildTree(raw, parentId) {
+    const id = parentId ? parentId + '/' + raw.n : raw.n;
+    if (raw.c) { const children = raw.c.map(ch => this.buildTree(ch, id)).sort((a, b) => b.bytes - a.bytes); return { id, name: raw.n, type: raw.t, bytes: children.reduce((s, c) => s + c.bytes, 0), children }; }
+    return { id, name: raw.n, type: raw.t, bytes: Math.round(raw.b * this.GB), children: null };
+  }
+  applyRemoved(node, removed) {
+    if (removed.has(node.id)) return null;
+    if (!node.children) return node;
+    const children = node.children.map(c => this.applyRemoved(c, removed)).filter(Boolean);
+    return { ...node, children, bytes: children.reduce((s, c) => s + c.bytes, 0) };
+  }
+  indexTree(node, map) { map[node.id] = node; if (node.children) node.children.forEach(c => this.indexTree(c, map)); }
+  fmt(b) {
+    const GB = this.GB;
+    if (b >= GB) { const v = b / GB; return (v >= 100 ? v.toFixed(0) : v >= 10 ? v.toFixed(1) : v.toFixed(2)) + ' GB'; }
+    if (b >= 1048576) return (b / 1048576).toFixed(0) + ' MB';
+    if (b >= 1024) return (b / 1024).toFixed(0) + ' KB';
+    return b + ' B';
+  }
+  drillable(n) { return n && n.type === 'd'; }
+  colorFor(node, i, accent, mode) {
+    if (!node) return '#463f5c';
+    if (mode === 'byType') return node.type === 'd' ? '#6C6BEA' : node.type === 'p' ? '#B57BEA' : '#2DBFB0';
+    return this.PAL[i % this.PAL.length];
+  }
+  displayed(node, accent, mode) {
+    const kids = (node.children || []).slice(), total = node.bytes || 1, shown = [], hidden = [];
+    kids.forEach(k => { if (k.bytes >= total * 0.008 && shown.length < 20) shown.push(k); else hidden.push(k); });
+    const items = shown.map((k, i) => ({ node: k, bytes: k.bytes, color: this.colorFor(k, i, accent, mode), name: k.name }));
+    const other = hidden.reduce((s, k) => s + k.bytes, 0);
+    if (other > total * 0.001) items.push({ node: null, bytes: other, color: '#463f5c', name: 'smaller items' });
+    return items;
+  }
+  resolveCurrent(tree) {
+    let cur = tree, valid = [];
+    for (const id of this.state.path) { const next = cur.children && cur.children.find(c => c.id === id); if (!next) break; cur = next; valid.push(id); }
+    if (valid.length !== this.state.path.length) this.state.path = valid;
+    return cur;
+  }
+  drill(node) { if (node) this.setState(s => ({ path: [...s.path, node.id], hover: null, animKey: s.animKey + 1 })); }
+  goTo(i) { this.setState(s => ({ path: i < 0 ? [] : s.path.slice(0, i + 1), hover: null, animKey: s.animKey + 1 })); }
+  clickItem(node) { if (!node) return; if (node.type === 'd') this.drill(node); else this.toggleSel(node); }
+  toggleSel(node) { this.setState(s => { const sel = { ...s.sel }; if (sel[node.id] != null) delete sel[node.id]; else sel[node.id] = node.bytes; return { sel }; }); }
+  slMoveTrash() {
+    const ids = Object.keys(this.state.sel); if (!ids.length) return;
+    const bytes = Object.values(this.state.sel).reduce((s, b) => s + b, 0), map = this._map || {};
+    const recs = ids.map(id => { const n = map[id]; return { id: 'sl_' + id + '_' + Date.now() + Math.random(), name: n ? n.name : id, path: 'Space Lens', bytes: this.state.sel[id], module: 'Space Lens', kind: 'spaceLens', itemId: id }; });
+    this.setState(s => { const removed = { ...s.removed }; ids.forEach(id => removed[id] = true); return { removed, sel: {}, hover: null, animKey: s.animKey + 1, status: 'Moved ' + this.fmt(bytes) + ' to Trash \u00b7 restorable for 30 days', trash: [...s.trash, ...recs] }; });
+  }
+  slRescan() { this.setState(s => ({ removed: {}, sel: {}, path: [], hover: null, animKey: s.animKey + 1, status: 'Rescanned Macintosh HD \u2014 Home' })); }
+  worstRatio(row, sum, side) {
+    let mx = -Infinity, mn = Infinity; for (const a of row) { if (a > mx) mx = a; if (a < mn) mn = a; }
+    if (sum <= 0 || mn <= 0) return Infinity;
+    const s2 = sum * sum, d2 = side * side; return Math.max(d2 * mx / s2, s2 / (d2 * mn));
+  }
+  packCircles(items, W, H) {
+    const rs = items.map(i => Math.sqrt(i.bytes)), maxr = Math.max(...rs, 1), golden = Math.PI * (3 - Math.sqrt(5));
+    const nodes = items.map((it, i) => { const a = i * golden, rad = Math.sqrt(i + 0.35); return { item: it, r: rs[i], x: Math.cos(a) * rad * maxr * 2.1, y: Math.sin(a) * rad * maxr * 2.1 }; });
+    const pad = maxr * 0.05;
+    for (let iter = 0; iter < 260; iter++) {
+      for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j]; let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 0.001; const min = a.r + b.r + pad;
+        if (d < min) { const p = (min - d) / 2; dx /= d; dy /= d; a.x -= dx * p; a.y -= dy * p; b.x += dx * p; b.y += dy * p; }
+      }
+      for (const n of nodes) { n.x *= 0.992; n.y *= 0.992; }
+    }
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of nodes) { minX = Math.min(minX, n.x - n.r); maxX = Math.max(maxX, n.x + n.r); minY = Math.min(minY, n.y - n.r); maxY = Math.max(maxY, n.y + n.r); }
+    const bw = maxX - minX || 1, bh = maxY - minY || 1, m = 12, sc = Math.min((W - 2 * m) / bw, (H - 2 * m) / bh);
+    const ox = (W - bw * sc) / 2 - minX * sc, oy = (H - bh * sc) / 2 - minY * sc;
+    return nodes.map(n => ({ item: n.item, cx: n.x * sc + ox, cy: n.y * sc + oy, r: n.r * sc }));
+  }
+  trunc(s, max) { max = Math.floor(max); if (max < 1) return ''; return s.length <= max ? s : s.slice(0, Math.max(1, max - 1)) + '\u2026'; }
+  buildBubble(items, accent) {
+    const h = this.h.bind(this), W = 600, H = 508, laid = this.packCircles(items, W, H);
+    return h('svg', { width: W, height: H, style: { display: 'block' } },
+      laid.map((c, i) => {
+        const it = c.item, node = it.node, sel = node && this.state.sel[node.id] != null, hov = node && this.state.hover === node.id;
+        const fs = Math.min(15, Math.max(9, c.r / 4.2)), show = c.r > 24;
+        return h('g', { key: i, style: { cursor: node ? 'pointer' : 'default', transition: 'transform .16s ease' }, transform: `translate(${c.cx},${c.cy}) scale(${hov ? 1.05 : 1})`,
+          onMouseEnter: () => node && this.setState({ hover: node.id }), onMouseLeave: () => this.setState({ hover: null }), onClick: () => this.clickItem(node) },
+          h('circle', { r: c.r, fill: it.color, fillOpacity: node ? (this.drillable(node) ? 0.92 : 0.72) : 0.3, stroke: sel ? accent : hov ? '#fff' : 'rgba(255,255,255,.16)', strokeWidth: sel ? 3 : hov ? 2 : 1, style: { transition: 'stroke .15s,stroke-width .15s' } }),
+          show ? h('text', { textAnchor: 'middle', y: -1, fill: '#fff', fontSize: fs, fontWeight: 600, style: { pointerEvents: 'none', fontFamily: "'Space Grotesk',sans-serif" } }, this.trunc(it.name, c.r / (fs * 0.30))) : null,
+          show ? h('text', { textAnchor: 'middle', y: fs + 3, fill: 'rgba(255,255,255,.72)', fontSize: Math.max(8, fs - 3), style: { pointerEvents: 'none' } }, this.fmt(it.bytes)) : null);
+      }));
+  }
+  buildDetails(current, items, accent, rootBytes) {
+    const h = this.h.bind(this), map = this._map;
+    const focus = this.state.hover && map[this.state.hover] ? map[this.state.hover] : current;
+    const typeLabel = focus.type === 'd' ? 'Folder' : focus.type === 'p' ? 'Package' : 'File';
+    const share = ((focus.bytes / rootBytes) * 100), sel = this.state.sel[focus.id] != null, isCur = focus.id === current.id;
+    const row = { display: 'flex', alignItems: 'center', gap: 9, padding: '7px 8px', borderRadius: 8, cursor: 'pointer' };
+    const list = items.filter(it => it.node).slice(0, 9).map((it, i) => {
+      const node = it.node, hov = this.state.hover === node.id, selr = this.state.sel[node.id] != null, pct = Math.max(2, (it.bytes / (current.bytes || 1)) * 100);
+      return h('div', { key: i, style: { ...row, background: hov ? 'rgba(255,255,255,.07)' : 'transparent' }, onMouseEnter: () => this.setState({ hover: node.id }), onMouseLeave: () => this.setState({ hover: null }), onClick: () => this.clickItem(node) },
+        h('span', { style: { width: 10, height: 10, borderRadius: node.type === 'd' ? 3 : 5, background: it.color, flex: 'none', boxShadow: selr ? `0 0 0 2px ${accent}` : 'none' } }),
+        h('div', { style: { flex: 1, minWidth: 0 } },
+          h('div', { style: { display: 'flex', justifyContent: 'space-between', gap: 8 } },
+            h('span', { style: { fontSize: 12.5, fontWeight: 500, color: '#EDECF5', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, node.name),
+            h('span', { style: { fontSize: 12, color: '#A5A1B8', fontVariantNumeric: 'tabular-nums', flex: 'none' } }, this.fmt(it.bytes))),
+          h('div', { style: { height: 4, borderRadius: 2, background: 'rgba(255,255,255,.08)', marginTop: 4 } }, h('div', { style: { width: pct + '%', height: '100%', borderRadius: 2, background: it.color, transition: 'width .3s' } }))),
+        h('span', { style: { fontSize: 10, color: this.drillable(node) ? '#8f8ba6' : selr ? accent : '#6f6a86', flex: 'none', fontWeight: 600 } }, this.drillable(node) ? '\u203a' : selr ? '\u2713' : ''));
+    });
+    return h('div', { style: { height: 508, display: 'flex', flexDirection: 'column', background: 'rgba(0,0,0,.24)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 12, overflow: 'hidden' } },
+      h('div', { style: { padding: '15px 16px 13px', borderBottom: '1px solid rgba(255,255,255,.07)' } },
+        h('div', { style: { fontSize: 10, letterSpacing: '.7px', textTransform: 'uppercase', color: '#6f6a86', fontWeight: 600 } }, isCur ? 'Current folder' : 'Hovering'),
+        h('div', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 18, fontWeight: 700, marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, focus.name),
+        h('div', { style: { display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' } },
+          h('span', { style: { fontFamily: "'Space Grotesk',sans-serif", fontSize: 22, fontWeight: 700, color: '#fff' } }, this.fmt(focus.bytes)),
+          h('span', { style: { alignSelf: 'flex-end', fontSize: 11, color: '#A5A1B8', paddingBottom: 3 } }, share.toFixed(share >= 10 ? 0 : 1) + '% of disk')),
+        h('div', { style: { display: 'flex', gap: 6, marginTop: 10 } },
+          h('span', { style: { fontSize: 10.5, fontWeight: 600, color: accent, background: 'rgba(118,116,255,.14)', padding: '3px 8px', borderRadius: 20 } }, typeLabel),
+          focus.children ? h('span', { style: { fontSize: 10.5, color: '#B9B6CC', background: 'rgba(255,255,255,.07)', padding: '3px 8px', borderRadius: 20 } }, focus.children.length + ' items') : null,
+          !isCur && focus.type !== 'd' ? h('span', { style: { fontSize: 10.5, fontWeight: 600, color: sel ? accent : '#B9B6CC', background: 'rgba(255,255,255,.07)', padding: '3px 8px', borderRadius: 20, cursor: 'pointer' }, onClick: () => this.toggleSel(focus) }, sel ? '\u2713 Selected' : 'Select') : null)),
+      h('div', { style: { fontSize: 10, letterSpacing: '.7px', textTransform: 'uppercase', color: '#6f6a86', fontWeight: 600, padding: '12px 16px 4px' } }, 'Contents \u00b7 largest first'),
+      h('div', { style: { flex: 1, overflowY: 'auto', padding: '0 8px 8px' } }, list.length ? list : h('div', { style: { padding: 16, fontSize: 12.5, color: '#8f8ba6' } }, this.drillable(current) ? 'Empty folder.' : 'This is a file \u2014 select it on the map to reclaim its space.')));
+  }
+  buildStars() {
+    const h = this.h.bind(this); let seed = 7; const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+    const dots = []; for (let i = 0; i < 70; i++) dots.push(h('circle', { key: i, cx: rnd() * 996, cy: rnd() * 730, r: 0.4 + rnd() * 1.2, fill: '#fff', fillOpacity: 0.04 + rnd() * 0.26 }));
+    return h('svg', { width: '100%', height: '100%', style: { position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 } }, dots);
+  }
+  screenSpaceLens(accent, mode) {
+    const h = this.h.bind(this);
+    if (!this._base) this._base = this.buildTree(this.RAW, '');
+    const removedSet = new Set(Object.keys(this.state.removed));
+    const tree = this.applyRemoved(this._base, removedSet) || this._base;
+    this._map = {}; this.indexTree(tree, this._map);
+    const current = this.resolveCurrent(tree), items = this.displayed(current, accent, mode), rootBytes = tree.bytes;
+    const crumbEls = [h('button', { key: -1, onClick: () => this.goTo(-1), style: this.crumbBtnStyle(this.state.path.length === 0) }, 'Macintosh HD \u2014 Home')];
+    let walk = tree;
+    this.state.path.forEach((id, i) => {
+      const n = walk.children && walk.children.find(c => c.id === id); if (!n) return; walk = n;
+      crumbEls.push(h('span', { key: 'c' + i, style: { color: '#6f6a86', fontSize: 12, margin: '0 2px' } }, '\u203a'));
+      crumbEls.push(h('button', { key: i, onClick: () => this.goTo(i), style: this.crumbBtnStyle(i === this.state.path.length - 1) }, n.name));
+    });
+    const vizEl = h('div', { key: this.state.animKey, style: { width: 600, height: 508, animation: 'drillIn .34s cubic-bezier(.2,.7,.2,1)' } }, this.buildBubble(items, accent));
+    const selBytes = Object.values(this.state.sel).reduce((s, b) => s + b, 0), selCount = Object.keys(this.state.sel).length;
+    const volume = 994 * this.GB, sysOther = 42 * this.GB, free = volume - sysOther - rootBytes;
+    return h('div', { style: this.screenColStyle() },
+      h('div', { style: this.headerRowStyle() }, h('div', null, h('div', { style: this.titleStyle() }, 'Space Lens'), h('div', { style: this.subtitleStyle() }, 'Your disk as an interactive map \u00b7 sizes are real on-disk bytes')),
+        h('div', { style: { display: 'flex', gap: 8 } }, this.ghostBtnEl('Choose Folder\u2026', () => this.slRescan()), this.ghostBtnEl('Rescan', () => this.slRescan()))),
+      h('div', { style: this.stripRowStyle() }, this.metricEl('Free on disk', this.fmt(free)), this.metricEl('Volume', '994 GB'), this.metricEl('Selected to reclaim', selBytes ? this.fmt(selBytes) : '\u2014', accent), h('div', { style: { flex: 1 } }), h('div', { style: { fontSize: 12, color: '#B9B6CC' } }, this.state.status || '')),
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: 5, padding: '9px 22px', flexWrap: 'wrap' } }, crumbEls),
+      h('div', { style: { flex: 1, display: 'flex', gap: 18, padding: '4px 22px 12px', minHeight: 0 } }, h('div', { style: { width: 600, height: 508, flex: 'none', position: 'relative' } }, vizEl), h('div', { style: { flex: 1, minWidth: 0 } }, this.buildDetails(current, items, accent, rootBytes))),
+      h('div', { style: this.actionBarStyle() }, h('div', { style: { fontSize: 13, color: '#CFCCE0' } }, selCount ? `${selCount} selected \u00b7 ${this.fmt(selBytes)}` : 'Click a folder to drill in \u00b7 click a file or app to mark it for removal'),
+        selCount > 0 ? this.ghostBtnEl('Clear', () => this.setState({ sel: {} })) : null,
+        h('div', { style: { flex: 1 } }),
+        h('button', { onClick: () => this.slMoveTrash(), style: this.primaryBtnStyle(accent, selCount > 0) }, selCount ? `Move ${this.fmt(selBytes)} to Trash` : 'Move to Trash')));
+  }
+
+  // ================= root render =================
+  renderVals() {
+    const accent = this.props.accent || '#7674FF', mode = this.props.colorMode || 'vibrant', cfg = this.CFG(), tab = this.state.tab;
+    let main;
+    switch (tab) {
+      case 'dashboard': main = this.screenDashboard(); break;
+      case 'spaceLens': main = this.screenSpaceLens(accent, mode); break;
+      case 'systemJunk': main = this.screenPipeline('systemJunk', cfg.systemJunk); break;
+      case 'largeFiles': main = this.screenPipeline('largeFiles', cfg.largeFiles); break;
+      case 'duplicates': main = this.screenPipeline('duplicates', cfg.duplicates); break;
+      case 'snapshots': main = this.screenPipeline('snapshots', cfg.snapshots); break;
+      case 'iosBackups': main = this.screenPipeline('iosBackups', cfg.iosBackups); break;
+      case 'privacy': main = this.screenPipeline('privacy', cfg.privacy); break;
+      case 'uninstaller': main = this.screenUninstaller(cfg.uninstallerLeftovers, accent); break;
+      case 'startup': main = this.screenStartup(); break;
+      case 'trash': main = this.screenTrash(); break;
+      default: main = this.screenDashboard();
+    }
+    return { navRows: this.buildNavRows(), starLayer: this.buildStars(), main };
+  }
+}
+</script>
+</body>
+</html>

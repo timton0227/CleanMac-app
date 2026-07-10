@@ -92,13 +92,15 @@ public struct DuplicateScanner: Scanner {
             groups.append(contentsOf: byFull.values.filter { $0.count > 1 })
         }
 
-        // Emit findings: everything in a group except the keeper (keep newest).
+        // Emit findings: the keeper (newest, shown for context — never
+        // selectable or actionable) plus everything else in the group.
         var findings: [Finding] = []
         for group in groups {
             let sorted = group.sorted {
                 ($0.modifiedAt ?? .distantPast) > ($1.modifiedAt ?? .distantPast)
             }
             guard let keeper = sorted.first else { continue }
+            findings.append(makeKeeperFinding(keeper))
             for extra in sorted.dropFirst() {
                 findings.append(makeFinding(extra, keeper: keeper))
             }
@@ -190,6 +192,25 @@ public struct DuplicateScanner: Scanner {
     }
 
     // MARK: - Findings
+
+    /// The copy a group keeps — display-only context (§4.3 keep-newest rule).
+    /// Always protected, never counted toward what a "Clean" actually removes.
+    private func makeKeeperFinding(_ keeper: Candidate) -> Finding {
+        Finding(
+            path: keeper.url,
+            realOnDiskBytes: SizeAccounting.realOnDiskBytes(of: keeper.url),
+            logicalBytes: keeper.sizeBytes,
+            category: .duplicate,
+            confidence: .medium,
+            safeToRemove: false,
+            isProtected: true,
+            isCloudPlaceholder: SizeAccounting.isCloudPlaceholder(of: keeper.url),
+            isKeeper: true,
+            validation: SizeAccounting.validation(of: keeper.url),
+            modifiedAt: keeper.modifiedAt,
+            displayLabel: "\(keeper.url.lastPathComponent) (original)"
+        )
+    }
 
     private func makeFinding(_ candidate: Candidate, keeper: Candidate) -> Finding {
         let verdict = protectedPaths.verdict(for: candidate.url)

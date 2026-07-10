@@ -52,19 +52,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 /// front-ends on one pipeline (§2). Dashboard is the landing view (§4.8).
 struct ContentView: View {
     @Environment(AppModel.self) private var model
-    @State private var selection: SidebarItem = .dashboard
 
     var body: some View {
         NavigationSplitView {
-            SidebarView(selection: $selection)
+            SidebarView()
         } detail: {
             // Pin the detail content to exactly the available size and clip any
             // overflow, so a greedy module view can't dictate the split view's
             // height and push the sidebar's rows out of view.
             GeometryReader { geo in
                 Group {
-                    switch selection {
-                    case .dashboard: DashboardView(selection: $selection)
+                    switch model.selection {
+                    case .dashboard: DashboardView()
                     case .systemJunk: SystemJunkView()
                     case .largeFiles: LargeFilesView()
                     case .snapshots: SnapshotsView()
@@ -77,14 +76,14 @@ struct ContentView: View {
                     case .trash: TrashView()
                     }
                 }
-                .id(selection)
+                .id(model.selection)
                 .transition(.opacity)
                 .frame(width: geo.size.width, height: geo.size.height)
                 .clipped()
             }
             .background(SpaceBackground())
         }
-        .animation(.easeInOut(duration: 0.15), value: selection)
+        .animation(.easeInOut(duration: 0.15), value: model.selection)
         // Drop macOS's grey toolbar material so the transparent titlebar shows
         // the space gradient behind the window title.
         .toolbarBackground(.hidden, for: .windowToolbar)

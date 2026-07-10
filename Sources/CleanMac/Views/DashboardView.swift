@@ -11,8 +11,6 @@ import CleanCore
 /// module's normal Review — Smart Scan never grows a private delete path.
 struct DashboardView: View {
     @Environment(AppModel.self) private var model
-    @Binding var selection: SidebarItem
-    @State private var ringVisible = false
 
     var body: some View {
         GeometryReader { geo in
@@ -41,10 +39,8 @@ struct DashboardView: View {
                 .background(.black.opacity(0.35))
             }
         }
-        .navigationTitle("Smart Scan")
         .task {
             await model.refreshDashboard()
-            withAnimation(.spring(duration: 0.9)) { ringVisible = true }
         }
     }
 
@@ -52,72 +48,72 @@ struct DashboardView: View {
 
     @ViewBuilder
     private var hero: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            if model.smartScanning {
-                illustration(progress: model.smartScanProgress)
-                    .padding(.bottom, 24)
-                Text("Scanning your Mac…")
-                    .font(Brand.display(30))
-                    .foregroundStyle(.white)
-                resultsCard
-                    .frame(maxWidth: 620)
-                    .padding(.top, 18)
-            } else if !model.smartScanResults.isEmpty {
-                Text("\(AppModel.format(model.smartPreselectedBytes)) safely reclaimable")
-                    .font(Brand.display(30))
-                    .foregroundStyle(.white)
-                    .monospacedDigit()
-                Text("\(AppModel.format(model.smartTotalBytes)) found in total. Nothing is removed without your confirmation, and removals go to the CleanMac Trash, reversibly.")
-                    .font(.callout)
-                    .foregroundStyle(Brand.fog)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: 560)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 8)
-                resultsCard
-                    .frame(maxWidth: 620)
-                    .padding(.top, 18)
-            } else {
-                illustration(progress: nil)
-                    .padding(.bottom, 26)
-                Text("Let's get started!")
-                    .font(Brand.display(34))
-                    .foregroundStyle(.white)
-                Text("Give your Mac a nice and thorough scan.")
-                    .font(.title3)
-                    .foregroundStyle(Brand.fog)
-                    .padding(.top, 6)
-            }
-            Spacer()
+        VStack(spacing: 14) {
+            Spacer(minLength: 20)
+            illustration(progress: model.smartScanning ? model.smartScanProgress : nil)
+            headline
+            resultsCard
+                .frame(maxWidth: 620)
+            Spacer(minLength: 8)
             CircularScanButton(
                 title: model.smartScanning ? "…"
                      : model.smartScanResults.isEmpty ? "Scan" : "Rescan",
+                diameter: 80,
                 disabled: model.smartScanning
             ) {
                 Task { await model.runSmartScan() }
             }
-            Spacer().frame(height: 26)
+            Spacer(minLength: 26)
         }
         .frame(maxWidth: .infinity)
+        .padding(.top, 10)
     }
 
-    /// The central illustration: the brand's aperture ring. While scanning it
-    /// becomes the progress indicator — the arc closes as the scan completes.
+    @ViewBuilder
+    private var headline: some View {
+        if model.smartScanning {
+            Text("Scanning your Mac…")
+                .font(Brand.display(25))
+                .foregroundStyle(.white)
+            Text("Give your Mac a nice and thorough scan.")
+                .font(.callout)
+                .foregroundStyle(Brand.fog)
+        } else if !model.smartScanResults.isEmpty {
+            Text("\(AppModel.format(model.smartPreselectedBytes)) safely reclaimable")
+                .font(Brand.display(25))
+                .foregroundStyle(.white)
+                .monospacedDigit()
+            Text("Found across \(model.smartScanResults.count) categories. Nothing is removed without your review.")
+                .font(.callout)
+                .foregroundStyle(Brand.fog)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 480)
+                .fixedSize(horizontal: false, vertical: true)
+        } else {
+            Text("Let's get started!")
+                .font(Brand.display(25))
+                .foregroundStyle(.white)
+            Text("Give your Mac a nice and thorough scan.")
+                .font(.callout)
+                .foregroundStyle(Brand.fog)
+        }
+    }
+
+    /// The central illustration: a conic-fill disc, matching the mock's
+    /// `screenDashboard` — a hard-edged pie sweep instead of a stroked ring.
+    /// Percent while scanning; a sparkle glyph idle or once done.
     private func illustration(progress: Double?) -> some View {
         ZStack {
-            Circle().fill(Brand.indigo.opacity(0.10)).frame(width: 170, height: 170)
-            RingMark(fraction: progress ?? (ringVisible ? 160.0 / 213.63 : 0.001))
-                .frame(width: 128, height: 128)
+            ConicProgressRing(progress: progress ?? 0, accent: Brand.indigo)
             if let progress {
                 Text("\(Int((progress * 100).rounded()))%")
-                    .font(Brand.display(22, weight: .semibold))
+                    .font(Brand.display(16, weight: .semibold))
                     .foregroundStyle(.white)
                     .monospacedDigit()
                     .contentTransition(.numericText())
             } else {
-                Image(systemName: "wand.and.stars")
-                    .font(.system(size: 42, weight: .medium))
+                Text("✦")
+                    .font(Brand.display(20, weight: .semibold))
                     .foregroundStyle(.white)
             }
         }
@@ -126,13 +122,23 @@ struct DashboardView: View {
 
     // MARK: - Per-category results
 
+    /// Always visible — waiting, scanning, or done — matching the mock's
+    /// always-rendered "Per-category status" card. Before a scan ever runs,
+    /// placeholder rows list Smart Scan's curated modules as "Waiting…".
     private var resultsCard: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ForEach(model.smartScanResults) { result in
+            Text("Per-category status").font(.system(size: 13, weight: .semibold))
+            ForEach(displayedResults) { result in
                 smartRow(result)
             }
         }
         .brandCard()
+    }
+
+    private var displayedResults: [SmartScan.ModuleResult] {
+        model.smartScanResults.isEmpty
+            ? SmartScan.curatedScanners().map { SmartScan.ModuleResult(id: $0.id, displayName: $0.displayName) }
+            : model.smartScanResults
     }
 
     @ViewBuilder
@@ -162,7 +168,7 @@ struct DashboardView: View {
                let destination = destination(for: result.id) {
                 Button("Review") {
                     model.reviewSmartResult(result)
-                    selection = destination
+                    model.selection = destination
                 }
                 .controlSize(.small)
             }
@@ -207,8 +213,8 @@ struct DashboardView: View {
                 capacityBar(disk)
                 HStack(spacing: 16) {
                     legend(color: Brand.indigo, label: "Used", bytes: disk.usedBytes)
-                    legend(color: .yellow, label: "Purgeable", bytes: disk.purgeableBytes)
-                    legend(color: .green, label: "Free", bytes: disk.freeBytes)
+                    legend(color: Brand.startup, label: "Purgeable", bytes: disk.purgeableBytes)
+                    legend(color: Brand.duplicates, label: "Free", bytes: disk.freeBytes)
                 }
                 if model.trashRetainedBytes > 0 {
                     Text("CleanMac Trash holds \(AppModel.format(model.trashRetainedBytes)), freed when you purge it (30-day window)")
@@ -240,8 +246,8 @@ struct DashboardView: View {
             let total = max(Double(disk.totalBytes), 1)
             HStack(spacing: 2) {
                 segment(Brand.indigo, fraction: Double(disk.usedBytes) / total, width: geo.size.width)
-                segment(.yellow, fraction: Double(disk.purgeableBytes) / total, width: geo.size.width)
-                segment(.green, fraction: Double(disk.freeBytes) / total, width: geo.size.width)
+                segment(Brand.startup, fraction: Double(disk.purgeableBytes) / total, width: geo.size.width)
+                segment(Brand.duplicates, fraction: Double(disk.freeBytes) / total, width: geo.size.width)
             }
             .animation(.easeOut(duration: 0.6), value: disk.freeBytes)
         }

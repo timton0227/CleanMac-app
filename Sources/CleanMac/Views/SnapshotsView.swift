@@ -115,6 +115,7 @@ private struct SnapshotRow: View {
                 set: { _ in model.toggle(finding.id) }
             ))
             .labelsHidden()
+            .disabled(finding.isProtected)
 
             VStack(alignment: .leading, spacing: 2) {
                 if let date = finding.modifiedAt {
@@ -126,6 +127,9 @@ private struct SnapshotRow: View {
                 }
             }
             Spacer()
+            if finding.isProtected {
+                BrandTag(text: "Protected", color: Brand.danger)
+            }
             if let date = finding.modifiedAt {
                 Text(date, format: .relative(presentation: .named))
                     .font(.caption).foregroundStyle(.secondary)

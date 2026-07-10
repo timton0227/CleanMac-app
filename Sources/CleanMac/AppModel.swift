@@ -14,6 +14,10 @@ final class AppModel {
     /// Which scanner the current phase/findings belong to (§2 — one pipeline,
     /// interchangeable front-ends). Views showing another module render idle.
     var activeModuleId: String = ""
+    /// The active sidebar tab. Lives here (not local `@State`) so any view —
+    /// e.g. a report's "Open Trash" — can navigate without threading a
+    /// binding through every intermediate view.
+    var selection: SidebarItem = .dashboard
     var scanProgress: Double = 0
     var findings: [Finding] = []
     var selected: Set<UUID> = []
@@ -454,6 +458,15 @@ final class AppModel {
         reclaimableBytes = selectedFindings.reduce(0) { $0 + $1.realOnDiskBytes }
     }
 
+    /// True once a module has scanned, acted, and left nothing *actionable*
+    /// behind — matches the mock's `emptyGoodState` ("All clear!") instead of
+    /// re-showing the Scan hero after a clean that finished the job. Protected
+    /// entries (duplicate "keepers", denylisted paths) don't count: they were
+    /// never removable, so their presence alone shouldn't block "all clear".
+    func hasNothingLeftToShow(for moduleId: String) -> Bool {
+        activeModuleId == moduleId && lastReport != nil && findings.allSatisfy(\.isProtected)
+    }
+
     // MARK: - Clean
 
     /// - Parameter permanent: skip Trash and free space now (FR-SAFE-6).
@@ -540,6 +553,17 @@ final class AppModel {
         guard let batch = lastReport?.batchId else { return }
         let n = (try? await engine.undoBatch(batch)) ?? 0
         statusMessage = "Undid last clean (\(n) restored)."
+        await loadTrash()
+        refreshFreeSpace()
+    }
+
+    /// Empty the Trash immediately — permanently removes every held item now
+    /// instead of waiting out the \(restoreWindowDays)-day window (FR-SAFE-6).
+    func emptyTrashNow() async {
+        let result = (try? await engine.emptyTrash()) ?? (count: 0, bytes: 0)
+        statusMessage = result.count > 0
+            ? "Emptied Trash — \(result.count) item(s), \(Self.format(result.bytes)) reclaimed."
+            : "Trash is already empty."
         await loadTrash()
         refreshFreeSpace()
     }

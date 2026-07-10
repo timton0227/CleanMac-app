@@ -13,6 +13,7 @@ public enum Category: String, Sendable, Codable, CaseIterable {
     case languagePacks
     case brokenDownloads
     case largeFile
+    case oldFile
     case snapshot
     case application
     case appLeftover
@@ -27,15 +28,16 @@ public enum Category: String, Sendable, Codable, CaseIterable {
     public var displayName: String {
         switch self {
         case .userCache: return "User Caches"
-        case .appLogs: return "Application Logs"
-        case .crashReports: return "Crash Reports"
+        case .appLogs: return "System Logs & Crash Reports"
+        case .crashReports: return "System Logs & Crash Reports"
         case .browserCache: return "Browser Caches"
         case .tempFiles: return "Temporary Files"
         case .trash: return "Trash"
-        case .developerJunk: return "Developer Junk"
+        case .developerJunk: return "Xcode Junk"
         case .languagePacks: return "Unused Language Packs"
         case .brokenDownloads: return "Broken Downloads"
-        case .largeFile: return "Large & Old Files"
+        case .largeFile: return "Large Files"
+        case .oldFile: return "Old Files"
         case .snapshot: return "Local Snapshots"
         case .application: return "Applications"
         case .appLeftover: return "App Leftovers"

@@ -37,14 +37,19 @@ struct SystemJunkView: View {
     private func body(for phase: AppModel.Phase) -> some View {
         switch phase {
         case .idle:
-            ModuleHero(
-                icon: SidebarItem.systemJunk.systemImage,
-                tint: SidebarItem.systemJunk.tint,
-                title: "System Junk",
-                message: "Finds user-level caches, logs, crash reports, developer junk, and broken downloads that are safe to remove. Nothing is deleted without your review.",
-                primaryLabel: "Scan",
-                primaryAction: { Task { await model.scanSystemJunk() } }
-            )
+            if model.hasNothingLeftToShow(for: "system-junk") {
+                EmptyGoodState(tint: SidebarItem.systemJunk.tint,
+                               message: "Caches, logs, and leftovers are all clear.")
+            } else {
+                ModuleHero(
+                    icon: SidebarItem.systemJunk.systemImage,
+                    tint: SidebarItem.systemJunk.tint,
+                    title: "System Junk",
+                    message: "Finds user-level caches, logs, crash reports, developer junk, and broken downloads that are safe to remove. Nothing is deleted without your review.",
+                    primaryLabel: "Scan",
+                    primaryAction: { Task { await model.scanSystemJunk() } }
+                )
+            }
         case .scanning:
             ScanRing(progress: model.scanProgress, label: "Scanning for junk…")
         case .review:

@@ -26,7 +26,24 @@ struct RingMark: View {
     }
 }
 
-/// The primary lockup — ring + wordmark — per §02 of the style guide.
+/// The window-chrome logo mark: an open-stroke circle (a 3px ring with its
+/// trailing quarter cut away, rotated -45°) — the design mock's flat "C"
+/// glyph next to the "CleanMac" wordmark. Distinct from `RingMark`, which
+/// stays a full progress ring for scan/report illustrations.
+struct LogoMark: View {
+    var color: Color = Brand.indigo
+    var diameter: CGFloat = 22
+
+    var body: some View {
+        Circle()
+            .trim(from: 0, to: 0.75)
+            .stroke(color, style: StrokeStyle(lineWidth: diameter * (3.0 / 22.0), lineCap: .butt))
+            .rotationEffect(.degrees(-45))
+            .frame(width: diameter, height: diameter)
+    }
+}
+
+/// The primary lockup — mark + wordmark — per §02 of the style guide.
 struct BrandMark: View {
     enum Tone { case full, dark, onColor }
     var tone: Tone = .full
@@ -34,10 +51,9 @@ struct BrandMark: View {
     var wordmarkSize: CGFloat = 17
 
     var body: some View {
-        HStack(spacing: 10) {
-            RingMark(ringColor: ringColor, trackColor: trackColor)
-                .frame(width: ringDiameter, height: ringDiameter)
-            Text("Clean Mac")
+        HStack(spacing: 9) {
+            LogoMark(color: ringColor, diameter: ringDiameter)
+            Text("CleanMac")
                 // Space Grotesk isn't a system font; `.rounded` keeps the same
                 // geometric, technical character without bundling a webfont.
                 .font(.system(size: wordmarkSize, weight: .bold, design: .rounded))
@@ -47,9 +63,6 @@ struct BrandMark: View {
 
     private var ringColor: Color {
         tone == .full ? Brand.indigo : .white
-    }
-    private var trackColor: Color {
-        tone == .full ? Brand.border : .white.opacity(0.3)
     }
     private var textColor: Color {
         tone == .full ? Brand.ink : .white

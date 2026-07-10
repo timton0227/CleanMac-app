@@ -77,6 +77,7 @@ private struct StartupRow: View {
             .labelsHidden()
             .toggleStyle(.switch)
             .controlSize(.mini)
+            .tint(Brand.indigo)
             .disabled(!model.canToggle(item))
             .help(model.canToggle(item)
                   ? (item.isEnabled ? "Disable (reversible)" : "Re-enable")
@@ -106,17 +107,17 @@ private struct StartupRow: View {
                 .help("The executable is not code-signed — verify you recognize this item.")
         }
         if item.signature == .binaryMissing {
-            BrandTag(text: "Binary missing", color: .orange)
+            BrandTag(text: "Binary missing", color: Brand.startup)
                 .help("The program this item launches no longer exists — likely a leftover.")
         }
         if item.runAtLoad {
-            BrandTag(text: "Launches at login", color: .blue)
+            BrandTag(text: "Launches at login", color: Brand.largeFiles)
         }
         if item.keepAlive {
-            BrandTag(text: "Always running", color: .purple)
+            BrandTag(text: "Always running", color: Brand.snapshots)
         }
         if !item.isEnabled {
-            BrandTag(text: "Disabled", color: .gray)
+            BrandTag(text: "Disabled", color: Brand.trash)
         }
     }
 }

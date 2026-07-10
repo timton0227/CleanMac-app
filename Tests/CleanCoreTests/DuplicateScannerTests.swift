@@ -37,14 +37,22 @@ struct DuplicateScannerTests {
 
         let findings = try await scanner([dir]).scan { _ in }
 
-        // 3 identical copies → exactly 2 findings (keeper structurally absent).
+        // 3 identical copies → 3 findings: the keeper (shown, never offered)
+        // plus the 2 removable copies.
         let names = Set(findings.map { $0.path.lastPathComponent })
-        #expect(names == ["copy-old.bin", "copy-older.bin"])
-        #expect(!names.contains(newest.lastPathComponent))
+        #expect(names == ["copy-old.bin", "copy-older.bin", "copy-new.bin"])
         #expect(!names.contains("unique.bin"))
+
+        let keeper = findings.first { $0.path.lastPathComponent == newest.lastPathComponent }
+        #expect(keeper?.isKeeper == true)
+        #expect(keeper?.isProtected == true)
+        #expect(keeper?.defaultSelected == false)
+
         // The suggested removal set is pre-selected; label points at the keeper.
-        #expect(findings.allSatisfy { $0.defaultSelected })
-        #expect(findings.allSatisfy { $0.displayLabel?.contains("copy-new.bin") == true })
+        let removable = findings.filter { !$0.isKeeper }
+        #expect(removable.count == 2)
+        #expect(removable.allSatisfy { $0.defaultSelected })
+        #expect(removable.allSatisfy { $0.displayLabel?.contains("copy-new.bin") == true })
     }
 
     @Test("Same size but different content is not a duplicate")
@@ -106,8 +114,10 @@ struct DuplicateScannerTests {
         _ = try write("out.bin", content: content, in: outside)
 
         let findings = try await scanner([inside]).scan { _ in }
-        // Only the picked folder participates: one group of two → one finding.
-        #expect(findings.count == 1)
+        // Only the picked folder participates: one group of two → the keeper
+        // plus one removable finding.
+        #expect(findings.count == 2)
+        #expect(findings.filter(\.isKeeper).count == 1)
         // Compare canonical paths (/var vs /private/var are the same location).
         let canonicalInside = inside.resolvingSymlinksInPath().path
         #expect(findings.allSatisfy {

@@ -36,20 +36,20 @@ enum SidebarItem: String, CaseIterable, Identifiable {
     }
 
     /// Accent hue per module — used by hero illustrations and the dashboard
-    /// category rows.
+    /// category rows. Exact hex values from the design mock.
     var tint: Color {
         switch self {
         case .dashboard: return Brand.indigo
-        case .systemJunk: return .orange
-        case .largeFiles: return .blue
-        case .snapshots: return .purple
-        case .uninstaller: return Brand.danger
-        case .iosBackups: return .cyan
-        case .duplicates: return .green
-        case .startup: return .yellow
-        case .privacy: return .pink
-        case .spaceLens: return .teal
-        case .trash: return .gray
+        case .systemJunk: return Brand.systemJunk
+        case .largeFiles: return Brand.largeFiles
+        case .snapshots: return Brand.snapshots
+        case .uninstaller: return Brand.uninstaller
+        case .iosBackups: return Brand.iosBackups
+        case .duplicates: return Brand.duplicates
+        case .startup: return Brand.startup
+        case .privacy: return Brand.privacy
+        case .spaceLens: return Brand.spaceLens
+        case .trash: return Brand.trash
         }
     }
 
@@ -83,52 +83,94 @@ enum SidebarItem: String, CaseIterable, Identifiable {
     ]
 }
 
+/// The sidebar's own gradient — a plain 2-stop wash, distinct from (and a
+/// touch darker than) the 3-stop gradient behind the main content, matching
+/// the design mock's separate sidebar/content panes. No starfield here: the
+/// mock only scatters stars behind the main pane.
+private struct SidebarBackground: View {
+    var body: some View {
+        LinearGradient(
+            colors: [Color(hex: 0x241C35), Color(hex: 0x15101F)],
+            startPoint: .top, endPoint: .bottom)
+        .ignoresSafeArea()
+    }
+}
+
 struct SidebarView: View {
     @Environment(AppModel.self) private var model
-    @Binding var selection: SidebarItem
 
     var body: some View {
-        List(selection: $selection) {
-            // Brand lockup as the first, non-selectable row.
-            BrandMark(ringDiameter: 18, wordmarkSize: 14)
-                .padding(.vertical, 6)
-                .selectionDisabled()
-                .listRowSeparator(.hidden)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                BrandMark(ringDiameter: 22, wordmarkSize: 16)
+                    .padding(.horizontal, 8)
+                    .padding(.top, 6)
+                    .padding(.bottom, 10)
 
-            ForEach(Array(SidebarItem.sections.enumerated()), id: \.offset) { _, section in
-                if let title = section.title {
-                    Section(title) {
-                        ForEach(section.items) { item in
-                            row(item).tag(item)
-                        }
+                ForEach(Array(SidebarItem.sections.enumerated()), id: \.offset) { _, section in
+                    if let title = section.title {
+                        sectionHeader(title)
                     }
-                } else {
                     ForEach(section.items) { item in
-                        row(item).tag(item)
+                        row(item)
                     }
                 }
             }
+            .padding(.horizontal, 8)
+            .padding(.bottom, 12)
         }
-        .listStyle(.sidebar)
-        // Extend the immersive palette into the rail: drop the default sidebar
-        // material and share the space canvas (gradient + starfield, no bloom)
-        // so the window reads as one continuous surface, not a grey rail beside
-        // a colored pane.
-        .scrollContentBackground(.hidden)
-        .background(SpaceBackground(showBloom: false))
-        .navigationTitle("CleanMac")
+        .background(SidebarBackground())
     }
 
-    @ViewBuilder
+    private func sectionHeader(_ title: String) -> some View {
+        Text(title.uppercased())
+            .font(.system(size: 10, weight: .semibold))
+            .tracking(0.7)
+            .foregroundStyle(Color(hex: 0x6F6A86))
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
+            .padding(.bottom, 5)
+    }
+
     private func row(_ item: SidebarItem) -> some View {
-        Label {
-            Text(item.rawValue)
-        } icon: {
-            // Flat monochrome line icons, per the reference layout.
-            Image(systemName: item.systemImage)
-                .foregroundStyle(selection == item ? Brand.ink : Brand.fog)
+        let active = model.selection == item
+        let badgeCount = item == .trash ? model.trashRecords.count : 0
+
+        return Button {
+            model.selection = item
+        } label: {
+            HStack(spacing: 10) {
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(item.tint)
+                    .frame(width: 9, height: 9)
+                Text(item.rawValue)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(active ? Brand.ink : Brand.fog)
+                Spacer(minLength: 0)
+                if badgeCount > 0 {
+                    Text("\(badgeCount)")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 6).padding(.vertical, 1)
+                        .background(Color(hex: 0x5C5670), in: Capsule())
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(active ? Brand.indigo.opacity(0.18) : .clear))
+            .overlay(alignment: .leading) {
+                if active {
+                    RoundedRectangle(cornerRadius: 1)
+                        .fill(Brand.indigo)
+                        .frame(width: 2)
+                }
+            }
+            .contentShape(Rectangle())
         }
-        .badge(item == .trash && !model.trashRecords.isEmpty
-               ? model.trashRecords.count : 0)
+        .buttonStyle(.plain)
+        .padding(.vertical, 0.5)
     }
 }

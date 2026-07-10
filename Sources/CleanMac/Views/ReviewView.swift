@@ -8,11 +8,18 @@ import CleanCore
 /// keeps a live, animated total of what's selected.
 struct ReviewList: View {
     @Environment(AppModel.self) private var model
+    /// The module's verb for its destructive action — "Clean"/"Delete"/"Clear"
+    /// — matching the mock's per-module `actLabel` instead of a hardcoded
+    /// "Clean" everywhere.
+    var actLabel = "Clean"
     @State private var confirmingPermanent = false
     @State private var quickLookURL: URL?
 
-    private var grouped: [(CleanCore.Category, [Finding])] {
-        Dictionary(grouping: model.findings, by: \.category)
+    /// Grouped by display name (not the raw `Category` case) so categories
+    /// that share a label in the mock — e.g. app logs and crash reports both
+    /// under "System Logs & Crash Reports" — merge into one section.
+    private var grouped: [(String, [Finding])] {
+        Dictionary(grouping: model.findings, by: \.category.displayName)
             .map { ($0.key, $0.value.sorted { $0.realOnDiskBytes > $1.realOnDiskBytes }) }
             .sorted { lhs, rhs in
                 lhs.1.reduce(0) { $0 + $1.realOnDiskBytes } >
@@ -23,7 +30,7 @@ struct ReviewList: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                ForEach(grouped, id: \.0) { category, items in
+                ForEach(grouped, id: \.0) { name, items in
                     Section {
                         ForEach(items) { finding in
                             FindingRow(finding: finding)
@@ -35,7 +42,7 @@ struct ReviewList: View {
                                 }
                         }
                     } header: {
-                        sectionHeader(category, items)
+                        sectionHeader(name, items)
                     }
                 }
             }
@@ -50,11 +57,11 @@ struct ReviewList: View {
 
     /// Category header: name, count, size — and a one-click whole-category
     /// toggle (protected items stay out, always).
-    private func sectionHeader(_ category: CleanCore.Category, _ items: [Finding]) -> some View {
+    private func sectionHeader(_ name: String, _ items: [Finding]) -> some View {
         let selectable = items.filter { !$0.isProtected }
         let allOn = !selectable.isEmpty && selectable.allSatisfy { model.selected.contains($0.id) }
         return HStack {
-            Text(category.displayName)
+            Text(name)
             Text("\(items.count)")
                 .font(.caption2)
                 .padding(.horizontal, 5).padding(.vertical, 1)
@@ -95,7 +102,7 @@ struct ReviewList: View {
                     confirmingPermanent = true
                 }
             } label: {
-                Label("Clean \(AppModel.format(model.reclaimableBytes))",
+                Label("\(actLabel) \(AppModel.format(model.reclaimableBytes))",
                       systemImage: "sparkles")
                     .contentTransition(.numericText())
                     .animation(.default, value: model.reclaimableBytes)
@@ -188,16 +195,18 @@ struct FindingRow: View {
 
     @ViewBuilder
     private var badges: some View {
-        if finding.isProtected {
+        if finding.isKeeper {
+            BrandTag(text: "Keeper", color: Brand.keeper)
+        } else if finding.isProtected {
             BrandTag(text: "Protected", color: Brand.danger)
         } else if finding.confidence == .low {
-            BrandTag(text: "Low confidence", color: .orange)
+            BrandTag(text: "Low confidence", color: Brand.lowConfidence)
         }
         if finding.ownedByRunningProcess {
             BrandTag(text: "In use", color: Brand.danger)
         }
         if finding.isCloudPlaceholder {
-            BrandTag(text: "Cloud", color: .blue)
+            BrandTag(text: "Cloud", color: Brand.cloud)
         }
     }
 

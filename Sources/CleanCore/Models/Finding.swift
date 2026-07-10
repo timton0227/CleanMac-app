@@ -27,6 +27,10 @@ public struct Finding: Sendable, Identifiable, Codable, Hashable {
     /// Owned by a currently-running process (FR-SAFE-1 amend) — deselect by
     /// default; removing a live app's cache can crash it.
     public let ownedByRunningProcess: Bool
+    /// The copy a duplicate group keeps (newest by modification date, §4.3).
+    /// Always `isProtected` too — shown in Review for context, never
+    /// selectable or actionable.
+    public let isKeeper: Bool
 
     /// Identity captured at scan time, re-checked before mutation (FR-SAFE-7).
     public let validation: FileValidation?
@@ -51,6 +55,7 @@ public struct Finding: Sendable, Identifiable, Codable, Hashable {
         isProtected: Bool,
         isCloudPlaceholder: Bool,
         ownedByRunningProcess: Bool = false,
+        isKeeper: Bool = false,
         validation: FileValidation? = nil,
         modifiedAt: Date? = nil,
         lastAccessedAt: Date? = nil,
@@ -66,6 +71,7 @@ public struct Finding: Sendable, Identifiable, Codable, Hashable {
         self.isProtected = isProtected
         self.isCloudPlaceholder = isCloudPlaceholder
         self.ownedByRunningProcess = ownedByRunningProcess
+        self.isKeeper = isKeeper
         self.validation = validation
         self.modifiedAt = modifiedAt
         self.lastAccessedAt = lastAccessedAt
