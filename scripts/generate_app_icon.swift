@@ -10,12 +10,18 @@ import AppKit
 import Foundation
 
 let referenceCanvas: CGFloat = 200
-let tileMargin: CGFloat = 30
-let tileSize: CGFloat = 140
-let tileCornerRadius: CGFloat = 30
-let ringRadius: CGFloat = 34
-let ringLineWidth: CGFloat = 10
-let ringFraction: CGFloat = 160.0 / (2 * .pi * ringRadius) // ≈ 0.749, from the guide's own dasharray
+// Apple's macOS icon grid (Big Sur+) sizes the rounded-tile body at ~80.5% of
+// the canvas (824px in 1024px), with a corner radius ≈22.5% of the tile. Match
+// it so the mark reads the same size as standard system icons; the old 140/200
+// tile (70%) rendered noticeably small in Finder/Dock next to native apps.
+let tileSize: CGFloat = 161
+let tileMargin: CGFloat = (referenceCanvas - tileSize) / 2
+let tileCornerRadius: CGFloat = 36
+// Ring mark kept proportional to the tile (original 34/10 on a 140 tile) so the
+// aperture lockup is unchanged relative to its plate.
+let ringRadius: CGFloat = tileSize * 34.0 / 140.0
+let ringLineWidth: CGFloat = tileSize * 10.0 / 140.0
+let ringFraction: CGFloat = 160.0 / (2 * .pi * 34.0) // ≈ 0.749, from the guide's own dasharray
 
 let ink = NSColor(calibratedRed: 0x1C / 255.0, green: 0x1C / 255.0, blue: 0x1E / 255.0, alpha: 1)
 
